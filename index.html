@@ -955,6 +955,38 @@
         font-size: 44px;
       }
     }
+    /* Существующая анимация pulse */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ДОБАВЬТЕ ЭТО ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
+@media (max-width: 480px) {
+  .pulse {
+    animation: pulseMobile 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulseMobile {
+    0% { 
+      transform: scale(1); 
+      box-shadow: 0 6px 20px rgba(123, 31, 162, 0.4);
+    }
+    50% { 
+      transform: scale(1.08); /* Более заметное увеличение */
+      box-shadow: 0 10px 30px rgba(123, 31, 162, 0.7); /* Ярче тень */
+    }
+    100% { 
+      transform: scale(1); 
+      box-shadow: 0 6px 20px rgba(123, 31, 162, 0.4);
+    }
+  }
+}
   </style>
   
 </head>
