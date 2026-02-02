@@ -1,156 +1,125 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>WB Gift</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    * {
-        box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    }
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    body {
-        margin: 0;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+body {
+    margin: 0;
+    background: #fff;
+}
 
-    .wrapper {
-        width: 100%;
-        max-width: 390px;
-        text-align: center;
-        padding: 24px 16px;
-    }
+.page {
+    width: 390px;
+    margin: 0 auto;
+    padding: 32px 16px 24px;
+    text-align: center;
+}
 
-    .logo {
-        width: 72px;
-        height: 72px;
-        margin: 0 auto 24px;
-        border-radius: 18px;
-        background: linear-gradient(135deg, #ff2fa6, #a000ff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 40px;
-        font-weight: 700;
-    }
+/* WB logo */
+.logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ff2fa6, #a000ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+}
 
-    h1 {
-        font-size: 26px;
-        font-weight: 700;
-        margin: 0;
-        line-height: 1.2;
-        color: #2b2b2b;
-    }
+h1 {
+    font-size: 26px;
+    margin: 0;
+    color: #2b2b2b;
+    line-height: 1.2;
+}
 
-    .sub {
-        font-size: 26px;
-        font-weight: 400;
-        margin-top: 6px;
-        color: #2b2b2b;
-    }
+.sub {
+    font-size: 26px;
+    margin-top: 6px;
+    color: #2b2b2b;
+}
 
-    .arrow {
-        margin: 26px auto 16px;
-        width: 0;
-        height: 0;
-        border-left: 18px solid transparent;
-        border-right: 18px solid transparent;
-        border-top: 22px solid #ff2fa6;
-    }
+/* Arrow */
+.arrow {
+    margin: 24px auto 14px;
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 22px solid #ff2fa6;
+}
 
-    /* LINK BUTTON */
-    .btn {
-        margin: 0 auto 32px;
-        width: 100%;
-        max-width: 320px;
-        height: 64px;
-        border-radius: 32px;
-        background: linear-gradient(90deg, #ff2fa6, #a000ff);
-        color: #fff;
-        font-size: 24px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        cursor: pointer;
-        box-shadow: 0 8px 24px rgba(255, 47, 166, 0.45);
-        animation: pulse 1.6s infinite;
-        user-select: none;
-    }
+/* Button link */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+    margin: 0 auto 28px;
+    border-radius: 32px;
+    background: linear-gradient(90deg, #ff2fa6, #a000ff);
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    animation: pulse 1.6s infinite;
+    box-shadow: 0 8px 24px rgba(255,47,166,0.45);
+}
 
-    .btn:active {
-        transform: scale(0.97);
-    }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(255, 47, 166, 0.6);
-        }
-        70% {
-            transform: scale(1.04);
-            box-shadow: 0 0 0 16px rgba(255, 47, 166, 0);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(255, 47, 166, 0);
-        }
-    }
+.gift {
+    font-size: 48px;
+    margin-bottom: 22px;
+}
 
-    .gift {
-        font-size: 48px;
-        margin-bottom: 28px;
-    }
+.secure {
+    font-size: 14px;
+    color: #8a8a8a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
 
-    .secure {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        color: #8a8a8a;
-        font-size: 14px;
-    }
-
-    .shield {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #e9f5ec;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #2fa84f;
-        font-size: 14px;
-    }
+.secure span {
+    color: #2fa84f;
+}
 </style>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="logo">wb</div>
+<div class="page">
+    <div class="logo">wb</div>
 
-        <h1>Получите гарантированный</h1>
-        <div class="sub">подарок от WB</div>
+    <h1>Получите гарантированный</h1>
+    <div class="sub">подарок от WB</div>
 
-        <div class="arrow"></div>
+    <div class="arrow"></div>
 
-        <!-- BUTTON AS LINK -->
-        <a href="https://dealyacht.com/?s=m2KHS5AXhq" class="btn">Получить</a>
+    <a href="https://example.com" class="btn">Получить</a>
 
-        <div class="gift">🎁</div>
+    <div class="gift">🎁</div>
 
-        <div class="secure">
-            <div class="shield">✔</div>
-            Соединение защищено
-        </div>
+    <div class="secure">
+        <span>✔</span> Соединение защищено
     </div>
+</div>
 </body>
 </html>
