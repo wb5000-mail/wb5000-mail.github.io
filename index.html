@@ -7,23 +7,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --wb-gradient: linear-gradient(97.26deg, #ed3cca 0.49%, #df34d2 14.88%, #d02bd9 29.27%, #bf22e1 43.14%, #ae1ae8 57.02%, #9a10f0 70.89%, #8306f7 84.76%, #7c1af8 99.15%);
-      --wb-bg: linear-gradient(0deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+      --wb-gradient-light: linear-gradient(97.26deg, rgba(237, 60, 202, 0.1) 0.49%, rgba(223, 52, 210, 0.1) 14.88%, rgba(208, 43, 217, 0.1) 29.27%, rgba(191, 34, 225, 0.1) 43.14%, rgba(174, 26, 232, 0.1) 57.02%, rgba(154, 16, 240, 0.1) 70.89%, rgba(131, 6, 247, 0.1) 84.76%, rgba(124, 26, 248, 0.1) 99.15%);
+      --wb-bg: linear-gradient(0deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       --wb-text: #1a1a1a;
       --wb-text-light: #666;
+      --wb-text-lighter: #999;
       --wb-surface: #ffffff;
       --wb-border: #e6e6e6;
+      --wb-border-light: #f0f0f0;
       --wb-light-bg: #f8f8f8;
       --wb-success: #00b23b;
+      --wb-warning: #ff9500;
       --wb-error: #ff3b30;
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 20px;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-      --transition: all 0.2s ease;
+      --radius-xl: 28px;
+      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.15s ease;
     }
 
     * {
@@ -42,106 +50,275 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 240px;
+      background: var(--wb-gradient);
+      opacity: 0.03;
+      z-index: -1;
+    }
+
+    .floating-notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--wb-surface);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1000;
+      border-left: 4px solid var(--wb-success);
+      animation: slideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      max-width: 90%;
+      width: 380px;
+    }
+
+    @keyframes slideDown {
+      to {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateX(-50%) translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .floating-notification .wb-logo-small {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: var(--wb-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
     }
 
     .container {
       background: var(--wb-surface);
       width: 100%;
-      max-width: 500px;
-      border-radius: var(--radius-lg);
+      max-width: 520px;
+      border-radius: var(--radius-xl);
       overflow: hidden;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--wb-gradient);
+      z-index: 2;
+    }
+
+    /* Trust badges */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(124, 26, 248, 0.03);
+      border-bottom: 1px solid var(--wb-border-light);
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--wb-text-light);
+    }
+
+    .trust-badge i {
+      color: var(--wb-success);
+      font-size: 14px;
     }
 
     /* Header */
     .header {
       background: var(--wb-gradient);
       color: white;
-      padding: 24px 20px;
+      padding: 28px 24px;
       text-align: center;
       position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
     }
 
     .header::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 20px;
-      right: 20px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.15);
+      bottom: -30px;
+      left: -40px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
     }
 
     .official-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.95);
       color: var(--wb-text);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
-      padding: 6px 12px;
+      padding: 8px 16px;
       border-radius: 20px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       letter-spacing: 0.3px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .official-badge i {
+      color: #7c1af8;
     }
 
     .header h1 {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       line-height: 1.3;
+      position: relative;
+      z-index: 1;
     }
 
     .header p {
-      font-size: 14px;
+      font-size: 15px;
       opacity: 0.95;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
     }
 
     .offer-info {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 24px;
-      margin-top: 16px;
-      font-size: 13px;
+      gap: 28px;
+      margin-top: 20px;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .offer-info span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 6px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
     }
 
     /* Progress */
-    .progress-indicator {
-      padding: 20px 20px 0;
+    .progress-container {
+      padding: 24px 24px 0;
+      position: relative;
+    }
+
+    .progress-label {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--wb-text-light);
     }
 
-    .progress-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .progress-bar {
+      height: 6px;
       background: var(--wb-border);
-      transition: var(--transition);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
     }
 
-    .progress-dot.active {
+    .progress-fill {
+      height: 100%;
       background: var(--wb-gradient);
-      transform: scale(1.2);
+      border-radius: 3px;
+      width: 14%;
+      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     /* Questions */
     .content-area {
-      padding: 24px 20px;
+      padding: 28px 24px;
     }
 
     .question {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .question.active {
@@ -149,23 +326,24 @@
     }
 
     .question h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-align: center;
       line-height: 1.4;
+      padding: 0 10px;
     }
 
     .options-grid {
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
 
     .btn-option {
-      background: var(--wb-light-bg);
+      background: var(--wb-surface);
       border: 1.5px solid var(--wb-border);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 18px;
       font-size: 15px;
       font-weight: 500;
       text-align: left;
@@ -173,23 +351,50 @@
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--wb-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
     }
 
     .btn-option:hover {
       border-color: #7c1af8;
-      background: #f9f5ff;
-      transform: translateY(-1px);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-option:active {
-      transform: translateY(0);
+      transform: translateY(-1px);
+    }
+
+    .btn-option i, .btn-option span:first-child {
+      position: relative;
+      z-index: 1;
+      font-size: 18px;
+    }
+
+    .btn-option span:last-child {
+      position: relative;
+      z-index: 1;
+      flex: 1;
     }
 
     /* Final Page */
     .final-page {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .final-page.active {
@@ -198,93 +403,166 @@
 
     .final-header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--wb-gradient);
+      border-radius: 50%;
+      opacity: 0;
     }
 
     .final-header h2 {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .final-header p {
+      font-size: 16px;
+      color: var(--wb-text-light);
       margin-bottom: 8px;
-      background: var(--wb-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    }
+
+    .bonus-card {
+      background: var(--wb-gradient-light);
+      border: 2px solid rgba(124, 26, 248, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+      margin: 24px 0 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bonus-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(124, 26, 248, 0.05) 0%, transparent 70%);
+      z-index: 0;
     }
 
     .bonus-amount {
-      font-size: 48px;
-      font-weight: 700;
+      font-size: 56px;
+      font-weight: 800;
       background: var(--wb-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin: 16px 0;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(124, 26, 248, 0.1);
+    }
+
+    .bonus-subtitle {
+      font-size: 16px;
+      color: var(--wb-text-light);
+      position: relative;
+      z-index: 1;
     }
 
     .instructions {
       background: var(--wb-light-bg);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      margin-bottom: 24px;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 28px;
+      border: 1px solid var(--wb-border);
     }
 
     .instructions h4 {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .instructions h4 i {
+      color: #7c1af8;
     }
 
     .steps {
       display: grid;
-      gap: 16px;
+      gap: 20px;
     }
 
     .step {
       display: flex;
-      gap: 12px;
+      gap: 16px;
+      align-items: flex-start;
     }
 
     .step-number {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--wb-gradient);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(124, 26, 248, 0.2);
     }
 
     .step-content {
       flex: 1;
+      padding-top: 4px;
     }
 
     .step-content strong {
       color: var(--wb-text);
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
     }
 
     .step-content p {
       font-size: 14px;
       color: var(--wb-text-light);
-      margin-top: 2px;
+      line-height: 1.5;
     }
 
     .time-left {
       background: rgba(124, 26, 248, 0.05);
       border: 1px solid rgba(124, 26, 248, 0.15);
-      border-radius: var(--radius-md);
-      padding: 12px;
+      border-radius: var(--radius-lg);
+      padding: 18px;
       text-align: center;
       margin-bottom: 24px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      animation: pulseBorder 2s infinite;
+    }
+
+    @keyframes pulseBorder {
+      0%, 100% { border-color: rgba(124, 26, 248, 0.15); }
+      50% { border-color: rgba(124, 26, 248, 0.3); }
+    }
+
+    .time-left i {
+      color: #7c1af8;
     }
 
     .time-left strong {
       color: #7c1af8;
+      font-size: 16px;
     }
 
     /* Buttons */
@@ -293,67 +571,106 @@
       background: var(--wb-gradient);
       color: white;
       border: none;
-      border-radius: var(--radius-md);
-      padding: 18px;
-      font-size: 16px;
-      font-weight: 600;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      font-size: 17px;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(124, 26, 248, 0.25);
     }
 
     .btn-primary:hover {
-      opacity: 0.95;
-      box-shadow: 0 4px 12px rgba(124, 26, 248, 0.2);
-      transform: translateY(-1px);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(124, 26, 248, 0.35);
     }
 
     .btn-primary:active {
-      transform: translateY(0);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+      transform: translateX(-100%);
+    }
+
+    .btn-primary:hover::after {
+      animation: shine 1s ease;
+    }
+
+    @keyframes shine {
+      to { transform: translateX(100%); }
     }
 
     /* Chat */
     .chat-container {
-      margin-top: 24px;
-      border-radius: var(--radius-md);
+      margin-top: 28px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--wb-border);
+      box-shadow: var(--shadow-sm);
     }
 
     .chat-header {
-      background: var(--wb-light-bg);
-      padding: 12px 16px;
+      background: var(--wb-gradient);
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--wb-border);
+      color: white;
     }
 
     .chat-header span {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .chat-online {
-      font-size: 12px;
-      color: var(--wb-text-light);
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
     .chat-messages {
-      height: 300px;
+      height: 320px;
       overflow-y: auto;
-      padding: 16px;
+      padding: 20px;
       background: var(--wb-surface);
+      scroll-behavior: smooth;
     }
 
     .chat-message {
       display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      animation: slideIn 0.2s ease;
+      gap: 12px;
+      margin-bottom: 18px;
+      animation: messageSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .chat-message.user {
@@ -361,15 +678,16 @@
     }
 
     .chat-avatar {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .chat-message:not(.user) .chat-avatar {
@@ -380,63 +698,71 @@
     .chat-message.user .chat-avatar {
       background: var(--wb-light-bg);
       color: var(--wb-text);
+      border: 1px solid var(--wb-border);
     }
 
     .chat-bubble {
-      max-width: 70%;
-      padding: 12px;
-      border-radius: 16px;
-      font-size: 14px;
-      line-height: 1.4;
+      max-width: 75%;
+      padding: 14px 18px;
+      border-radius: 20px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      position: relative;
     }
 
     .chat-message:not(.user) .chat-bubble {
       background: var(--wb-light-bg);
-      border-radius: 16px 16px 16px 4px;
+      border-radius: 20px 20px 20px 8px;
+      border: 1px solid var(--wb-border);
     }
 
     .chat-message.user .chat-bubble {
-      background: rgba(124, 26, 248, 0.08);
-      border-radius: 16px 16px 4px 16px;
+      background: rgba(124, 26, 248, 0.1);
+      border-radius: 20px 20px 8px 20px;
+      border: 1px solid rgba(124, 26, 248, 0.2);
     }
 
     .chat-name {
       font-weight: 600;
-      font-size: 12px;
-      margin-bottom: 2px;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: var(--wb-text);
     }
 
     .chat-time {
       font-size: 11px;
-      color: var(--wb-text-light);
-      margin-top: 4px;
+      color: var(--wb-text-lighter);
+      margin-top: 6px;
       text-align: right;
     }
 
     .chat-input-area {
       display: flex;
-      padding: 12px 16px;
+      padding: 16px 20px;
       background: var(--wb-light-bg);
-      gap: 8px;
+      gap: 12px;
+      border-top: 1px solid var(--wb-border);
     }
 
     .chat-input {
       flex: 1;
-      padding: 10px 16px;
+      padding: 12px 18px;
       border: 1px solid var(--wb-border);
-      border-radius: 20px;
-      font-size: 14px;
+      border-radius: 24px;
+      font-size: 14.5px;
       background: var(--wb-surface);
+      transition: var(--transition-fast);
     }
 
     .chat-input:focus {
       outline: none;
       border-color: #7c1af8;
+      box-shadow: 0 0 0 3px rgba(124, 26, 248, 0.1);
     }
 
     .chat-send {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--wb-gradient);
       border: none;
@@ -446,65 +772,317 @@
       align-items: center;
       justify-content: center;
       transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(124, 26, 248, 0.2);
     }
 
     .chat-send:hover {
-      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(124, 26, 248, 0.3);
+    }
+
+    .chat-send:active {
+      transform: translateY(0);
     }
 
     /* Loading */
     .loading-page {
       display: none;
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 24px;
     }
 
     .loading-page.active {
       display: block;
     }
 
+    .loading-content {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
     .spinner {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--wb-border);
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(124, 26, 248, 0.1);
       border-top-color: #7c1af8;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
+      animation: spin 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+
+    .spinner::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border: 2px solid rgba(124, 26, 248, 0.05);
+      border-radius: 50%;
+    }
+
+    .loading-page p {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: var(--wb-text);
     }
 
     .loading-steps {
-      margin-top: 24px;
+      display: grid;
+      gap: 14px;
     }
 
     .loading-step {
-      padding: 12px;
-      font-size: 14px;
+      padding: 16px;
+      font-size: 15px;
       color: var(--wb-text-light);
-      border-radius: var(--radius-sm);
-      margin-bottom: 8px;
+      border-radius: var(--radius-md);
+      background: var(--wb-light-bg);
+      border: 1px solid var(--wb-border);
       transition: var(--transition);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      background: var(--wb-gradient-light);
+      transition: width 1.5s ease;
+      z-index: 0;
     }
 
     .loading-step.active {
-      background: rgba(124, 26, 248, 0.05);
       color: var(--wb-text);
       font-weight: 500;
+      border-color: rgba(124, 26, 248, 0.2);
     }
 
-    /* Animations */
+    .loading-step.active::before {
+      width: 100%;
+    }
+
+    .loading-step i {
+      position: relative;
+      z-index: 1;
+      width: 20px;
+      text-align: center;
+    }
+
+    .loading-step span {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .loading-step.active i {
+      color: #7c1af8;
+    }
+
+    /* VPN Warning & Browser Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
+    .modal {
+      background: var(--wb-surface);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      background: var(--wb-gradient);
+      color: white;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-header p {
+      opacity: 0.9;
+      font-size: 14px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .modal-content {
+      padding: 28px 24px;
+    }
+
+    .modal-step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .modal-step-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--wb-gradient-light);
+      color: #7c1af8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      border: 2px solid rgba(124, 26, 248, 0.2);
+    }
+
+    .modal-step-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--wb-text);
+    }
+
+    .modal-step-content p {
+      font-size: 14px;
+      color: var(--wb-text-light);
+      line-height: 1.5;
+    }
+
+    .vpn-warning {
+      background: rgba(255, 149, 0, 0.05);
+      border: 1px solid rgba(255, 149, 0, 0.2);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .vpn-warning i {
+      color: var(--wb-warning);
+      font-size: 20px;
+      margin-top: 2px;
+    }
+
+    .vpn-warning-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--wb-text);
+    }
+
+    .vpn-warning-content p {
+      font-size: 13.5px;
+      color: var(--wb-text-light);
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .modal-btn-primary {
+      background: var(--wb-gradient);
+      color: white;
+    }
+
+    .modal-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 26, 248, 0.25);
+    }
+
+    .modal-btn-secondary {
+      background: var(--wb-light-bg);
+      color: var(--wb-text);
+      border: 1px solid var(--wb-border);
+    }
+
+    .modal-btn-secondary:hover {
+      background: #f0f0f0;
     }
 
     /* Mobile */
@@ -514,247 +1092,339 @@
       }
 
       .container {
-        border-radius: 16px;
+        border-radius: var(--radius-lg);
+      }
+
+      .trust-badges {
+        gap: 12px;
+        padding: 14px 16px;
+      }
+
+      .trust-badge {
+        font-size: 12px;
       }
 
       .header {
-        padding: 20px 16px;
+        padding: 24px 20px;
       }
 
       .header h1 {
-        font-size: 18px;
+        font-size: 22px;
+      }
+
+      .offer-info {
+        gap: 20px;
+        font-size: 13px;
       }
 
       .content-area {
-        padding: 20px 16px;
+        padding: 24px 20px;
       }
 
       .question h3 {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .btn-option {
-        padding: 14px;
-        font-size: 14px;
+        padding: 16px;
+        font-size: 14.5px;
       }
 
       .bonus-amount {
-        font-size: 40px;
+        font-size: 48px;
       }
 
       .chat-messages {
-        height: 250px;
+        height: 280px;
+        padding: 16px;
+      }
+
+      .modal {
+        max-width: 100%;
+      }
+
+      .modal-content {
+        padding: 24px 20px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
+
+<!-- Floating Notifications will appear here -->
+
 <div class="container">
-  <div class="header">
-    <div class="official-badge">СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ</div>
-    <h1>Получите 5000₽ на Wildberries</h1>
-    <p>Пройдите короткую анкету для получения персонального предложения</p>
-    <div class="offer-info">
-      <span>👥 <span id="participantsCount">1,847</span></span>
-      <span>⏳ <span id="countdown">23:24:59</span></span>
+  <!-- Trust Badges -->
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <i class="fas fa-shield-check"></i>
+      <span>Официальное предложение</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-lock"></i>
+      <span>Безопасно и конфиденциально</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-bolt"></i>
+      <span>Выплаты в течение 5 минут</span>
     </div>
   </div>
 
-  <div class="progress-indicator">
-    <div class="progress-dot active"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
+  <!-- Header -->
+  <div class="header">
+    <div class="official-badge">
+      <i class="fas fa-check-circle"></i>
+      <span>ПРОВЕРЕНО WILDBERRIES</span>
+    </div>
+    <h1>Персональный бонус 5000₽</h1>
+    <p>Для постоянных покупателей Wildberries</p>
+    <p>Подтвердите участие и получите подарочный сертификат</p>
+    
+    <div class="offer-info">
+      <span><i class="fas fa-users"></i> <span id="participantsCount">2,184</span></span>
+      <span><i class="fas fa-clock"></i> <span id="countdown">23:18:42</span></span>
+    </div>
   </div>
 
+  <!-- Progress -->
+  <div class="progress-container">
+    <div class="progress-label">
+      <span>Анкета покупателя</span>
+      <span><span id="currentQuestion">1</span>/7</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Content Area -->
   <div class="content-area">
-    <!-- Question 1 -->
+    <!-- Questions 1-7 (same structure as before, but with icons) -->
     <div class="question active" id="question1">
       <h3>Как часто вы совершаете покупки на Wildberries?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(1)">
-          <span>📦</span> Несколько раз в неделю
+          <i class="fas fa-shipping-fast"></i>
+          <span>Несколько раз в неделю</span>
         </button>
         <button class="btn-option" onclick="selectOption(1)">
-          <span>🛒</span> 1-2 раза в месяц
+          <i class="fas fa-shopping-cart"></i>
+          <span>1-2 раза в месяц</span>
         </button>
         <button class="btn-option" onclick="selectOption(1)">
-          <span>📝</span> Редко, но планирую чаще
+          <i class="fas fa-calendar-plus"></i>
+          <span>Редко, но планирую чаще</span>
         </button>
         <button class="btn-option" onclick="selectOption(1)">
-          <span>❌</span> Никогда не покупал(а)
+          <i class="fas fa-times-circle"></i>
+          <span>Никогда не покупал(а)</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 2 -->
+    <!-- Questions 2-7 (similar structure) -->
     <div class="question" id="question2">
       <h3>Какую сумму вы обычно тратите за один заказ?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(2)">
-          <span>💎</span> До 1 000 рублей
+          <i class="fas fa-gem"></i>
+          <span>До 1 000 рублей</span>
         </button>
         <button class="btn-option" onclick="selectOption(2)">
-          <span>👗</span> 1 000 – 3 000 рублей
+          <i class="fas fa-tshirt"></i>
+          <span>1 000 – 3 000 рублей</span>
         </button>
         <button class="btn-option" onclick="selectOption(2)">
-          <span>🛍️</span> 3 000 – 7 000 рублей
+          <i class="fas fa-shopping-bag"></i>
+          <span>3 000 – 7 000 рублей</span>
         </button>
         <button class="btn-option" onclick="selectOption(2)">
-          <span>💼</span> Более 7 000 рублей
+          <i class="fas fa-briefcase"></i>
+          <span>Более 7 000 рублей</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 3 -->
     <div class="question" id="question3">
       <h3>Что вы чаще всего покупаете на Wildberries?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(3)">
-          <span>👚</span> Одежда и обувь
+          <i class="fas fa-tshirt"></i>
+          <span>Одежда и обувь</span>
         </button>
         <button class="btn-option" onclick="selectOption(3)">
-          <span>💄</span> Косметика и парфюмерия
+          <i class="fas fa-paint-brush"></i>
+          <span>Косметика и парфюмерия</span>
         </button>
         <button class="btn-option" onclick="selectOption(3)">
-          <span>🏠</span> Товары для дома
+          <i class="fas fa-home"></i>
+          <span>Товары для дома</span>
         </button>
         <button class="btn-option" onclick="selectOption(3)">
-          <span>📱</span> Электроника и гаджеты
+          <i class="fas fa-mobile-alt"></i>
+          <span>Электроника и гаджеты</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 4 -->
     <div class="question" id="question4">
       <h3>Что для вас важно при выборе товара?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(4)">
-          <span>⭐</span> Отзывы и рейтинг продавца
+          <i class="fas fa-star"></i>
+          <span>Отзывы и рейтинг продавца</span>
         </button>
         <button class="btn-option" onclick="selectOption(4)">
-          <span>💰</span> Цена и акции
+          <i class="fas fa-tag"></i>
+          <span>Цена и акции</span>
         </button>
         <button class="btn-option" onclick="selectOption(4)">
-          <span>🚚</span> Быстрая доставка
+          <i class="fas fa-truck"></i>
+          <span>Быстрая доставка</span>
         </button>
         <button class="btn-option" onclick="selectOption(4)">
-          <span>📷</span> Качественные фото товара
+          <i class="fas fa-camera"></i>
+          <span>Качественные фото товара</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 5 -->
     <div class="question" id="question5">
       <h3>Какой подарок вы бы хотели получить от Wildberries?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(5)">
-          <span>🎁</span> Скидка на следующий заказ
+          <i class="fas fa-gift"></i>
+          <span>Скидка на следующий заказ</span>
         </button>
         <button class="btn-option" onclick="selectOption(5)">
-          <span>🚀</span> Бесплатная доставка на год
+          <i class="fas fa-shipping-fast"></i>
+          <span>Бесплатная доставка на год</span>
         </button>
         <button class="btn-option" onclick="selectOption(5)">
-          <span>👑</span> Премиум-статус покупателя
+          <i class="fas fa-crown"></i>
+          <span>Премиум-статус покупателя</span>
         </button>
         <button class="btn-option" onclick="selectOption(5)">
-          <span>💝</span> Подарочный сертификат
+          <i class="fas fa-certificate"></i>
+          <span>Подарочный сертификат</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 6 -->
     <div class="question" id="question6">
       <h3>Вы подписаны на рассылку акций и спецпредложений Wildberries?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(6)">
-          <span>✅</span> Да, получаю выгодные предложения
+          <i class="fas fa-check-circle"></i>
+          <span>Да, получаю выгодные предложения</span>
         </button>
         <button class="btn-option" onclick="selectOption(6)">
-          <span>🤔</span> Нет, но хочу попробовать
+          <i class="fas fa-thinking"></i>
+          <span>Нет, но хочу попробовать</span>
         </button>
         <button class="btn-option" onclick="selectOption(6)">
-          <span>❌</span> Нет, не интересно
+          <i class="fas fa-times-circle"></i>
+          <span>Нет, не интересно</span>
         </button>
       </div>
     </div>
 
-    <!-- Question 7 -->
     <div class="question" id="question7">
       <h3>Какой из брендов Wildberries вам наиболее интересен?</h3>
       <div class="options-grid">
         <button class="btn-option" onclick="selectOption(7)">
-          <span>👗</span> Fashion-бренды одежды
+          <i class="fas fa-tshirt"></i>
+          <span>Fashion-бренды одежды</span>
         </button>
         <button class="btn-option" onclick="selectOption(7)">
-          <span>🏡</span> Домашний уют и декор
+          <i class="fas fa-home"></i>
+          <span>Домашний уют и декор</span>
         </button>
         <button class="btn-option" onclick="selectOption(7)">
-          <span>💎</span> Beauty-продукты
+          <i class="fas fa-spa"></i>
+          <span>Beauty-продукты</span>
         </button>
         <button class="btn-option" onclick="selectOption(7)">
-          <span>👶</span> Детские товары
+          <i class="fas fa-child"></i>
+          <span>Детские товары</span>
         </button>
       </div>
     </div>
 
     <!-- Loading Page -->
     <div class="loading-page" id="loading">
-      <div class="spinner"></div>
-      <p>Проверяем ваши ответы...</p>
-      <div class="loading-steps">
-        <div class="loading-step active" id="step1">Анализ ответов</div>
-        <div class="loading-step" id="step2">Проверка соответствия</div>
-        <div class="loading-step" id="step3">Подготовка предложения</div>
+      <div class="loading-content">
+        <div class="spinner"></div>
+        <p>Подготавливаем ваше персональное предложение</p>
+        <div class="loading-steps">
+          <div class="loading-step active" id="step1">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>Анализ ответов анкеты</span>
+          </div>
+          <div class="loading-step" id="step2">
+            <i class="far fa-clock"></i>
+            <span>Проверка соответствия условиям</span>
+          </div>
+          <div class="loading-step" id="step3">
+            <i class="far fa-gem"></i>
+            <span>Формирование подарочного сертификата</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Final Page -->
     <div class="final-page" id="final-page">
       <div class="final-header">
-        <h2>Отлично!</h2>
-        <p>Ваше персональное предложение готово</p>
-        <div class="bonus-amount">5 000₽</div>
-        <p>на покупки в Wildberries</p>
+        <h2>Поздравляем! 🎉</h2>
+        <p>Ваша анкета одобрена системой Wildberries</p>
+        
+        <div class="bonus-card">
+          <div class="bonus-amount">5 000₽</div>
+          <div class="bonus-subtitle">Подарочный сертификат на покупки</div>
+        </div>
       </div>
 
       <div class="instructions">
-        <h4>Как получить бонус:</h4>
+        <h4><i class="fas fa-list-check"></i> Как получить бонус:</h4>
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-              <strong>Нажмите «Получить 5000₽»</strong>
-              <p>и пройдите быструю регистрацию</p>
+              <strong>Нажмите кнопку «Получить 5000₽»</strong>
+              <p>Вас перенаправит на страницу подтверждения участия</p>
             </div>
           </div>
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-content">
-              <strong>Подтвердите участие</strong>
-              <p>это необходимо для получения сертификата</p>
+              <strong>Подтвердите участие в акции</strong>
+              <p>Это необходимо для зачисления бонуса на ваш счет</p>
             </div>
           </div>
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-content">
-              <strong>Дождитесь зачисления</strong>
-              <p>бонус станет доступен в течение 5 минут</p>
+              <strong>Дождитесь зачисления сертификата</strong>
+              <p>Сертификат появится в вашем аккаунте Wildberries</p>
             </div>
           </div>
         </div>
       </div>
 
       <div class="time-left">
-        ⏳ Предложение действительно: <strong id="finalCountdown">05:00</strong>
+        <i class="fas fa-clock"></i>
+        <span>Специальное предложение действует: <strong id="finalCountdown">05:00</strong></span>
       </div>
 
       <button class="btn-primary" onclick="window.open('https://gotoprofit.ru/stream/taplink_wb', '_blank')">
+        <i class="fas fa-gift"></i>
         Получить 5000₽
-        <span>→</span>
+        <i class="fas fa-arrow-right"></i>
       </button>
     </div>
   </div>
@@ -762,110 +1432,258 @@
   <!-- Chat -->
   <div class="chat-container">
     <div class="chat-header">
-      <span>💬 Чат участников</span>
-      <span class="chat-online"><span id="onlineCount">148</span> онлайн</span>
+      <span><i class="fas fa-comments"></i> Чат участников акции</span>
+      <span class="chat-online"><i class="fas fa-circle"></i> <span id="onlineCount">152</span> онлайн</span>
     </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input-area">
       <input type="text" class="chat-input" id="chatInput" placeholder="Написать сообщение..." maxlength="100">
       <button class="chat-send" id="chatSend">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-        </svg>
+        <i class="fas fa-paper-plane"></i>
       </button>
     </div>
   </div>
 </div>
 
-<script>
-  const totalQuestions = 7;
-  let currentQuestion = 1;
-  let participantsCount = 1847;
-  let onlineCount = 148;
-  let messageId = 0;
-  let chatMessages = [];
-  let finalTimerSeconds = 300;
+<!-- Browser Recommendation Modal -->
+<div class="modal-overlay" id="browserModal" style="display: none;">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h3><i class="fas fa-external-link-alt"></i> Откройте в браузере</h3>
+      <p>Для корректной работы и гарантии получения бонуса</p>
+    </div>
+    <div class="modal-content">
+      <div class="modal-step">
+        <div class="modal-step-number">1</div>
+        <div class="modal-step-content">
+          <h4>Нажмите «⋯» в правом верхнем углу</h4>
+          <p>В меню встроенного браузера TikTok</p>
+        </div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-number">2</div>
+        <div class="modal-step-content">
+          <h4>Выберите «Открыть в браузере»</h4>
+          <p>Safari, Chrome или другой основной браузер</p>
+        </div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-number">3</div>
+        <div class="modal-step-content">
+          <h4>Вернитесь на эту страницу</h4>
+          <p>Продолжайте заполнение анкеты в браузере</p>
+        </div>
+      </div>
+      
+      <div class="vpn-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="vpn-warning-content">
+          <h4>Важно: отключите VPN</h4>
+          <p>Система Wildberries требует отключения VPN для выдачи бонуса. Без VPN успешных выплат — 97%.</p>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-secondary" id="modalSkip">
+          <i class="fas fa-times"></i>
+          Пропустить
+        </button>
+        <button class="modal-btn modal-btn-primary" id="modalUnderstood">
+          <i class="fas fa-check"></i>
+          Открыл в браузере
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  // Initial chat messages
+<script>
+  // Enhanced configuration
+  const CONFIG = {
+    totalQuestions: 7,
+    initialParticipants: 2184,
+    initialOnline: 152,
+    finalTimerSeconds: 300,
+    notificationInterval: 5000,
+    participantIncreaseInterval: 8000,
+    chatMessageInterval: 10000
+  };
+
+  // State
+  let state = {
+    currentQuestion: 1,
+    participantsCount: CONFIG.initialParticipants,
+    onlineCount: CONFIG.initialOnline,
+    messageId: 0,
+    chatMessages: [],
+    finalTimerSeconds: CONFIG.finalTimerSeconds,
+    isSurveyActive: true,
+    notifications: [],
+    confettiActive: false
+  };
+
+  // Enhanced chat messages
   const initialMessages = [
-    {name: "Анна", text: "Получила бонус, всё работает", time: "10:15", gender: "female"},
-    {name: "Сергей", text: "Сколько ждать зачисление?", time: "10:18", gender: "male"},
-    {name: "Ольга", text: "У меня через 2 минуты пришло", time: "10:22", gender: "female"},
-    {name: "Марина", text: "Уже потратила на новое платье", time: "10:25", gender: "female"},
-    {name: "Дмитрий", text: "Верификацию прошёл легко", time: "10:28", gender: "male"},
-    {name: "Елена", text: "Любая карта подходит", time: "10:32", gender: "female"},
-    {name: "Александр", text: "Подтверждаю, с картой ВТБ всё ок", time: "10:38", gender: "male"}
+    {name: "Анна К.", text: "Только что получила сертификат! Всё работает, девочки!", time: "14:25", gender: "female"},
+    {name: "Сергей М.", text: "У меня зачислилось через 3 минуты после подтверждения", time: "14:28", gender: "male"},
+    {name: "Ольга П.", text: "Спасибо WB за такой подарок! Уже заказала новое пальто", time: "14:32", gender: "female"},
+    {name: "Дмитрий С.", text: "Верификация заняла 2 минуты, всё интуитивно понятно", time: "14:35", gender: "male"},
+    {name: "Марина Л.", text: "Кто сомневается — не бойтесь! Это официальная акция", time: "14:38", gender: "female"},
+    {name: "Александр В.", text: "Уже потратил на инструменты для гаража. Качество отличное", time: "14:42", gender: "male"}
   ];
 
   const randomMessages = [
-    "Только что получила бонус!",
-    "Всё работает, деньги реальные",
-    "Потратила на одежду, качество отличное",
-    "Спасибо за предложение",
-    "Уже оформила заказ на эти деньги",
-    "Быстро и удобно",
-    "Деньги пришли через 3 минуты",
-    "Очень доволен",
-    "Уже всем рекомендую",
-    "Отличный бонус к покупкам"
+    "Только что получила подтверждение! Сертификат уже в аккаунте",
+    "Удивительно, но это реально работает. Спасибо Wildberries!",
+    "Подарочный сертификат пришёл через 4 минуты. Очень быстро!",
+    "Уже сделала заказ на эти деньги. Всё прошло гладко",
+    "Сначала не верила, но решила попробовать. Не пожалела!",
+    "Муж тоже получил свой бонус. Теперь оба с подарками",
+    "Деньги реальные, уже проверила в личном кабинете WB",
+    "Анкету заполнила за 2 минуты, бонус получила за 5",
+    "Очень удобно, что сертификат сразу в аккаунте Wildberries",
+    "Уже всем подругам рассказала про эту акцию"
   ];
 
-  // Initialize
+  // Trust notifications
+  const trustNotifications = [
+    {text: "✅ Анкета успешно сохранена в системе Wildberries", delay: 1000},
+    {text: "🛡️ Ваши данные защищены и не передаются третьим лицам", delay: 4000},
+    {text: "📊 Система анализирует ваши ответы для персонального предложения", delay: 7000}
+  ];
+
+  // Initialize everything
   function init() {
-    updateProgressDots();
+    updateProgress();
     initChat();
     startTimers();
-    simulateParticipants();
+    startParticipantSimulation();
+    startNotificationSystem();
+    showTrustNotifications();
+    
+    // Show browser modal after delay (only once per session)
+    if (!sessionStorage.getItem('browserModalShown')) {
+      setTimeout(showBrowserModal, 1500);
+    }
+    
+    // Add some confetti to final page when shown
+    document.addEventListener('finalPageShown', createConfetti);
   }
 
-  // Progress
-  function updateProgressDots() {
+  // Progress system
+  function updateProgress() {
+    const progressPercent = (state.currentQuestion / CONFIG.totalQuestions) * 100;
+    document.getElementById('progressFill').style.width = `${progressPercent}%`;
+    document.getElementById('currentQuestion').textContent = state.currentQuestion;
+    
+    // Update progress dots
     const dots = document.querySelectorAll('.progress-dot');
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index < currentQuestion);
-    });
-  }
-
-  // Questions
-  function selectOption(questionNum) {
-    if (questionNum !== currentQuestion) return;
-    
-    participantsCount++;
-    document.getElementById('participantsCount').textContent = participantsCount.toLocaleString();
-    
-    document.getElementById(`question${questionNum}`).classList.remove('active');
-    currentQuestion++;
-    
-    if (currentQuestion <= totalQuestions) {
-      document.getElementById(`question${currentQuestion}`).classList.add('active');
-      updateProgressDots();
-    } else {
-      showLoading();
+    if (dots.length > 0) {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index < state.currentQuestion);
+      });
     }
   }
 
-  function showLoading() {
-    document.getElementById(`question${totalQuestions}`).classList.remove('active');
+  // Question system
+  function selectOption(questionNum) {
+    if (questionNum !== state.currentQuestion || !state.isSurveyActive) return;
+    
+    // Animate button click
+    const button = event.currentTarget;
+    button.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+      button.style.transform = '';
+    }, 150);
+    
+    state.participantsCount += Math.floor(Math.random() * 2) + 1;
+    updateParticipantsCount();
+    
+    // Hide current question with animation
+    const currentElement = document.getElementById(`question${questionNum}`);
+    currentElement.style.opacity = '0';
+    currentElement.style.transform = 'translateY(-10px)';
+    
+    setTimeout(() => {
+      currentElement.classList.remove('active');
+      state.currentQuestion++;
+      
+      if (state.currentQuestion <= CONFIG.totalQuestions) {
+        // Show next question
+        const nextElement = document.getElementById(`question${state.currentQuestion}`);
+        nextElement.classList.add('active');
+        updateProgress();
+        
+        // Show notification about progress
+        showFloatingNotification(`Вопрос ${state.currentQuestion} из ${CONFIG.totalQuestions}`);
+      } else {
+        // All questions answered
+        state.isSurveyActive = false;
+        showLoadingScreen();
+      }
+      
+      // Reset animation
+      currentElement.style.opacity = '';
+      currentElement.style.transform = '';
+    }, 300);
+  }
+
+  function showLoadingScreen() {
     document.getElementById('loading').classList.add('active');
     
-    setTimeout(() => document.getElementById('step2').classList.add('active'), 800);
-    setTimeout(() => document.getElementById('step3').classList.add('active'), 1600);
+    // Animate steps sequentially
+    const steps = ['step1', 'step2', 'step3'];
+    steps.forEach((stepId, index) => {
+      setTimeout(() => {
+        document.getElementById(stepId).classList.add('active');
+        
+        // Update step icon
+        const icon = document.querySelector(`#${stepId} i`);
+        if (icon) {
+          icon.className = 'fas fa-check';
+          icon.style.color = '#00b23b';
+        }
+        
+        // Show notification for each step
+        const messages = [
+          "Анализ ответов завершён",
+          "Проверка соответствия пройдена",
+          "Сертификат сформирован"
+        ];
+        if (messages[index]) {
+          showFloatingNotification(messages[index]);
+        }
+      }, (index + 1) * 1200);
+    });
     
+    // Show final page after all steps
     setTimeout(() => {
       document.getElementById('loading').classList.remove('active');
       document.getElementById('final-page').classList.add('active');
       startFinalCountdown();
-    }, 2400);
+      
+      // Trigger confetti event
+      document.dispatchEvent(new Event('finalPageShown'));
+      
+      // Show success notification
+      showFloatingNotification("🎉 Ваше персональное предложение готово!", 5000);
+    }, 4000);
   }
 
-  // Timers
+  // Timer system
   function startTimers() {
-    // Main timer
-    let totalSeconds = 23 * 3600 + 24 * 60 + 59;
+    // Main countdown timer
+    let totalSeconds = 23 * 3600 + 18 * 60 + 42;
     const timerElement = document.getElementById('countdown');
     
     function updateMainTimer() {
-      if (totalSeconds <= 0) return;
+      if (totalSeconds <= 0) {
+        timerElement.textContent = "00:00:00";
+        timerElement.style.color = "var(--wb-error)";
+        return;
+      }
+      
       totalSeconds--;
       const hours = Math.floor(totalSeconds / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -880,57 +1698,111 @@
     const element = document.getElementById('finalCountdown');
     
     function update() {
-      if (finalTimerSeconds < 0) {
+      if (state.finalTimerSeconds < 0) {
         element.textContent = "00:00";
         element.style.color = "var(--wb-error)";
+        element.parentElement.innerHTML = '<i class="fas fa-exclamation-circle"></i> <span>Время истекло! Предложение более недействительно</span>';
         return;
       }
       
-      const minutes = Math.floor(finalTimerSeconds / 60);
-      const seconds = finalTimerSeconds % 60;
+      const minutes = Math.floor(state.finalTimerSeconds / 60);
+      const seconds = state.finalTimerSeconds % 60;
       element.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      finalTimerSeconds--;
+      state.finalTimerSeconds--;
       setTimeout(update, 1000);
     }
     update();
   }
 
   // Participants simulation
-  function simulateParticipants() {
-    setInterval(() => {
-      if (currentQuestion <= totalQuestions) {
-        participantsCount += Math.floor(Math.random() * 2) + 1;
-        document.getElementById('participantsCount').textContent = participantsCount.toLocaleString();
-      }
-    }, 8000);
+  function updateParticipantsCount() {
+    document.getElementById('participantsCount').textContent = 
+      state.participantsCount.toLocaleString('ru-RU');
   }
 
-  // Chat
+  function startParticipantSimulation() {
+    setInterval(() => {
+      if (state.isSurveyActive) {
+        state.participantsCount += Math.floor(Math.random() * 3) + 1;
+        updateParticipantsCount();
+      }
+    }, CONFIG.participantIncreaseInterval);
+  }
+
+  // Notification system
+  function showFloatingNotification(text, duration = 3000) {
+    const notification = document.createElement('div');
+    notification.className = 'floating-notification';
+    notification.innerHTML = `
+      <div class="wb-logo-small">WB</div>
+      <div>${text}</div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after duration
+    setTimeout(() => {
+      notification.style.animation = 'slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 500);
+    }, duration);
+  }
+
+  function showTrustNotifications() {
+    trustNotifications.forEach((notification, index) => {
+      setTimeout(() => {
+        showFloatingNotification(notification.text);
+      }, notification.delay);
+    });
+  }
+
+  function startNotificationSystem() {
+    setInterval(() => {
+      if (Math.random() > 0.7 && state.isSurveyActive) {
+        const cities = ["Москва", "Санкт-Петербург", "Казань", "Новосибирск", "Екатеринбург"];
+        const names = ["Анна", "Мария", "Екатерина", "Сергей", "Дмитрий", "Ольга"];
+        const actions = ["получила", "активировала", "забрала"];
+        const amounts = ["3000", "3500", "4000", "4500", "5000"];
+        
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const name = names[Math.floor(Math.random() * names.length)];
+        const action = actions[Math.floor(Math.random() * actions.length)];
+        const amount = amounts[Math.floor(Math.random() * amounts.length)];
+        
+        showFloatingNotification(`🏆 ${name} из ${city} ${action} ${amount}₽ на Wildberries!`);
+      }
+    }, CONFIG.notificationInterval);
+  }
+
+  // Chat system
   function initChat() {
     const chatContainer = document.getElementById('chatMessages');
     
     initialMessages.forEach(msg => {
-      addMessage(msg.name, msg.text, msg.gender, false, msg.time);
+      addChatMessage(msg.name, msg.text, msg.gender, false, msg.time);
     });
     
-    document.getElementById('chatSend').addEventListener('click', sendMessage);
+    document.getElementById('chatSend').addEventListener('click', sendChatMessage);
     document.getElementById('chatInput').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
+      if (e.key === 'Enter') sendChatMessage();
     });
     
-    setInterval(addRandomMessage, 10000 + Math.random() * 8000);
+    setInterval(addRandomChatMessage, CONFIG.chatMessageInterval);
     setInterval(updateOnlineCount, 15000);
   }
 
-  function addMessage(name, text, gender, isUser = false, customTime = null) {
+  function addChatMessage(name, text, gender, isUser = false, customTime = null) {
     const container = document.getElementById('chatMessages');
-    messageId++;
+    state.messageId++;
     
     const time = customTime || new Date().toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
     const avatarText = name.charAt(0);
     
     const message = {
-      id: messageId,
+      id: state.messageId,
       name,
       text,
       gender,
@@ -938,9 +1810,9 @@
       isUser
     };
     
-    chatMessages.push(message);
-    if (chatMessages.length > 10) {
-      chatMessages.shift();
+    state.chatMessages.push(message);
+    if (state.chatMessages.length > 12) {
+      state.chatMessages.shift();
       container.firstChild?.remove();
     }
     
@@ -959,40 +1831,120 @@
     container.scrollTop = container.scrollHeight;
   }
 
-  function addRandomMessage() {
-    const names = ["Анна", "Марина", "Ольга", "Елена", "Сергей", "Дмитрий", "Александр"];
+  function addRandomChatMessage() {
+    const names = ["Анна", "Марина", "Ольга", "Елена", "Сергей", "Дмитрий", "Александр", "Ирина"];
     const isFemale = Math.random() > 0.3;
     const name = names[Math.floor(Math.random() * names.length)];
     const text = randomMessages[Math.floor(Math.random() * randomMessages.length)];
     
-    addMessage(name, text, isFemale ? 'female' : 'male');
+    addChatMessage(name, text, isFemale ? 'female' : 'male');
   }
 
-  function sendMessage() {
+  function sendChatMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
     
     if (text) {
-      addMessage("Вы", text, 'user', true);
+      addChatMessage("Вы", text, 'user', true);
       input.value = '';
       
       setTimeout(() => {
-        const responses = ["Отлично!", "Удачи!", "Спасибо за участие!"];
+        const responses = [
+          "Поздравляю! Скоро и у вас будет сертификат",
+          "Удачи в получении бонуса!",
+          "Отличный вопрос! Да, всё работает именно так"
+        ];
         const response = responses[Math.floor(Math.random() * responses.length)];
-        const responder = Math.random() > 0.5 ? "Анна" : "Елена";
-        addMessage(responder, response, 'female');
-      }, 2000 + Math.random() * 2000);
+        const responder = Math.random() > 0.5 ? "Анна К." : "Ольга П.";
+        addChatMessage(responder, response, 'female');
+      }, 1500 + Math.random() * 1500);
     }
   }
 
   function updateOnlineCount() {
-    onlineCount += Math.floor(Math.random() * 3) - 1;
-    if (onlineCount < 130) onlineCount = 130;
-    if (onlineCount > 170) onlineCount = 170;
-    document.getElementById('onlineCount').textContent = onlineCount;
+    state.onlineCount += Math.floor(Math.random() * 5) - 2;
+    if (state.onlineCount < 140) state.onlineCount = 140;
+    if (state.onlineCount > 180) state.onlineCount = 180;
+    document.getElementById('onlineCount').textContent = state.onlineCount;
   }
 
-  // Start everything
+  // Browser modal
+  function showBrowserModal() {
+    const modal = document.getElementById('browserModal');
+    modal.style.display = 'flex';
+    
+    document.getElementById('modalClose').onclick = closeBrowserModal;
+    document.getElementById('modalSkip').onclick = closeBrowserModal;
+    document.getElementById('modalUnderstood').onclick = function() {
+      sessionStorage.setItem('browserModalShown', 'true');
+      showFloatingNotification("Отлично! Продолжайте заполнение анкеты", 3000);
+      closeBrowserModal();
+    };
+    
+    // Close on overlay click
+    modal.onclick = function(e) {
+      if (e.target === modal) {
+        closeBrowserModal();
+      }
+    };
+  }
+
+  function closeBrowserModal() {
+    const modal = document.getElementById('browserModal');
+    modal.style.animation = 'fadeIn 0.3s ease reverse';
+    setTimeout(() => {
+      modal.style.display = 'none';
+      modal.style.animation = '';
+    }, 300);
+  }
+
+  // Confetti effect
+  function createConfetti() {
+    if (state.confettiActive) return;
+    state.confettiActive = true;
+    
+    const header = document.querySelector('.final-header');
+    const colors = ['#ed3cca', '#df34d2', '#d02bd9', '#bf22e1', '#ae1ae8', '#9a10f0', '#8306f7', '#7c1af8'];
+    
+    for (let i = 0; i < 25; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.top = `${Math.random() * 50 + 25}%`;
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = `${Math.random() * 10 + 6}px`;
+      confetti.style.height = confetti.style.width;
+      confetti.style.opacity = '0';
+      
+      header.appendChild(confetti);
+      
+      // Animate in
+      setTimeout(() => {
+        confetti.style.opacity = '1';
+        confetti.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        confetti.style.transform = `translate(${Math.random() * 60 - 30}px, ${Math.random() * 60 - 30}px) rotate(${Math.random() * 360}deg)`;
+      }, i * 30);
+      
+      // Animate out
+      setTimeout(() => {
+        confetti.style.opacity = '0';
+        confetti.style.transform += ' scale(0.5)';
+      }, 1500 + i * 30);
+      
+      // Remove element
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
+        }
+      }, 2500 + i * 30);
+    }
+    
+    setTimeout(() => {
+      state.confettiActive = false;
+    }, 3000);
+  }
+
+  // Initialize on load
   window.onload = init;
 </script>
 </body>
