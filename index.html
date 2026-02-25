@@ -339,18 +339,6 @@
       flex: 1;
     }
 
-    /* Стили для анимированной стрелки */
-    .curved-arrow-svg {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 70px;
-      height: auto;
-      filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.3));
-      z-index: 10001;
-      overflow: visible;
-      pointer-events: none;
-    }
     
     #wb-arrow-path {
       stroke-dasharray: var(--path-length, 1000);
@@ -604,32 +592,7 @@
     if (!sessionStorage.getItem('wb_browser_advice_shown')) {
         
         setTimeout(function() {
-            // Создаем SVG стрелку
-            const arrowSvg = document.createElement('div');
-            arrowSvg.innerHTML = `
-                <svg class="curved-arrow-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="wb-arrowhead" markerWidth="7" markerHeight="5" refX="3" refY="1.75" orient="-75deg" markerUnits="strokeWidth">
-                            <polygon id="wb-arrowhead-shape" points="0 0, 5 1.75, 0 3.5" fill="white"></polygon>
-                        </marker>
-                    </defs>
-                    <path id="wb-arrow-path" d="M 30 90 Q 70 90 80 50 T 90 10" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" marker-end="url(#wb-arrowhead)"></path>
-                </svg>
-            `;
-            document.body.appendChild(arrowSvg);
-            
-            // Анимируем стрелку
-            setTimeout(() => {
-                const arrowPath = document.getElementById('wb-arrow-path');
-                if (arrowPath) {
-                    const pathLength = arrowPath.getTotalLength();
-                    const effectiveLength = pathLength > 0 ? pathLength : 150;
-                    arrowPath.style.setProperty('--path-length', effectiveLength);
-                    arrowPath.style.strokeDasharray = effectiveLength;
-                    arrowPath.style.strokeDashoffset = effectiveLength;
-                }
-            }, 100);
-            
+                        
             const notice = document.createElement('div');
             notice.id = 'wb_browser_notice';
             
