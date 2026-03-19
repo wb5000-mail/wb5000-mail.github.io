@@ -3,575 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Официальный опрос от Wildberries | Получите 5000₽ на покупки</title>
+  <title>Официальный опрос от ВБ | Получите 5000₽ на покупки</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
     :root {
-      --wb-purple: #8B25C9;
-      --wb-pink: #CB11AB;
-      --wb-gradient: linear-gradient(135deg, #8B25C9, #CB11AB);
+      --wb-purple: #7B1FA2;
+      --wb-pink: #E91E63;
+      --wb-gradient: linear-gradient(97.26deg,#ed3cca .49%,#df34d2 14.88%,#d02bd9 29.27%,#bf22e1 43.14%,#ae1ae8 57.02%,#9a10f0 70.89%,#8306f7 84.76%,#7c1af8 99.15%),linear-gradient(#0000000d,#0000000d);
       --wb-light: #F8F5FF;
-      --wb-success: #00C853;
-      --wb-gray-bg: #F5F5F7;
-      --wb-text: #1A1A25;
-      --wb-text-secondary: #6C6C7E;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      background: var(--wb-gray-bg);
-      color: var(--wb-text);
-      padding: 20px;
+      background: var(--wb-gradient);
+      color: #333;
+      padding: 0;
       margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      background-attachment: fixed;
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     .notification {
       position: fixed;
-      top: 20px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
       background: white;
-      padding: 12px 16px;
-      border-radius: 60px;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02);
+      padding: 10px 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       z-index: 1000;
-      animation: slideInTop 0.3s ease-out;
-      border: 1px solid rgba(139, 37, 201, 0.1);
+      animation: slideInTop 0.5s ease-out;
+      border-left: 4px solid #4CAF50;
       max-width: 90%;
       width: auto;
-      min-width: 300px;
-      backdrop-filter: blur(10px);
+      min-width: 280px;
+      text-align: left;
     }
 
     @keyframes slideInTop {
-      from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+      from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
       to { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
 
     @keyframes slideOutTop {
       from { transform: translateX(-50%) translateY(0); opacity: 1; }
-      to { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
     }
 
     .container {
-      max-width: 560px;
-      width: 100%;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    /* Прямо на белом фоне, без лишних карточек */
-    .header {
-      background: var(--wb-gradient);
-      padding: 24px 20px;
-      border-radius: 24px;
-      color: white;
-      margin-bottom: 20px;
-      position: relative;
-      box-shadow: 0 10px 20px -5px rgba(139, 37, 201, 0.3);
-    }
-
-    .header h1 {
-      font-size: 24px;
-      margin: 0 0 8px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-
-    .header p {
-      font-size: 15px;
-      margin: 0;
-      line-height: 1.5;
-      opacity: 0.95;
-    }
-
-    .official-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #FFD700;
-      color: #1A1A25;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      white-space: nowrap;
-    }
-
-    .timer {
-      font-size: 14px;
-      margin-top: 12px;
-      font-weight: 500;
-      background: rgba(255,255,255,0.2);
-      padding: 6px 14px;
-      border-radius: 30px;
-      display: inline-block;
-      backdrop-filter: blur(5px);
-    }
-
-    .participants-count {
-      font-size: 13px;
-      color: white;
-      margin-top: 10px;
-      opacity: 0.9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .gifts-left-container {
       background: white;
-      border-radius: 24px;
+      max-width: 500px;
+      width: 100%;
+      margin: 20px;
       padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
-      border: 1px solid #F0F0F5;
-    }
-
-    .gifts-left-title {
-      font-size: 14px;
-      color: var(--wb-text-secondary);
-      margin-bottom: 8px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .gifts-left-count {
-      font-size: 36px;
-      font-weight: 800;
-      background: var(--wb-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 5px 0;
-      line-height: 1;
-    }
-
-    .gifts-left-total {
-      font-size: 14px;
-      color: var(--wb-text-secondary);
-      margin-bottom: 16px;
-    }
-
-    .gifts-progress {
-      height: 8px;
-      background: #E0E0E0;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 15px 0 10px;
-    }
-
-    .gifts-progress-bar {
-      height: 100%;
-      width: 9.4%;
-      background: var(--wb-gradient);
-      border-radius: 10px;
-      transition: width 0.5s ease;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .gifts-progress-bar::after {
+    .container::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shine 1.5s infinite;
+      height: 4px;
+      background: var(--wb-gradient);
     }
 
-    @keyframes shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+    .header {
+      background: var(--wb-gradient);
+      padding: 15px;
+      border-radius: 12px;
+      color: white;
+      margin-bottom: 20px;
+      position: relative;
     }
 
-    .survey-progress-container {
-      margin: 20px 0;
+    .header h1 {
+      font-size: 20px;
+      margin: 0 0 8px;
+      font-weight: 700;
     }
 
-    .survey-progress-info {
-      display: flex;
-      justify-content: space-between;
+    .header p {
       font-size: 14px;
-      color: var(--wb-text-secondary);
-      margin-bottom: 8px;
-      font-weight: 500;
+      margin: 0;
+      line-height: 1.4;
+      opacity: 0.95;
+    }
+
+    .official-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #FFD700;
+      color: #333;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      white-space: nowrap;
+    }
+
+    .timer {
+      font-size: 13px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0,0,0,0.2);
+      padding: 5px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .participants-count {
+      font-size: 12px;
+      color: white;
+      margin-top: 8px;
+      opacity: 0.9;
     }
 
     .progress {
-      height: 6px;
+      height: 8px;
       width: 100%;
-      background: #F0F0F5;
-      border-radius: 10px;
+      background: #eee;
+      border-radius: 5px;
+      margin: 15px 0 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .progress-bar {
       height: 100%;
-      width: 14.28%;
+      width: 0%;
       background: var(--wb-gradient);
-      border-radius: 10px;
-      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .progress-dots {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-    }
-
-    .progress-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #E0E0E0;
-      transition: all 0.3s ease;
-    }
-
-    .progress-dot.active {
-      background: var(--wb-purple);
-      transform: scale(1.2);
-      box-shadow: 0 0 0 3px rgba(139, 37, 201, 0.2);
-    }
-
-    .progress-dot.completed {
-      background: var(--wb-success);
-    }
-
-    .survey-container {
-      background: white;
-      border-radius: 24px;
-      padding: 0;
-      margin: 20px 0;
-      border: 2px solid #F0F0F5;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .survey-container.fading {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    .survey-header {
-      background: linear-gradient(135deg, #F8F8FD, white);
-      padding: 20px;
-      border-bottom: 2px solid #F0F0F5;
-      text-align: center;
-    }
-
-    .survey-header h3 {
-      background: var(--wb-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 0;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .survey-header p {
-      font-size: 13px;
-      color: var(--wb-text-secondary);
-      margin: 5px 0 0;
+      transition: width 0.5s ease-in-out;
+      border-radius: 5px;
     }
 
     .question {
       display: none;
-      padding: 25px 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .question.active {
       display: block;
-      animation: questionAppear 0.5s ease-out;
-    }
-
-    @keyframes questionAppear {
-      0% { opacity: 0; transform: translateY(15px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .question h3 {
-      font-size: 17px;
-      margin-bottom: 20px;
-      color: var(--wb-text);
-      font-weight: 600;
-      line-height: 1.4;
-      padding: 0 5px;
     }
 
     .btn-option {
       display: block;
       width: 100%;
-      padding: 16px 18px;
+      padding: 14px;
       margin: 8px 0;
-      border: 2px solid #F0F0F5;
-      border-radius: 16px;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 15px;
       font-weight: 500;
-      transition: all 0.2s ease;
-      background: white;
-      color: var(--wb-text);
-      text-align: left;
-      position: relative;
+      transition: all 0.3s ease;
+      background: var(--wb-light);
+      color: #333;
+      border: 2px solid transparent;
     }
 
     .btn-option:hover {
+      background: #EDE7F6;
       border-color: var(--wb-purple);
-      background: #F8F5FF;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(139, 37, 201, 0.1);
     }
 
-    .btn-option.selected {
-      border-color: var(--wb-purple);
-      background: #F8F5FF;
-      font-weight: 600;
-      padding-right: 45px;
-    }
-
-    .btn-option.selected::after {
-      content: '✓';
-      position: absolute;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--wb-success);
-      color: white;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-    }
-
-    .checking-container {
-      background: white;
-      border-radius: 24px;
-      padding: 30px 25px;
-      margin: 20px 0;
-      border: 2px solid #F0F0F5;
+    .final-page,
+    .loading-page {
       display: none;
     }
 
-    .checking-container.active {
+    .final-page.active,
+    .loading-page.active {
       display: block;
-      animation: containerAppear 0.5s ease-out;
-    }
-
-    @keyframes containerAppear {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .checking-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .checking-icon {
-      width: 48px;
-      height: 48px;
-      background: #F8F5FF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--wb-purple);
-      font-size: 24px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 37, 201, 0.2); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(139, 37, 201, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 37, 201, 0); }
-    }
-
-    .checking-title {
-      font-size: 22px;
-      font-weight: 700;
-      background: var(--wb-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 0;
-    }
-
-    .checking-subtitle {
-      font-size: 15px;
-      color: var(--wb-text-secondary);
-      margin-bottom: 25px;
-    }
-
-    .checking-steps {
-      text-align: left;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .checking-step {
-      margin: 12px 0;
-      padding: 15px 18px;
-      background: #F9F9F9;
-      border-radius: 16px;
-      border-left: 4px solid #ddd;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .checking-step.active {
-      background: #F8F5FF;
-      border-left-color: var(--wb-purple);
-      transform: translateX(5px);
-    }
-
-    .checking-step.completed {
-      background: #F0F9F0;
-      border-left-color: var(--wb-success);
-    }
-
-    .step-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: #666;
-      flex-shrink: 0;
-    }
-
-    .checking-step.active .step-icon {
-      background: var(--wb-purple);
-      color: white;
-    }
-
-    .checking-step.completed .step-icon {
-      background: var(--wb-success);
-      color: white;
-    }
-
-    .step-text {
-      flex: 1;
-      font-size: 15px;
-      color: var(--wb-text);
-    }
-
-    .step-detail {
-      font-size: 13px;
-      color: #777;
-      margin-top: 3px;
-    }
-
-    .final-page {
-      background: white;
-      border-radius: 24px;
-      padding: 25px;
-      margin: 20px 0;
-      border: 2px solid #F0F0F5;
-      display: none;
-    }
-
-    .final-page.active {
-      display: block;
-      animation: containerAppear 0.6s ease-out;
-    }
-
-    .prize-card {
-      background: var(--wb-gradient);
-      border-radius: 24px;
-      padding: 30px 20px;
-      margin: 0 0 25px 0;
-      color: white;
-      text-align: center;
-      box-shadow: 0 15px 30px -8px rgba(139, 37, 201, 0.4);
-    }
-
-    .prize-title {
-      font-size: 22px;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .prize-amount {
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1;
-      margin: 15px 0;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .prize-note {
-      font-size: 15px;
-      opacity: 0.95;
+      animation: fadeIn 0.6s ease-in-out;
     }
 
     .btn-primary {
       background: var(--wb-gradient);
       color: white;
-      font-weight: 700;
-      padding: 18px 28px;
-      border-radius: 60px;
-      font-size: 18px;
+      font-weight: 600;
+      padding: 16px 24px;
+      border-radius: 8px;
+      font-size: 16px;
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
       width: 100%;
-      margin: 20px 0;
-      box-shadow: 0 10px 25px -5px rgba(139, 37, 201, 0.4);
+      margin-top: 15px;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px -5px rgba(139, 37, 201, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(123, 31, 162, 0.4);
     }
 
     .instructions {
       text-align: left;
-      background: #F8F8FD;
-      padding: 20px;
-      border-radius: 20px;
-      margin: 0 0 20px 0;
-      line-height: 1.6;
-      border: 1px solid #F0F0F5;
+      font-size: 15px;
+      color: #444;
+      background: var(--wb-light);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .instructions ol {
       padding-left: 20px;
-      margin-top: 10px;
     }
 
     .instructions li {
@@ -580,43 +245,158 @@
 
     .secure-info {
       font-size: 13px;
-      color: var(--wb-text-secondary);
+      margin-top: 20px;
+      color: #777;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
+      gap: 8px;
       flex-wrap: wrap;
-      padding: 15px;
-      background: #F8F8FD;
-      border-radius: 60px;
-      margin-top: 20px;
     }
 
+    .loading-page p {
+      font-size: 18px;
+      margin-top: 20px;
+      color: var(--wb-purple);
+      font-weight: 600;
+    }
+
+    .spinner {
+      margin: 25px auto;
+      width: 45px;
+      height: 45px;
+      border: 4px solid #E0E0E0;
+      border-top: 4px solid var(--wb-purple);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-steps {
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .loading-step {
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 5px;
+      background: #f8f8f8;
+      font-size: 14px;
+    }
+
+    .loading-step.active {
+      background: var(--wb-light);
+      border-left: 3px solid var(--wb-purple);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .limited-offer {
+      background: #FFF3CD;
+      border: 1px solid #FFEaa7;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .wb-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--wb-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      flex-shrink: 0;
+      font-weight: bold;
+      color: white;
+      font-size: 12px;
+    }
+
+    .notification-content {
+      display: flex;
+      align-items: center;
+      min-height: auto;
+    }
+
+    .notification-text {
+      font-size: 13px;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    
+    #wb-arrow-path {
+      stroke-dasharray: var(--path-length, 1000);
+      stroke-dashoffset: var(--path-length, 1000);
+      animation: drawArrow 1.2s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes drawArrow {
+      0% {
+        stroke-dashoffset: var(--path-length, 1000);
+      }
+      70%, 100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    #wb-arrowhead-shape {
+      opacity: 0;
+      animation: fadeInArrowhead ease-in-out 1.2s infinite;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes fadeInArrowhead {
+      0%, 65% {
+        opacity: 0;
+      }
+      75%, 100% {
+        opacity: 1;
+      }
+    }
+
+    /* Стили для чата из второго файла */
     .chat-container {
-      background: white;
-      border-radius: 24px;
+      background: #F9F9F9;
+      border-radius: 12px;
       padding: 0;
       margin: 20px 0 15px;
-      border: 2px solid #F0F0F5;
+      border: 1px solid #E0E0E0;
       overflow: hidden;
     }
 
     .chat-header {
       background: var(--wb-gradient);
       color: white;
-      padding: 15px 20px;
+      padding: 12px 15px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .chat-online {
-      font-size: 13px;
+      font-size: 12px;
       background: rgba(255,255,255,0.2);
-      padding: 4px 12px;
-      border-radius: 30px;
+      padding: 3px 10px;
+      border-radius: 12px;
     }
 
     .chat-messages {
@@ -626,21 +406,25 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      background: #FAFAFC;
     }
 
     .chat-message {
       display: flex;
       gap: 10px;
-      animation: messageAppear 0.3s ease;
+      animation: messageAppear 0.4s ease;
     }
 
     @keyframes messageAppear {
-      from { opacity: 0; transform: translateY(5px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .chat-message.other {
+      align-self: flex-start;
+    }
+
     .chat-message.user {
+      align-self: flex-end;
       flex-direction: row-reverse;
     }
 
@@ -653,7 +437,7 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
       flex-shrink: 0;
     }
@@ -667,15 +451,15 @@
       word-wrap: break-word;
     }
 
-    .chat-message:not(.user) .chat-bubble {
+    .chat-message.other .chat-bubble {
       background: white;
-      border: 1px solid #F0F0F5;
+      border: 1px solid #E0E0E0;
       border-bottom-left-radius: 5px;
     }
 
     .chat-message.user .chat-bubble {
-      background: #F8F5FF;
-      border: 1px solid #E0D5F5;
+      background: var(--wb-light);
+      border: 1px solid #D1C4E9;
       border-bottom-right-radius: 5px;
     }
 
@@ -695,20 +479,19 @@
 
     .chat-input-area {
       display: flex;
-      padding: 15px;
-      background: white;
-      border-top: 2px solid #F0F0F5;
+      padding: 12px 15px;
+      background: #F0F0F0;
+      border-top: 1px solid #E0E0E0;
       gap: 10px;
     }
 
     .chat-input {
       flex: 1;
-      padding: 12px 18px;
-      border: 2px solid #F0F0F5;
-      border-radius: 30px;
+      padding: 10px 15px;
+      border: 1px solid #CCC;
+      border-radius: 20px;
       font-size: 14px;
       outline: none;
-      transition: all 0.2s;
     }
 
     .chat-input:focus {
@@ -718,308 +501,353 @@
     .chat-send {
       background: var(--wb-gradient);
       border: none;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
+      border-radius: 20px;
+      padding: 10px 20px;
       color: white;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
-    }
-
-    .chat-send:hover {
-      transform: scale(1.05);
-    }
-
-    .official-info {
-      background: white;
-      border-radius: 20px;
-      padding: 20px;
-      margin: 15px 0;
-      border: 1px solid #F0F0F5;
-    }
-
-    .official-info h4 {
-      color: var(--wb-purple);
-      margin: 0 0 10px;
-      font-size: 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .official-contacts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 15px;
-      justify-content: center;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--wb-text-secondary);
-    }
-
-    .limited-offer {
-      background: #FFF3CD;
-      border: 1px solid #FFEaa7;
-      border-radius: 60px;
-      padding: 12px 18px;
-      margin: 15px 0;
-      font-size: 14px;
-      color: #856404;
-    }
-
-    .notification-content {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .wb-logo {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--wb-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-
-    .pulse {
-      animation: pulseBtn 2s infinite;
-    }
-
-    @keyframes pulseBtn {
-      0% { transform: scale(1); box-shadow: 0 10px 25px -5px rgba(139, 37, 201, 0.4); }
-      50% { transform: scale(1.03); box-shadow: 0 15px 30px -3px rgba(139, 37, 201, 0.6); }
-      100% { transform: scale(1); box-shadow: 0 10px 25px -5px rgba(139, 37, 201, 0.4); }
     }
 
     @media (max-width: 480px) {
-      body {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      
+      .header {
         padding: 12px;
       }
       
       .header h1 {
-        font-size: 20px;
+        font-size: 18px;
       }
       
-      .prize-amount {
-        font-size: 52px;
+      .header p {
+        font-size: 13px;
       }
       
-      .gifts-left-count {
-        font-size: 30px;
+      .btn-option {
+        padding: 12px;
+        font-size: 14px;
+      }
+      
+      .notification {
+        padding: 8px 10px;
+        min-width: 260px;
+      }
+      
+      .wb-logo {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        margin-right: 8px;
+      }
+      
+      .notification-text {
+        font-size: 12px;
+      }
+      
+      .curved-arrow-svg {
+        width: 60px;
+        top: 15px;
+        right: 15px;
       }
       
       .chat-messages {
         height: 300px;
       }
+    }
+
+    @media (max-width: 360px) {
+      .notification {
+        min-width: 240px;
+        padding: 6px 8px;
+      }
       
-      .secure-info {
-        flex-direction: column;
-        gap: 8px;
+      .wb-logo {
+        width: 22px;
+        height: 22px;
+        font-size: 9px;
+        margin-right: 6px;
+      }
+      
+      .notification-text {
+        font-size: 11px;
+      }
+      
+      .curved-arrow-svg {
+        width: 50px;
+        top: 10px;
+        right: 10px;
       }
     }
   </style>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5FDTDTNN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WR5FDTDTNN');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5FDTDTNN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WR5FDTDTNN');
+</script>
 </head>
 <body>
+<script>
+(function() {
+    if (!sessionStorage.getItem('wb_browser_advice_shown')) {
+        
+        setTimeout(function() {
+                        
+            const notice = document.createElement('div');
+            notice.id = 'wb_browser_notice';
+            
+            notice.style.cssText = `
+                position: fixed !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: white !important;
+                border-radius: 16px !important;
+                padding: 0 !important;
+                width: 85% !important;
+                max-width: 340px !important;
+                z-index: 10000 !important;
+                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                box-shadow: 0 20px 50px rgba(123, 31, 162, 0.15) !important;
+                animation: wbModalAppear 0.4s ease-out !important;
+                overflow: hidden !important;
+                max-height: 85vh !important;
+                overflow-y: auto !important;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes wbModalAppear {
+                    from { opacity: 0; transform: translate(-50%, -48%) scale(0.95); }
+                    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                }
+                @keyframes wbModalDisappear {
+                    to { opacity: 0; transform: translate(-50%, -46%) scale(0.92); }
+                }
+                @keyframes wbArrowPulse {
+                    0%, 100% { transform: translateX(0); }
+                    50% { transform: translateX(4px); }
+                }
+                @keyframes wbPulseGlow {
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.2); }
+                    50% { box-shadow: 0 0 0 6px rgba(233, 30, 99, 0); }
+                }
+                .wb-arrow-pulse {
+                    animation: wbArrowPulse 1.5s infinite ease-in-out;
+                }
+                .wb-pulse-glow {
+                    animation: wbPulseGlow 2s infinite;
+                }
+                
+                /* Mobile optimizations */
+                @media (max-width: 480px) {
+                    #wb_browser_notice {
+                        width: 92% !important;
+                        max-width: 320px !important;
+                        border-radius: 14px !important;
+                    }
+                }
+                
+                @media (max-height: 700px) {
+                    #wb_browser_notice {
+                        max-height: 80vh !important;
+                    }
+                }
+            `;
 
+            
+            function closeModal() {
+                notice.style.animation = 'wbModalDisappear 0.3s forwards';
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    if (notice.parentNode) notice.parentNode.removeChild(notice);
+                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                    // Удаляем стрелку
+                    const arrow = document.querySelector('.curved-arrow-svg');
+                    if (arrow && arrow.parentNode) arrow.parentNode.removeChild(arrow);
+                }, 300);
+                sessionStorage.setItem('wb_browser_advice_shown', 'true');
+            }
+            
+            setTimeout(() => {
+                const closeBtn = document.getElementById('wbCloseBtn');
+                const confirmBtn = document.getElementById('wbConfirmBtn');
+                
+                if (closeBtn) {
+                    closeBtn.onclick = closeModal;
+                    closeBtn.onmouseover = () => {
+                        closeBtn.style.background = 'rgba(255,255,255,0.3)';
+                        closeBtn.style.transform = 'rotate(90deg)';
+                    };
+                    closeBtn.onmouseout = () => {
+                        closeBtn.style.background = 'rgba(255,255,255,0.2)';
+                        closeBtn.style.transform = 'rotate(0deg)';
+                    };
+                }
+                
+                if (confirmBtn) {
+                    confirmBtn.onclick = closeModal;
+                    confirmBtn.onmouseover = () => {
+                        confirmBtn.style.transform = 'translateY(-2px)';
+                        confirmBtn.style.boxShadow = '0 8px 20px rgba(123, 31, 162, 0.2)';
+                    };
+                    confirmBtn.onmouseout = () => {
+                        confirmBtn.style.transform = 'translateY(0)';
+                        confirmBtn.style.boxShadow = 'none';
+                    };
+                }
+                
+                overlay.onclick = closeModal;
+                
+                // Auto-close on navigation
+                let currentPage = window.location.href;
+                setInterval(() => {
+                    if (window.location.href !== currentPage) {
+                        closeModal();
+                    }
+                }, 500);
+                
+            }, 100);
+            
+        }, 800); // Reduced delay
+        
+    }
+})();
+</script>
 <div class="container">
   <div class="header">
     <div class="official-badge">ОФИЦИАЛЬНЫЙ ОПРОС</div>
-    <h1>🎁 ПОЛУЧИТЕ ДЕНЬГИ НА WILDBERRIES!</h1>
-    <p>Пройдите опрос и получите 5000₽ на покупки!</p>
-    <div class="timer" id="countdown">До конца акции: 12:24:59</div>
-    <div class="participants-count">
-      <span>👥 Уже участвовало: <span id="participantsCount">1,847</span> человек</span>
-    </div>
-  </div>
-
-  <div class="gifts-left-container">
-    <div class="gifts-left-title">
-      <span>🎁 ПОДАРКОВ ОСТАЛОСЬ:</span>
-    </div>
-    <div class="gifts-left-count"><span id="giftsLeft">47</span> из 500</div>
-    <div class="gifts-left-total">Успейте получить свои 5000₽ до окончания розыгрыша!</div>
-    <div class="gifts-progress">
-      <div class="gifts-progress-bar" id="giftsProgressBar"></div>
-    </div>
-    <div style="font-size: 12px; color: #8C8C9C;">Каждый участник уменьшает количество доступных подарков</div>
+    <h1>🎁 КАК ПОЛУЧИТЬ КУПОН НОМИНАЛОМ 5000₽ НА ВБ!</h1>
+    <p>Пройдите опрос и получите инструкцию!</p>
+    <p>Участвуй в розыгрыше подарков!</p>
+    <div class="timer" id="countdown">До конца акции: 23:24:59</div>
+    <div class="participants-count">👥 Уже участвовало: <span id="participantsCount">1,847</span> человек</div>
   </div>
 
   <div class="limited-offer">
-    ⚡ <strong>Ограниченное предложение!</strong> Только сегодня — повышенный шанс получить 5000₽
+    ⚡ <strong>Ограниченное предложение!</strong> Ссылка действует 24 часа.
   </div>
 
-  <div class="survey-progress-container">
-    <div class="survey-progress-info">
-      <span id="currentQuestionNum">Вопрос 1 из 7</span>
-      <span id="progressPercent">14%</span>
-    </div>
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-    <div class="progress-dots" id="progressDots"></div>
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div class="survey-container" id="surveyContainer">
-    <div class="survey-header">
-      📝 <h3>ОТВЕТЬТЕ НА 7 ВОПРОСОВ</h3>
-      <p>Выберите подходящий вариант для каждого вопроса</p>
-    </div>
-
-    <div class="question active" id="question1">
-      <h3>1. Как часто вы совершаете покупки на Wildberries?</h3>
-      <button class="btn-option" onclick="selectOption(1, this)">📦 Несколько раз в неделю</button>
-      <button class="btn-option" onclick="selectOption(1, this)">🛒 1-2 раза в месяц</button>
-      <button class="btn-option" onclick="selectOption(1, this)">📝 Редко, но планирую чаще</button>
-      <button class="btn-option" onclick="selectOption(1, this)">❌ Никогда не покупал(а)</button>
-    </div>
-
-    <div class="question" id="question2">
-      <h3>2. Какую сумму вы обычно тратите за один заказ?</h3>
-      <button class="btn-option" onclick="selectOption(2, this)">💎 До 1 000 рублей</button>
-      <button class="btn-option" onclick="selectOption(2, this)">👗 1 000 - 3 000 рублей</button>
-      <button class="btn-option" onclick="selectOption(2, this)">🛍️ 3 000 - 7 000 рублей</button>
-      <button class="btn-option" onclick="selectOption(2, this)">💼 Более 7 000 рублей</button>
-    </div>
-
-    <div class="question" id="question3">
-      <h3>3. Что вы чаще всего покупаете на Wildberries?</h3>
-      <button class="btn-option" onclick="selectOption(3, this)">👚 Одежда и обувь</button>
-      <button class="btn-option" onclick="selectOption(3, this)">💄 Косметика и парфюмерия</button>
-      <button class="btn-option" onclick="selectOption(3, this)">🏠 Товары для дома</button>
-      <button class="btn-option" onclick="selectOption(3, this)">📱 Электроника и гаджеты</button>
-    </div>
-
-    <div class="question" id="question4">
-      <h3>4. Что для вас важно при выборе товара?</h3>
-      <button class="btn-option" onclick="selectOption(4, this)">⭐ Отзывы и рейтинг продавца</button>
-      <button class="btn-option" onclick="selectOption(4, this)">💰 Цена и акции</button>
-      <button class="btn-option" onclick="selectOption(4, this)">🚚 Быстрая доставка</button>
-      <button class="btn-option" onclick="selectOption(4, this)">📷 Качественные фото товара</button>
-    </div>
-
-    <div class="question" id="question5">
-      <h3>5. Какой подарок вы бы хотели получить от Wildberries?</h3>
-      <button class="btn-option" onclick="selectOption(5, this)">🎁 Скидка на следующий заказ</button>
-      <button class="btn-option" onclick="selectOption(5, this)">🚀 Бесплатная доставка на год</button>
-      <button class="btn-option" onclick="selectOption(5, this)">👑 Премиум-статус покупателя</button>
-      <button class="btn-option" onclick="selectOption(5, this)">💝 Подарочный сертификат</button>
-    </div>
-
-    <div class="question" id="question6">
-      <h3>6. Вы подписаны на рассылку акций Wildberries?</h3>
-      <button class="btn-option" onclick="selectOption(6, this)">✅ Да, регулярно получаю выгодные предложения</button>
-      <button class="btn-option" onclick="selectOption(6, this)">🤔 Нет, но хочу попробовать</button>
-      <button class="btn-option" onclick="selectOption(6, this)">❌ Нет, не интересно</button>
-    </div>
-
-    <div class="question" id="question7">
-      <h3>7. Какой из брендов Wildberries вам наиболее интересен?</h3>
-      <button class="btn-option" onclick="selectOption(7, this)">👗 Fashion-бренды одежды</button>
-      <button class="btn-option" onclick="selectOption(7, this)">🏡 Домашний уют и декор</button>
-      <button class="btn-option" onclick="selectOption(7, this)">💎 Beauty-продукты</button>
-      <button class="btn-option" onclick="selectOption(7, this)">👶 Детские товары</button>
-    </div>
+  <!-- Вопрос 1 -->
+  <div class="question active" id="question1">
+    <h3>Как часто вы совершаете покупки на ВБ?</h3>
+    <button class="btn-option" onclick="selectOption(1)">📦 Несколько раз в неделю</button>
+    <button class="btn-option" onclick="selectOption(1)">🛒 1-2 раза в месяц</button>
+    <button class="btn-option" onclick="selectOption(1)">📝 Редко, но планирую чаще</button>
+    <button class="btn-option" onclick="selectOption(1)">❌ Никогда не покупал(а)</button>
   </div>
 
-  <div class="checking-container" id="checkingContainer">
-    <div class="checking-header">
-      <div class="checking-icon">
-        <span>⏳</span>
-      </div>
-      <h2 class="checking-title">Проверяем ответы...</h2>
-    </div>
-    <p class="checking-subtitle">Система анализирует ваши ответы для определения суммы вознаграждения</p>
-    
-    <div class="checking-steps">
-      <div class="checking-step" id="checkStep1">
-        <div class="step-icon">1</div>
-        <div class="step-text">
-          Анализ ответов
-          <div class="step-detail">Проверка соответствия критериям</div>
-        </div>
-      </div>
-      <div class="checking-step" id="checkStep2">
-        <div class="step-icon">2</div>
-        <div class="step-text">
-          Оценка активности
-          <div class="step-detail">Определение уровня лояльности</div>
-        </div>
-      </div>
-      <div class="checking-step" id="checkStep3">
-        <div class="step-icon">3</div>
-        <div class="step-text">
-          Расчёт суммы
-          <div class="step-detail">Определение размера вознаграждения</div>
-        </div>
-      </div>
-      <div class="checking-step" id="checkStep4">
-        <div class="step-icon">4</div>
-        <div class="step-text">
-          Подготовка купона
-          <div class="step-detail">Формирование персонального предложения</div>
-        </div>
-      </div>
+  <!-- Вопрос 2 -->
+  <div class="question" id="question2">
+    <h3>Какую сумму вы обычно тратите за один заказ?</h3>
+    <button class="btn-option" onclick="selectOption(2)">💎 До 1 000 рублей</button>
+    <button class="btn-option" onclick="selectOption(2)">👗 1 000 - 3 000 рублей</button>
+    <button class="btn-option" onclick="selectOption(2)">🛍️ 3 000 - 7 000 рублей</button>
+    <button class="btn-option" onclick="selectOption(2)">💼 Более 7 000 рублей</button>
+  </div>
+
+  <!-- Вопрос 3 -->
+  <div class="question" id="question3">
+    <h3>Что вы чаще всего покупаете на ВБ?</h3>
+    <button class="btn-option" onclick="selectOption(3)">👚 Одежда и обувь</button>
+    <button class="btn-option" onclick="selectOption(3)">💄 Косметика и парфюмерия</button>
+    <button class="btn-option" onclick="selectOption(3)">🏠 Товары для дома</button>
+    <button class="btn-option" onclick="selectOption(3)">📱 Электроника и гаджеты</button>
+  </div>
+
+  <!-- Вопрос 4 -->
+  <div class="question" id="question4">
+    <h3>Что для вас важно при выборе товара?</h3>
+    <button class="btn-option" onclick="selectOption(4)">⭐ Отзывы и рейтинг продавца</button>
+    <button class="btn-option" onclick="selectOption(4)">💰 Цена и акции</button>
+    <button class="btn-option" onclick="selectOption(4)">🚚 Быстрая доставка</button>
+    <button class="btn-option" onclick="selectOption(4)">📷 Качественные фото товара</button>
+  </div>
+
+  <!-- Вопрос 5 -->
+  <div class="question" id="question5">
+    <h3>Какой подарок вы бы хотели получить от ВБ?</h3>
+    <button class="btn-option" onclick="selectOption(5)">🎁 Скидка на следующий заказ</button>
+    <button class="btn-option" onclick="selectOption(5)">🚀 Бесплатная доставка на год</button>
+    <button class="btn-option" onclick="selectOption(5)">👑 Премиум-статус покупателя</button>
+    <button class="btn-option" onclick="selectOption(5)">💝 Подарочный сертификат</button>
+  </div>
+
+  <!-- Вопрос 6 -->
+  <div class="question" id="question6">
+    <h3>Вы подписаны на рассылку акций и спецпредложений ВБ?</h3>
+    <button class="btn-option" onclick="selectOption(6)">✅ Да, регулярно получаю выгодные предложения</button>
+    <button class="btn-option" onclick="selectOption(6)">🤔 Нет, но хочу попробовать</button>
+    <button class="btn-option" onclick="selectOption(6)">❌ Нет, не интересно</button>
+  </div>
+
+  <!-- Вопрос 7 -->
+  <div class="question" id="question7">
+    <h3>Какой из брендов ВБ вам наиболее интересен?</h3>
+    <button class="btn-option" onclick="selectOption(7)">👗 Fashion-бренды одежды</button>
+    <button class="btn-option" onclick="selectOption(7)">🏡 Домашний уют и декор</button>
+    <button class="btn-option" onclick="selectOption(7)">💎 Beauty-продукты</button>
+    <button class="btn-option" onclick="selectOption(7)">👶 Детские товары</button>
+  </div>
+
+  <!-- Страница загрузки -->
+  <div class="loading-page" id="loading">
+    <div class="spinner"></div>
+    <p>⏳ Проверяем ваши ответы...</p>
+    <div class="loading-steps">
+      <div class="loading-step active" id="step1">✓ Анализ ответов...</div>
+      <div class="loading-step" id="step2">Проверка соответствия критериям...</div>
+      <div class="loading-step" id="step3">Подготовка купона...</div>
     </div>
   </div>
 
-  <div class="final-page" id="finalPage">
-    <div class="prize-card">
-      <h2 class="prize-title">ПОЗДРАВЛЯЕМ! 🎊</h2>
-      <p>По результатам опроса вам одобрена сумма:</p>
-      <div class="prize-amount">5 000₽</div>
-      <p class="prize-note">на покупки в Wildberries!</p>
-    </div>
+  <!-- Финальная страница -->
+<div class="final-page" id="final-page">
+    <h2>Поздравляем! 🎊</h2>
+    <p>Купон номиналом 5000₽ почти Ваш:</p>
+    <h1 style="color: var(--wb-purple); font-size: 32px; margin: 10px 0;">5 000₽</h1>
+    <p>на покупки в ВБ!</p>
     
     <div class="instructions">
-      <p><strong>Для получения 5000₽ выполните 3 простых шага:</strong></p>
-      <ol>
-        <li>Нажмите кнопку <strong>"Активировать 5000₽"</strong> ниже</li>
-        <li><strong>Завершите регистрацию</strong> у официального партнера Wildberries</li>
-        <li><strong>Система запросит 1 рубль</strong> для подтверждения личности. Средства возвращаются мгновенно после верификации</li>
-      </ol>
-      <div style="background: #E8F5E8; padding: 12px; border-radius: 12px; margin-top: 15px; border-left: 4px solid var(--wb-success);">
-        <strong>🎯 Важно:</strong> Купон действует 24 часа. Успейте воспользоваться!
-      </div>
+        <p><strong>Для получения 5000₽ выполните 3 простых шага:</strong></p>
+        <ol>
+            <li>Нажмите кнопку <strong>"Получить 5000₽"</strong> и пройдите быструю регистрацию.</li>
+            <li>Важно! Оплатите <b>1 рубль</b> для доступа к аналитике на 5 дней.</li>
+            <li>Для получения <b>Подарочного сертификата ВБ на 5000₽</b> подтвердите участие в Акции и дождитесь розыгрыша.</li>
+        </ol>
+<div style="background: linear-gradient(135deg, #F8F5FF, #F3E5F5); padding: 10px; border-radius: 5px; margin-top: 15px; border: 1px solid #E1BEE7; border-left: 4px solid #7B1FA2;">
+    <strong>🎯 Важно:</strong> 
+    <div class="timer" id="finalCountdown" style="background: transparent; color: #7B1FA2; font-weight: 600;">
+        Предложение действительно в течение: 05:00
     </div>
-
-    <a class="btn-primary pulse" href="https://onelinkgo.ru/stream/a_mail" rel="noreferrer">💰 Активировать 5000₽</a>
-    
-    <div class="secure-info">
-      <span>🔒 Официальный партнер Wildberries</span>
-      <span>⚡ Мгновенное получение</span>
-      <span>🛡️ Защита данных</span>
+</div>
     </div>
-  </div>
+        <a class="btn-primary pulse" href="https://onelinkgo.ru/stream/a_mail" rel="noreferrer">💰 Получить 5000₽</a>
 
+</div>
+
+  <!-- Чат из второго файла -->
   <div class="chat-container">
     <div class="chat-header">
       <span>💬 Чат участников розыгрыша</span>
       <span class="chat-online"><span id="onlineCount">148</span> онлайн</span>
     </div>
-    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-messages" id="chatMessages">
+      <!-- Сообщения будут добавляться скриптом -->
+    </div>
     <div class="chat-input-area">
       <input type="text" class="chat-input" id="chatInput" placeholder="Написать сообщение..." maxlength="100">
       <button class="chat-send" id="chatSend">
@@ -1029,92 +857,173 @@
       </button>
     </div>
   </div>
-
-  <div class="official-info">
-    <h4>
-      <span>🔒</span> Официальная информация
-    </h4>
-    <p>Данный опрос проводится официальным партнёром Wildberries в рамках программы лояльности. Все выплаты осуществляются в соответствии с правилами акции.</p>
-    
-    <div class="official-contacts">
-      <div class="contact-item">
-        <span>🔒</span> Защищённое соединение
-      </div>
-      <div class="contact-item">
-        <span>🛡️</span> Конфиденциальность данных
-      </div>
-      <div class="contact-item">
-        <span>📞</span> Wildberries.ru
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>
   const totalQuestions = 7;
-  let currentQuestion = 1;
   let isSurveyActive = true;
   let participantsCount = 1847;
-  let giftsLeft = 47;
-  const totalGifts = 500;
+  let notificationQueue = [];
+  let isShowingNotification = false;
+  
+  // Переменные для таймеров
+  let finalTimerSeconds = 300; // 5 минут в секундах
+
+  // Переменные для чата из второго файла
   let onlineCount = 148;
+  let messageId = 0;
+  let chatMessages = [];
 
-  // Функция для получения времени с учётом часового пояса пользователя
-  function getCurrentTimeString() {
-    const now = new Date();
-    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-  }
-
-  // Функция для получения времени N минут назад от текущего
-  function getTimeMinutesAgo(minutes) {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - minutes);
-    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-  }
-
-  // База сообщений для чата - все временные метки будут динамическими
+  // База сообщений для чата из второго файла
   const initialMessages = [
-    {name: "Анна_Москва", text: "Только что получила 5000₽ на карту! Всё работает!", gender: "female", minutesAgo: 45},
-    {name: "Сергей_СПб", text: "Кто уже прошел верификацию? Как быстро приходят деньги?", gender: "male", minutesAgo: 38},
-    {name: "Елена_К", text: "Я за 3 минуты получила! Главное — не бояться рубля, его возвращают сразу", gender: "female", minutesAgo: 32},
-    {name: "Дмитрий_Новосиб", text: "Подтверждаю, с карты списали рубль и сразу вернули. Деньги пришли через 5 минут", gender: "male", minutesAgo: 27},
-    {name: "Ольга_Премиум", text: "Уже потратила на новое платье! Спасибо WB за подарок 😍", gender: "female", minutesAgo: 21},
-    {name: "Александр_Т", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", gender: "male", minutesAgo: 16},
-    {name: "Марина_Шопер", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", gender: "female", minutesAgo: 12},
-    {name: "Ирина_Казань", text: "У меня Тинькофф, всё подошло. Рубль вернули мгновенно", gender: "female", minutesAgo: 7},
-    {name: "Максим_В", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", gender: "male", minutesAgo: 3}
+    {name: "Анна_Москва", text: "Девочки, это не развод! Только что получила 5000₽ на карту! 💳", time: "10:15", gender: "female"},
+    {name: "Сергей_Т", text: "Кто уже прошел верификацию? За сколько пришли деньги?", time: "10:18", gender: "male"},
+    {name: "Ольга_Премиум", text: "Я за 5 минут получила! Главное — не бояться рубля, его возвращают сразу", time: "10:22", gender: "female"},
+    {name: "Марина_Шопер", text: "Уже потратила на новое платье! Спасибо ВБ за подарок 😍", time: "10:25", gender: "female"},
+    {name: "Дмитрий_К", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", time: "10:28", gender: "male"},
+    {name: "Елена_Счастливая", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", time: "10:32", gender: "female"},
+    {name: "Ирина_Казань", text: "А если карта не сбербанка? У меня Тинькофф, тоже подойдет?", time: "10:35", gender: "female"},
+    {name: "Александр_В", text: "Ирина, да, любая карта подходит. У меня Альфа-банк, всё ок", time: "10:38", gender: "male"},
+    {name: "Светлана_Золото", text: "Не слушайте скептиков! Это официальный розыгрыш от ВБ, всё легально", time: "10:42", gender: "female"},
+    {name: "Наталья_К", text: "Только что привязала карту, списали 1 рубль и сразу вернули. Теперь жду 5000₽", time: "10:45", gender: "female"},
+    {name: "Андрей_Новосиб", text: "Сколько ждать зачисление 5000 после верификации?", time: "10:48", gender: "male"},
+    {name: "Виктория_Модница", text: "Андрей, у меня через 2 минуты пришло. Главное — всё правильно заполнить", time: "10:52", gender: "female"},
+    {name: "Татьяна_Про", text: "Подарков реально мало осталось, торопитесь, девочки!", time: "10:55", gender: "female"},
+    {name: "Максим_СПб", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", time: "10:58", gender: "male"},
+    {name: "Юлия_Красота", text: "Уже получила и потратила на косметику! Всё работает 💄", time: "11:02", gender: "female"},
+    {name: "Артем_Воронеж", text: "Подтверждаю, с картой ВТБ тоже всё прошло без проблем", time: "11:05", gender: "male"},
+    {name: "Людмила_Шоппинг", text: "Девочки, не бойтесь рубля! Это просто проверка карты", time: "11:08", gender: "female"},
+    {name: "Кирилл_М", text: "Жду свои 5000, уже 5 минут прошло. Это нормально?", time: "11:12", gender: "male"},
+    {name: "Алиса_Стильная", text: "Кирилл, у меня 7 минут было. Подожди ещё немного", time: "11:15", gender: "female"},
+    {name: "Павел_Рабочий", text: "На что лучше потратить эти деньги? Может, инструменты?", time: "11:18", gender: "male"},
+    {name: "Екатерина_Л", text: "Я купила детям одежду на осень. Очень кстати пришлись деньги", time: "11:22", gender: "female"},
+    {name: "Роман_Авто", text: "Кто-нибудь покупал автоаксессуары на ВБ? Есть рекомендации?", time: "11:25", gender: "male"},
+    {name: "Снежана_Дом", text: "Я заказала новый чайник и сковородку. Качество отличное!", time: "11:28", gender: "female"},
+    {name: "Игорь_Спорт", text: "Для спортзала что-нибудь присмотрел на эти деньги", time: "11:32", gender: "male"},
+    {name: "Валентина_С", text: "Верификацию проходила с телефона, всё удобно сделано", time: "11:35", gender: "female"},
+    {name: "Станислав_Т", text: "У меня с карты МИР списали и вернули рубль. Всё ок", time: "11:38", gender: "male"},
+    {name: "Галина_Бабуля", text: "Внучка помогла оформить. Теперь и я шопоголик 😄", time: "11:42", gender: "female"},
+    {name: "Владимир_П", text: "На подарок жене на юбилей хватит этих денег", time: "11:45", gender: "male"},
+    {name: "Маргарита_К", text: "Кто получил 5000, отпишитесь! Хочу убедиться, что не одна", time: "11:48", gender: "female"},
+    {name: "Никита_Геймер", text: "На новую мышь и коврик хватит. Неплохой подарок", time: "11:52", gender: "male"}
   ];
 
   const randomMessages = [
     "Только что получила 5000₽! Всем советую не медлить!",
-    "Кто сомневается — зря! Это реальные деньги от WB",
+    "Кто сомневается — зря! Это реальные деньги от ВБ",
     "За 1 рубль не страшно, его сразу возвращают",
     "Уже купила сыну новый рюкзак в школу на эти деньги 🎒",
     "Как приятно получить такие деньги просто так!",
     "Верификация занимает 2 минуты, не больше",
     "Девушки, не упускайте шанс! Осталось мало подарков",
     "Муж сначала ругался, а теперь сам радуется 😄",
-    "Проверила на двух картах — всё работает идеально"
+    "Проверила на двух картах — всё работает идеально",
+    "Спасибо за такую акцию! Очень вовремя перед шопингом",
+    "Кто уже получил, что планируете купить?",
+    "У меня Сбер, всё прошло без проблем",
+    "Это лучший розыгрыш в этом году!",
+    "Не верила до последнего, но деньги реально пришли",
+    "Всем удачи в розыгрыше! Надеюсь, все получат 🍀",
+    "Дочка помогла разобраться, теперь и я с деньгами!",
+    "На работе все ахнули, когда рассказала про 5000₽",
+    "Уже третий день смотрю, что купить. Выбор огромный!",
+    "Подруга тоже получила вчера. Это массовая акция",
+    "Рубль вернули через 10 секунд. Быстрее СМС приходит",
+    "Заказала кроссовки, которые давно хотела 👟",
+    "Сын не верил, пока не увидел историю операций",
+    "Всё легально, всё официально. Проверено лично",
+    "На дачу заказала садовый инвентарь. Пригодится",
+    "Можно и на продукты потратить, если нужно",
+    "Я потратила на книги. Люблю читать перед сном 📚",
+    "На работе уже пять человек получили. Все в шоке",
+    "Деньги пришли в 23:45, думала уже не будет",
+    "На новый чехол для телефона хватило и ещё осталось",
+    "Верификацию прошла с первого раза, всё просто",
+    "Муж теперь сам хочет зарегистрироваться",
+    "На косметику для мамы купила. Она была в восторге",
+    "Не понимаю скептиков. Просто попробуйте и всё",
+    "Карта ПриватБанка тоже подошла",
+    "Деньги реальные, уже проверила в банкомате",
+    "Заказала домашний текстиль, скоро привезут",
+    "На массажер для спины потратила. Здоровье важнее",
+    "Всё сделала с телефона, даже комп не понадобился",
+    "Сначала боялась данные вводить, но зря переживала",
+    "На новый набор посуды хватило. Качество супер!",
+    "Деньги пришли, пока чай пила. Быстро и просто",
+    "Уже всем подругам ссылку разослала",
+    "На куртку на осень потратила. Стильно и тепло",
+    "Верификацию проходила утром, к вечеру уже потратила",
+    "Не верьте негативным отзывам. Это реально работает",
+    "На развивающие игрушки ребенку купила. Доволен",
+    "Карта Райффайзен - всё ок, деньги пришли",
+    "На новый зонт и перчатки хватило. К осени готовы",
+    "Спасибо ВБ за такой щедрый подарок!",
+    "Уже вторую неделю получаю от них подарки",
+    "На украшения для дома потратила. Красиво получилось",
+    "Деньги пришли, пока фильм смотрела",
+    "На новый плед и подушки. Уютно теперь дома",
+    "На спортивный костюм для зала. Теперь мотивация",
+    "Карта Почта Банка - всё приняли, деньги есть",
+    "На набор инструментов для мужа. Он доволен",
+    "Деньги получила, покупки сделала - всё за 15 минут",
+    "На новую сумочку потратила. Мечта сбылась 👜",
+    "Верификацию прошла за 30 секунд. Быстрее, чем думала",
+    "На краску для волос и уход. Преобразилась",
+    "На подарки на ближайшие праздники хватит",
+    "Карта Открытие - без проблем, всё приняли",
+    "На новый чехол для ноутбука. Стильно и практично",
+    "Деньги пришли, пока готовила ужин",
+    "На набор косметики для дочки. Она в восторге",
+    "Верификацию проходила вечером, утром уже тратила",
+    "На новые шторы в спальню. Преобразилась комната",
+    "Деньги получила, покупки сделала - всё просто!",
+    "На коллекцию чая и кофе. Теперь выбор большой",
+    "Карта Уралсиб - тоже работает, деньги пришли",
+    "На новый чехол для планшета. Удобно теперь",
+    "Деньги пришли, пока спала. Приятный сюрприз",
+    "На товары для творчества. Развиваю хобби",
+    "Верификацию прошла с iPad, тоже удобно",
+    "На постельное белье нового дизайна. Красота",
+    "Деньги реальные, уже полгода покупаю на ВБ",
+    "На аксессуары для телефона. Всё необходимое",
+    "Карта Совкомбанка - приняли, деньги зачислили",
+    "На новый ремень для часов. Стильный подарок себе",
+    "Деньги пришли, пока в соцсетях сидела",
+    "На кухонные принадлежности. Готовить приятнее",
+    "Верификацию проходила на работе в обед",
+    "На новый пазл на 1000 деталей. Будет чем заняться",
+    "Деньги получила, уже третий заказ оформляю",
+    "На ароматические свечи для дома. Уютно",
+    "Карта МТС Банка - всё приняли, перевод быстрый",
+    "На новый ежедневник и ручки. Для работы пригодится",
+    "Деньги пришли, пока сериал досматривала",
+    "На товары для пикника. К выходным готовы",
+    "Верификацию прошла за минуту. Очень быстро",
+    "На новый набор полотенец. Мягкие и качественные",
+    "Деньги реальные, уже всем родственникам рассказала",
+    "На украшения для ёлки купила. К Новому году готовы",
+    "Карта Хоум Кредит - тоже работает, деньги есть",
+    "На новый органайзер для косметики. Порядок теперь",
+    "Деньги пришли, пока завтракала. Отлично начался день"
   ];
 
-  // Инициализация чата
+  // Инициализация чата из второго файла
   function initChat() {
     const chatContainer = document.getElementById('chatMessages');
     
-    // Создаём сообщения с динамическим временем на основе минут назад
+    // Добавляем начальные сообщения
     initialMessages.forEach(msg => {
-      const time = getTimeMinutesAgo(msg.minutesAgo);
-      addMessageToChat(msg.name, msg.text, msg.gender, false, time);
+      addMessageToChat(msg.name, msg.text, msg.gender, false, msg.time);
     });
     
-    // Настраиваем отправку сообщений
+    // Настраиваем отправку сообщений от пользователя
     document.getElementById('chatSend').addEventListener('click', sendUserMessage);
     document.getElementById('chatInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') sendUserMessage();
     });
     
-    // Генерация случайных сообщений (новые сообщения идут с текущим временем)
-    setInterval(addRandomMessage, 15000 + Math.random() * 10000);
+    // Запускаем генерацию случайных сообщений (реже: каждые 12-20 секунд)
+    setInterval(addRandomMessage, 12000 + Math.random() * 8000);
     
     // Обновляем онлайн счетчик
     setInterval(updateOnlineCount, 15000);
@@ -1122,14 +1031,37 @@
 
   function addMessageToChat(name, text, gender, isUser = false, customTime = null) {
     const chatContainer = document.getElementById('chatMessages');
+    messageId++;
     
-    const time = customTime || getCurrentTimeString();
+    const time = customTime || new Date().toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
     const avatarText = name.split('_')[0].charAt(0);
+    const avatarColor = gender === 'female' ? 'var(--wb-pink)' : 'var(--wb-purple)';
     
+    const message = {
+      id: messageId,
+      name: name,
+      text: text,
+      gender: gender,
+      time: time,
+      isUser: isUser
+    };
+    
+    chatMessages.push(message);
+    
+    // Ограничиваем историю
+    if (chatMessages.length > 15) {
+      chatMessages.shift();
+      const firstChild = chatContainer.firstChild;
+      if (firstChild) {
+        firstChild.remove();
+      }
+    }
+    
+    // Добавляем новое сообщение
     const msgEl = document.createElement('div');
     msgEl.className = `chat-message ${isUser ? 'user' : 'other'}`;
     msgEl.innerHTML = `
-      <div class="chat-avatar">${avatarText}</div>
+      <div class="chat-avatar" style="background: ${isUser ? 'var(--wb-gradient)' : avatarColor}">${avatarText}</div>
       <div class="chat-bubble">
         <div class="chat-name">${name}</div>
         <div>${text}</div>
@@ -1142,11 +1074,11 @@
   }
 
   function addRandomMessage() {
-    const femaleNames = ["Анна", "Марина", "Ольга", "Елена", "Ирина", "Наталья"];
-    const maleNames = ["Сергей", "Дмитрий", "Александр", "Андрей", "Максим"];
-    const cities = ["Москва", "СПб", "Казань", "Новосибирск", "Екатеринбург", "Краснодар"];
+    const femaleNames = ["Анна", "Марина", "Ольга", "Елена", "Ирина", "Светлана", "Наталья", "Юлия", "Татьяна", "Виктория"];
+    const maleNames = ["Сергей", "Дмитрий", "Александр", "Андрей", "Максим", "Алексей", "Иван", "Михаил"];
+    const cities = ["Москва", "СПб", "Казань", "Новосибирск", "Екатеринбург", "Краснодара", "Сочи", "Воронеж"];
     
-    const isFemale = Math.random() > 0.3;
+    const isFemale = Math.random() > 0.3; // 70% женщин
     const names = isFemale ? femaleNames : maleNames;
     const name = names[Math.floor(Math.random() * names.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
@@ -1163,121 +1095,97 @@
     if (text) {
       addMessageToChat("Вы", text, 'user', true);
       input.value = '';
+      
+      // Через 3-7 секунд добавляем "ответ" (реже)
+      setTimeout(() => {
+        const responses = [
+          "Отлично! Скоро и вы получите свои 5000₽!",
+          "Удачи в розыгрыше!",
+          "Спасибо за участие!",
+          "Скоро и вы будете радоваться подарку!"
+        ];
+        const randomName = Math.random() > 0.5 ? "Анна_Москва" : "Наталья_К";
+        const response = responses[Math.floor(Math.random() * responses.length)];
+        addMessageToChat(randomName, response, 'female');
+      }, 3000 + Math.random() * 4000);
     }
   }
 
   function updateOnlineCount() {
-    onlineCount += Math.floor(Math.random() * 7) - 2;
-    if (onlineCount < 135) onlineCount = 135;
+    onlineCount += Math.floor(Math.random() * 5) - 2;
+    if (onlineCount < 130) onlineCount = 130;
     if (onlineCount > 180) onlineCount = 180;
     document.getElementById('onlineCount').textContent = onlineCount;
   }
 
-  function initProgressBar() {
-    const progressDots = document.getElementById('progressDots');
-    progressDots.innerHTML = '';
-    
-    for (let i = 1; i <= totalQuestions; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'progress-dot';
-      if (i === 1) dot.classList.add('active');
-      progressDots.appendChild(dot);
-    }
-    
-    updateProgressBar();
-  }
-
-  function updateProgressBar() {
-    const progressPercent = Math.min((currentQuestion / totalQuestions) * 100, 100);
-    const progressBar = document.getElementById('progressBar');
-    const progressPercentText = document.getElementById('progressPercent');
-    const currentQuestionNum = document.getElementById('currentQuestionNum');
-    
-    progressBar.style.width = progressPercent + '%';
-    progressPercentText.textContent = Math.round(progressPercent) + '%';
-    currentQuestionNum.textContent = `Вопрос ${currentQuestion} из ${totalQuestions}`;
-    
-    const dots = document.querySelectorAll('.progress-dot');
-    dots.forEach((dot, index) => {
-      dot.classList.remove('active', 'completed');
-      if (index + 1 < currentQuestion) {
-        dot.classList.add('completed');
-      } else if (index + 1 === currentQuestion) {
-        dot.classList.add('active');
-      }
-    });
-  }
-
-  function selectOption(questionNum, button) {
-    if (!isSurveyActive) return;
-    
-    const questionDiv = document.getElementById(`question${questionNum}`);
-    const buttons = questionDiv.querySelectorAll('.btn-option');
-    buttons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    
+  function selectOption(questionNum) {
+    // Увеличиваем счетчик участников
     participantsCount++;
     document.getElementById('participantsCount').textContent = participantsCount.toLocaleString();
     
-    updateGiftsCounter();
-    
-    setTimeout(() => {
-      const current = document.getElementById(`question${questionNum}`);
-      current.classList.remove('active');
-      
-      currentQuestion = questionNum + 1;
-      updateProgressBar();
-      
-      if (currentQuestion <= totalQuestions) {
-        setTimeout(() => {
-          const next = document.getElementById(`question${currentQuestion}`);
-          next.classList.add('active');
-        }, 800);
-      } else {
-        isSurveyActive = false;
+    const current = document.getElementById(`question${questionNum}`);
+    current.classList.remove('active');
+
+    const nextQuestion = questionNum + 1;
+    const progress = Math.min((questionNum / totalQuestions) * 100, 100);
+    document.getElementById("progressBar").style.width = progress + "%";
+
+    if (nextQuestion <= totalQuestions) {
+      const next = document.getElementById(`question${nextQuestion}`);
+      next.classList.add('active');
+    } else {
+      document.getElementById("progressBar").style.width = "100%";
+      isSurveyActive = false;
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('active');
         
-        const surveyContainer = document.getElementById('surveyContainer');
-        surveyContainer.classList.add('fading');
+        // Последовательная загрузка шагов
+        setTimeout(() => {
+          document.getElementById('step2').classList.add('active');
+        }, 1500);
         
         setTimeout(() => {
-          surveyContainer.style.display = 'none';
-          document.getElementById('checkingContainer').classList.add('active');
+          document.getElementById('step3').classList.add('active');
+        }, 3000);
+        
+        // Увеличиваем время загрузки до 6 секунд
+        setTimeout(() => {
+          document.getElementById('loading').classList.remove('active');
+          document.getElementById('final-page').classList.add('active');
           
-          setTimeout(() => document.getElementById('checkStep1').classList.add('active'), 500);
-          setTimeout(() => {
-            document.getElementById('checkStep1').classList.add('completed');
-            document.getElementById('checkStep2').classList.add('active');
-          }, 1500);
-          setTimeout(() => {
-            document.getElementById('checkStep2').classList.add('completed');
-            document.getElementById('checkStep3').classList.add('active');
-          }, 2500);
-          setTimeout(() => {
-            document.getElementById('checkStep3').classList.add('completed');
-            document.getElementById('checkStep4').classList.add('active');
-          }, 3500);
+          // Запускаем таймер обратного отсчета 5 минут для финальной страницы
+          startFinalCountdown();
           
-          setTimeout(() => {
-            document.getElementById('checkStep4').classList.add('completed');
-            
-            setTimeout(() => {
-              document.getElementById('checkingContainer').classList.remove('active');
-              document.getElementById('checkingContainer').style.display = 'none';
-              document.getElementById('finalPage').classList.add('active');
-              showSuccessNotification();
-            }, 1000);
-          }, 4500);
-        }, 400);
-      }
-    }, 800);
+          // Показываем уведомление об успешном прохождении опроса
+          showSuccessNotification();
+        }, 6000);
+      }, 1000);
+    }
   }
 
-  function updateGiftsCounter() {
-    if (giftsLeft > 5 && Math.random() > 0.7) {
-      giftsLeft--;
-      document.getElementById('giftsLeft').textContent = giftsLeft;
-      const percent = (giftsLeft / totalGifts) * 100;
-      document.getElementById('giftsProgressBar').style.width = percent + '%';
+  function startFinalCountdown() {
+    // Сбрасываем таймер на 5 минут
+    finalTimerSeconds = 300;
+    updateFinalCountdown();
+  }
+
+  function updateFinalCountdown() {
+    const finalCountdownElement = document.getElementById('finalCountdown');
+    
+    if (finalCountdownElement && finalTimerSeconds >= 0) {
+      const minutes = Math.floor(finalTimerSeconds / 60);
+      const seconds = finalTimerSeconds % 60;
+      finalCountdownElement.textContent = `Предложение действительно в течение: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      if (finalTimerSeconds > 0) {
+        finalTimerSeconds--;
+        setTimeout(updateFinalCountdown, 1000);
+      } else {
+        // Когда таймер достигает 0
+        finalCountdownElement.textContent = `Время истекло!`;
+        finalCountdownElement.style.color = '#ff0000';
+        finalCountdownElement.style.fontWeight = 'bold';
+      }
     }
   }
 
@@ -1286,7 +1194,7 @@
     notification.className = 'notification';
     notification.innerHTML = `
       <div class="notification-content">
-        <div class="wb-logo">WB</div>
+        <div class="wb-logo">ВБ</div>
         <div class="notification-text">🎉 Поздравляем! Вы успешно прошли опрос!</div>
       </div>
     `;
@@ -1294,12 +1202,87 @@
     document.body.appendChild(notification);
     
     setTimeout(() => {
-      notification.style.animation = 'slideOutTop 0.3s ease-in forwards';
-      setTimeout(() => notification.remove(), 300);
-    }, 2500);
+      notification.style.animation = 'slideOutTop 0.5s ease-in forwards';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 500);
+    }, 3000);
   }
 
-  let totalSeconds = 12 * 3600 + 24 * 60 + 59;
+  function createWinnerNotification() {
+    const names = ['Марина', 'Анна', 'Екатерина', 'Ольга', 'Ирина', 'Наталья', 'Светлана', 'Юлия', 'Мария', 'Александра', 'Дарья', 'Елена'];
+    const cities = ['Москвы', 'Санкт-Петербурга', 'Казани', 'Новосибирска', 'Екатеринбурга', 'Краснодара', 'Сочи', 'Воронежа', 'Самары', 'Уфы', 'Омска', 'Челябинска'];
+    const amounts = ['1000', '1500', '2000', '2500', '3000', '3500', '4000', '4500', '5000', '5000', '5000', '5000'];
+    const actions = ['получила', 'активировала', 'выиграла', 'забрала'];
+    const products = ['', ' на одежду', ' на технику', ' на косметику', ' для шопинга'];
+    
+    const name = names[Math.floor(Math.random() * names.length)];
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    const amount = amounts[Math.floor(Math.random() * amounts.length)];
+    const action = actions[Math.floor(Math.random() * actions.length)];
+    const product = products[Math.floor(Math.random() * products.length)];
+    
+    return {
+      name,
+      city,
+      amount,
+      action,
+      product
+    };
+  }
+
+  function showNotificationFromQueue() {
+    if (notificationQueue.length === 0 || isShowingNotification) return;
+    
+    isShowingNotification = true;
+    const notificationData = notificationQueue.shift();
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <div class="wb-logo">ВБ</div>
+        <div class="notification-text">
+          <strong>${notificationData.name} из ${notificationData.city}</strong> ${notificationData.action} ${notificationData.amount}₽${notificationData.product}!
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Уведомление показывается 2 секунды, затем плавно исчезает
+    setTimeout(() => {
+      notification.style.animation = 'slideOutTop 0.5s ease-in forwards';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+        isShowingNotification = false;
+        
+        // Запускаем следующее уведомление через случайный интервал 8-12 секунд
+        setTimeout(showNotificationFromQueue, 8000 + Math.random() * 4000);
+      }, 500);
+    }, 2000);
+  }
+
+  function scheduleNotifications() {
+    // Создаем уведомление и добавляем в очередь
+    const notificationData = createWinnerNotification();
+    notificationQueue.push(notificationData);
+    
+    // Если сейчас не показывается уведомление, запускаем показ
+    if (!isShowingNotification) {
+      showNotificationFromQueue();
+    }
+    
+    // Планируем следующее создание уведомления через 4-8 секунд
+    setTimeout(scheduleNotifications, 4000 + Math.random() * 4000);
+  }
+
+  // Таймер обратного отсчета для главного заголовка
+  let totalSeconds = 23 * 3600 + 24 * 60 + 59;
   const countdownElement = document.getElementById("countdown");
 
   function updateTimer() {
@@ -1313,22 +1296,24 @@
     }
   }
 
+  updateTimer();
+
+  // Автоматическое увеличение счетчика участников
+  setInterval(() => {
+    if (isSurveyActive) {
+      participantsCount += Math.floor(Math.random() * 3) + 1;
+      document.getElementById('participantsCount').textContent = participantsCount.toLocaleString();
+    }
+  }, 8000);
+
+  // Запускаем систему уведомлений
+  setTimeout(() => {
+    scheduleNotifications();
+  }, 2000);
+
+  // Инициализация чата при загрузке
   window.onload = function() {
-    initProgressBar();
     initChat();
-    updateTimer();
-    
-    const initialPercent = (giftsLeft / totalGifts) * 100;
-    document.getElementById('giftsProgressBar').style.width = initialPercent + '%';
-    
-    setInterval(() => {
-      if (isSurveyActive) {
-        participantsCount += Math.floor(Math.random() * 2) + 1;
-        document.getElementById('participantsCount').textContent = participantsCount.toLocaleString();
-      }
-    }, 8000);
-    
-    setInterval(updateGiftsCounter, 12000);
   };
 </script>
 
