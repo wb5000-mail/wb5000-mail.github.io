@@ -32,10 +32,9 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
     }
 
-    /* Импорт шрифта Inter */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     .notification {
@@ -67,24 +66,19 @@
     }
 
     .container {
-      background: white;
       max-width: 560px;
       width: 100%;
       margin: 0 auto;
-      padding: 32px;
-      border-radius: 32px;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-      border: 1px solid #F0F0F5;
       position: relative;
-      transition: all 0.3s ease;
     }
 
+    /* Прямо на белом фоне, без лишних карточек */
     .header {
       background: var(--wb-gradient);
       padding: 24px 20px;
       border-radius: 24px;
       color: white;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       position: relative;
       box-shadow: 0 10px 20px -5px rgba(139, 37, 201, 0.3);
     }
@@ -140,12 +134,12 @@
       gap: 5px;
     }
 
-    /* Блок с оставшимися подарками */
     .gifts-left-container {
-      background: #F8F8FD;
+      background: white;
       border-radius: 24px;
       padding: 20px;
       margin: 20px 0;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
       border: 1px solid #F0F0F5;
     }
 
@@ -211,9 +205,8 @@
       100% { transform: translateX(100%); }
     }
 
-    /* Прогресс-бар опроса */
     .survey-progress-container {
-      margin: 25px 0;
+      margin: 20px 0;
     }
 
     .survey-progress-info {
@@ -265,7 +258,6 @@
       background: var(--wb-success);
     }
 
-    /* Блок с вопросами */
     .survey-container {
       background: white;
       border-radius: 24px;
@@ -376,7 +368,6 @@
       font-size: 14px;
     }
 
-    /* Блок проверки */
     .checking-container {
       background: white;
       border-radius: 24px;
@@ -503,7 +494,6 @@
       margin-top: 3px;
     }
 
-    /* Финальная страница */
     .final-page {
       background: white;
       border-radius: 24px;
@@ -522,7 +512,7 @@
       background: var(--wb-gradient);
       border-radius: 24px;
       padding: 30px 20px;
-      margin: 15px 0 25px;
+      margin: 0 0 25px 0;
       color: white;
       text-align: center;
       box-shadow: 0 15px 30px -8px rgba(139, 37, 201, 0.4);
@@ -574,7 +564,7 @@
       background: #F8F8FD;
       padding: 20px;
       border-radius: 20px;
-      margin: 20px 0;
+      margin: 0 0 20px 0;
       line-height: 1.6;
       border: 1px solid #F0F0F5;
     }
@@ -602,12 +592,11 @@
       margin-top: 20px;
     }
 
-    /* Стили для чата */
     .chat-container {
       background: white;
       border-radius: 24px;
       padding: 0;
-      margin: 25px 0 15px;
+      margin: 20px 0 15px;
       border: 2px solid #F0F0F5;
       overflow: hidden;
     }
@@ -744,9 +733,8 @@
       transform: scale(1.05);
     }
 
-    /* Официальная информация */
     .official-info {
-      background: #F8F8FD;
+      background: white;
       border-radius: 20px;
       padding: 20px;
       margin: 15px 0;
@@ -819,8 +807,8 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 20px;
+      body {
+        padding: 12px;
       }
       
       .header h1 {
@@ -867,7 +855,6 @@
     </div>
   </div>
 
-  <!-- Блок с оставшимися подарками -->
   <div class="gifts-left-container">
     <div class="gifts-left-title">
       <span>🎁 ПОДАРКОВ ОСТАЛОСЬ:</span>
@@ -884,7 +871,6 @@
     ⚡ <strong>Ограниченное предложение!</strong> Только сегодня — повышенный шанс получить 5000₽
   </div>
 
-  <!-- Прогресс-бар опроса -->
   <div class="survey-progress-container">
     <div class="survey-progress-info">
       <span id="currentQuestionNum">Вопрос 1 из 7</span>
@@ -896,14 +882,12 @@
     <div class="progress-dots" id="progressDots"></div>
   </div>
 
-  <!-- Вопросы -->
   <div class="survey-container" id="surveyContainer">
     <div class="survey-header">
       <h3>📝 ОТВЕТЬТЕ НА 7 ВОПРОСОВ</h3>
       <p>Выберите подходящий вариант для каждого вопроса</p>
     </div>
 
-    <!-- Вопрос 1 -->
     <div class="question active" id="question1">
       <h3>1. Как часто вы совершаете покупки на Wildberries?</h3>
       <button class="btn-option" onclick="selectOption(1, this)">📦 Несколько раз в неделю</button>
@@ -912,7 +896,6 @@
       <button class="btn-option" onclick="selectOption(1, this)">❌ Никогда не покупал(а)</button>
     </div>
 
-    <!-- Вопрос 2 -->
     <div class="question" id="question2">
       <h3>2. Какую сумму вы обычно тратите за один заказ?</h3>
       <button class="btn-option" onclick="selectOption(2, this)">💎 До 1 000 рублей</button>
@@ -921,7 +904,6 @@
       <button class="btn-option" onclick="selectOption(2, this)">💼 Более 7 000 рублей</button>
     </div>
 
-    <!-- Вопрос 3 -->
     <div class="question" id="question3">
       <h3>3. Что вы чаще всего покупаете на Wildberries?</h3>
       <button class="btn-option" onclick="selectOption(3, this)">👚 Одежда и обувь</button>
@@ -930,7 +912,6 @@
       <button class="btn-option" onclick="selectOption(3, this)">📱 Электроника и гаджеты</button>
     </div>
 
-    <!-- Вопрос 4 -->
     <div class="question" id="question4">
       <h3>4. Что для вас важно при выборе товара?</h3>
       <button class="btn-option" onclick="selectOption(4, this)">⭐ Отзывы и рейтинг продавца</button>
@@ -939,7 +920,6 @@
       <button class="btn-option" onclick="selectOption(4, this)">📷 Качественные фото товара</button>
     </div>
 
-    <!-- Вопрос 5 -->
     <div class="question" id="question5">
       <h3>5. Какой подарок вы бы хотели получить от Wildberries?</h3>
       <button class="btn-option" onclick="selectOption(5, this)">🎁 Скидка на следующий заказ</button>
@@ -948,7 +928,6 @@
       <button class="btn-option" onclick="selectOption(5, this)">💝 Подарочный сертификат</button>
     </div>
 
-    <!-- Вопрос 6 -->
     <div class="question" id="question6">
       <h3>6. Вы подписаны на рассылку акций Wildberries?</h3>
       <button class="btn-option" onclick="selectOption(6, this)">✅ Да, регулярно получаю выгодные предложения</button>
@@ -956,7 +935,6 @@
       <button class="btn-option" onclick="selectOption(6, this)">❌ Нет, не интересно</button>
     </div>
 
-    <!-- Вопрос 7 -->
     <div class="question" id="question7">
       <h3>7. Какой из брендов Wildberries вам наиболее интересен?</h3>
       <button class="btn-option" onclick="selectOption(7, this)">👗 Fashion-бренды одежды</button>
@@ -966,7 +944,6 @@
     </div>
   </div>
 
-  <!-- Блок проверки ответов -->
   <div class="checking-container" id="checkingContainer">
     <div class="checking-header">
       <div class="checking-icon">
@@ -1008,7 +985,6 @@
     </div>
   </div>
 
-  <!-- Финальная страница -->
   <div class="final-page" id="finalPage">
     <div class="prize-card">
       <h2 class="prize-title">ПОЗДРАВЛЯЕМ! 🎊</h2>
@@ -1038,7 +1014,6 @@
     </div>
   </div>
 
-  <!-- Чат -->
   <div class="chat-container">
     <div class="chat-header">
       <span>💬 Чат участников розыгрыша</span>
@@ -1055,7 +1030,6 @@
     </div>
   </div>
 
-  <!-- Официальная информация -->
   <div class="official-info">
     <h4>
       <span>🔒</span> Официальная информация
@@ -1084,18 +1058,31 @@
   let giftsLeft = 47;
   const totalGifts = 500;
   let onlineCount = 148;
-  
-  // База сообщений для чата с временными метками
+
+  // Функция для получения времени с учётом часового пояса пользователя
+  function getCurrentTimeString() {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+
+  // Функция для получения времени N минут назад от текущего
+  function getTimeMinutesAgo(minutes) {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - minutes);
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+
+  // База сообщений для чата - все временные метки будут динамическими
   const initialMessages = [
-    {name: "Анна_Москва", text: "Только что получила 5000₽ на карту! Всё работает!", gender: "female", time: "08:15"},
-    {name: "Сергей_СПб", text: "Кто уже прошел верификацию? Как быстро приходят деньги?", gender: "male", time: "08:32"},
-    {name: "Елена_К", text: "Я за 3 минуты получила! Главное — не бояться рубля, его возвращают сразу", gender: "female", time: "08:47"},
-    {name: "Дмитрий_Новосиб", text: "Подтверждаю, с карты списали рубль и сразу вернули. Деньги пришли через 5 минут", gender: "male", time: "09:03"},
-    {name: "Ольга_Премиум", text: "Уже потратила на новое платье! Спасибо WB за подарок 😍", gender: "female", time: "09:18"},
-    {name: "Александр_Т", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", gender: "male", time: "09:34"},
-    {name: "Марина_Шопер", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", gender: "female", time: "09:51"},
-    {name: "Ирина_Казань", text: "У меня Тинькофф, всё подошло. Рубль вернули мгновенно", gender: "female", time: "10:05"},
-    {name: "Максим_В", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", gender: "male", time: "10:22"}
+    {name: "Анна_Москва", text: "Только что получила 5000₽ на карту! Всё работает!", gender: "female", minutesAgo: 45},
+    {name: "Сергей_СПб", text: "Кто уже прошел верификацию? Как быстро приходят деньги?", gender: "male", minutesAgo: 38},
+    {name: "Елена_К", text: "Я за 3 минуты получила! Главное — не бояться рубля, его возвращают сразу", gender: "female", minutesAgo: 32},
+    {name: "Дмитрий_Новосиб", text: "Подтверждаю, с карты списали рубль и сразу вернули. Деньги пришли через 5 минут", gender: "male", minutesAgo: 27},
+    {name: "Ольга_Премиум", text: "Уже потратила на новое платье! Спасибо WB за подарок 😍", gender: "female", minutesAgo: 21},
+    {name: "Александр_Т", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", gender: "male", minutesAgo: 16},
+    {name: "Марина_Шопер", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", gender: "female", minutesAgo: 12},
+    {name: "Ирина_Казань", text: "У меня Тинькофф, всё подошло. Рубль вернули мгновенно", gender: "female", minutesAgo: 7},
+    {name: "Максим_В", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", gender: "male", minutesAgo: 3}
   ];
 
   const randomMessages = [
@@ -1114,16 +1101,10 @@
   function initChat() {
     const chatContainer = document.getElementById('chatMessages');
     
-    // Сортируем сообщения по времени (от старых к новым)
-    initialMessages.sort((a, b) => {
-      const timeA = a.time.split(':').map(Number);
-      const timeB = b.time.split(':').map(Number);
-      return (timeA[0] * 60 + timeA[1]) - (timeB[0] * 60 + timeB[1]);
-    });
-    
-    // Добавляем начальные сообщения
+    // Создаём сообщения с динамическим временем на основе минут назад
     initialMessages.forEach(msg => {
-      addMessageToChat(msg.name, msg.text, msg.gender, false, msg.time);
+      const time = getTimeMinutesAgo(msg.minutesAgo);
+      addMessageToChat(msg.name, msg.text, msg.gender, false, time);
     });
     
     // Настраиваем отправку сообщений
@@ -1142,8 +1123,7 @@
   function addMessageToChat(name, text, gender, isUser = false, customTime = null) {
     const chatContainer = document.getElementById('chatMessages');
     
-    const now = new Date();
-    const time = customTime || `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    const time = customTime || getCurrentTimeString();
     const avatarText = name.split('_')[0].charAt(0);
     
     const msgEl = document.createElement('div');
@@ -1193,7 +1173,6 @@
     document.getElementById('onlineCount').textContent = onlineCount;
   }
 
-  // Прогресс-бар
   function initProgressBar() {
     const progressDots = document.getElementById('progressDots');
     progressDots.innerHTML = '';
@@ -1229,7 +1208,6 @@
     });
   }
 
-  // Выбор ответа
   function selectOption(questionNum, button) {
     if (!isSurveyActive) return;
     
@@ -1265,7 +1243,6 @@
           surveyContainer.style.display = 'none';
           document.getElementById('checkingContainer').classList.add('active');
           
-          // Анимация шагов
           setTimeout(() => document.getElementById('checkStep1').classList.add('active'), 500);
           setTimeout(() => {
             document.getElementById('checkStep1').classList.add('completed');
@@ -1322,7 +1299,6 @@
     }, 2500);
   }
 
-  // Таймер
   let totalSeconds = 12 * 3600 + 24 * 60 + 59;
   const countdownElement = document.getElementById("countdown");
 
@@ -1337,7 +1313,6 @@
     }
   }
 
-  // Инициализация
   window.onload = function() {
     initProgressBar();
     initChat();
