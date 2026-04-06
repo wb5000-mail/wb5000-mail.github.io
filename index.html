@@ -36,12 +36,19 @@
       box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
     }
 
+    /* Шапка */
     .hero-header {
       background: linear-gradient(135deg, #7B1FA2 0%, #E91E63 50%, #9C27B0 100%);
       padding: 32px 24px 24px;
       text-align: center;
       color: white;
       position: relative;
+      transition: all 0.3s ease;
+    }
+
+    /* Скрытие шапки на финальной странице */
+    .final-active .hero-header {
+      display: none;
     }
 
     .official-badge {
@@ -88,7 +95,7 @@
       gap: 6px;
     }
 
-    /* Добавлен отступ сверху */
+    /* Ограниченное предложение */
     .limited-offer {
       background: #FFF8E1;
       border-left: 4px solid #FF9800;
@@ -101,10 +108,21 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.3s ease;
     }
 
+    .final-active .limited-offer {
+      display: none;
+    }
+
+    /* Прогресс-бар */
     .progress-section {
       padding: 20px 24px 0;
+      transition: all 0.3s ease;
+    }
+
+    .final-active .progress-section {
+      display: none;
     }
 
     .progress-label {
@@ -131,6 +149,11 @@
 
     .questions-area {
       padding: 8px 24px;
+      transition: all 0.3s ease;
+    }
+
+    .final-active .questions-area {
+      display: none;
     }
 
     .question {
@@ -226,10 +249,12 @@
       border-left: 3px solid #7B1FA2;
     }
 
+    /* Финальная страница */
     .final-area {
-      padding: 24px;
+      padding: 32px 24px;
       text-align: center;
       display: none;
+      background: white;
     }
 
     .final-area.active {
@@ -307,6 +332,11 @@
       border-radius: 24px;
       overflow: hidden;
       border: 1px solid #EEE5F7;
+      transition: all 0.3s ease;
+    }
+
+    .final-active .chat-widget {
+      display: none;
     }
 
     .chat-header {
@@ -431,7 +461,7 @@
       cursor: pointer;
     }
 
-    /* Уведомления — по центру вверху */
+    /* Уведомления по центру вверху */
     .floating-notification {
       position: fixed;
       top: 20px;
@@ -491,7 +521,7 @@
 </head>
 <body>
 
-<div class="survey-container">
+<div class="survey-container" id="appContainer">
   <div class="card">
     <div class="hero-header">
       <div class="official-badge">⚡ ОФИЦИАЛЬНЫЙ ОПРОС ВБ</div>
@@ -701,28 +731,25 @@
     document.getElementById('questionsArea').style.display = 'none';
     document.getElementById('loaderArea').classList.add('active');
     
-    // Исправлено: теперь все 3 шага последовательно активируются
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const step3 = document.getElementById('step3');
     
-    // Шаг 1 активен сразу
     step1.classList.add('active');
     
-    // Шаг 2 через 1.5 секунды
     setTimeout(() => {
       step2.classList.add('active');
     }, 1500);
     
-    // Шаг 3 через 3 секунды
     setTimeout(() => {
       step3.classList.add('active');
     }, 3000);
     
-    // Переход на финальную страницу через 4.5 секунды
     setTimeout(() => {
       document.getElementById('loaderArea').classList.remove('active');
       document.getElementById('finalArea').classList.add('active');
+      // Добавляем класс final-active на контейнер, чтобы скрыть шапку, прогресс-бар и чат
+      document.getElementById('appContainer').classList.add('final-active');
       startFinalTimer();
       showSuccessNotif();
     }, 4500);
@@ -781,7 +808,6 @@
     }, 8000);
   }
 
-  // Уведомления по центру вверху, реже
   function createWinnerNotif() {
     const name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
     const city = cities[Math.floor(Math.random() * cities.length)];
