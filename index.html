@@ -1,1053 +1,952 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/ft8xIj4.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/93QoiNg.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/4cZzyqJ.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"/>
-  <title>Инструкция WB | Купон 5000₽ на покупки</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/93QoiNg.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/4cZzyqJ.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Активация купона WB | 5000₽ на первый заказ</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #F3E5F5 0%, #E8EAF6 100%);
-  min-height: 100vh;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.instruction-container {
-  max-width: 100%;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.card {
-  background: white;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12);
-}
-
-.hero-header {
-  background: linear-gradient(135deg, #7B1FA2 0%, #E91E63 50%, #9C27B0 100%);
-  padding: 24px 16px 20px;
-  text-align: center;
-  color: white;
-}
-
-.official-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, #FFD700, #FFA000);
-  color: #1A1A1A;
-  padding: 4px 14px;
-  border-radius: 30px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  margin-bottom: 14px;
-}
-
-.hero-header h1 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.hero-header p {
-  font-size: 13px;
-  opacity: 0.95;
-  margin-bottom: 16px;
-}
-
-.stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.timer-badge, .participants-badge {
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(4px);
-  padding: 5px 12px;
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.limited-offer {
-  background: #FFF8E1;
-  border-left: 4px solid #FF9800;
-  padding: 10px 14px;
-  margin: 16px 16px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #E65100;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.instruction-main {
-  padding: 0 16px 16px;
-}
-
-.gift-card {
-  background: linear-gradient(115deg, #F8F5FF 0%, #FFFFFF 100%);
-  border-radius: 24px;
-  padding: 18px 16px;
-  text-align: center;
-  margin-bottom: 20px;
-  border: 1px solid rgba(123, 31, 162, 0.12);
-}
-
-.gift-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #7B1FA2;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.gift-amount {
-  font-size: 52px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  line-height: 1;
-  margin: 8px 0 4px;
-}
-
-.trust-icons {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin: 16px 0 12px;
-}
-
-.trust-item {
-  flex: 1;
-  background: #F8F5FF;
-  border-radius: 16px;
-  padding: 10px 6px;
-  text-align: center;
-  border: 1px solid #EDE4F8;
-}
-
-.trust-icon {
-  font-size: 24px;
-  margin-bottom: 4px;
-  display: block;
-}
-
-.trust-text {
-  font-size: 11px;
-  font-weight: 700;
-  color: #2D2D3F;
-}
-
-.trust-sub {
-  font-size: 9px;
-  color: #7B1FA2;
-  margin-top: 2px;
-}
-
-.coupon-counter {
-  background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-  border-radius: 14px;
-  padding: 10px 12px;
-  text-align: center;
-  margin: 12px 0 12px;
-  border: 1px solid #FFCC80;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.coupon-counter span {
-  font-weight: 800;
-  font-size: 20px;
-  color: #E65100;
-}
-
-.steps-list {
-  background: #FFFFFF;
-  border-radius: 20px;
-  padding: 4px 0;
-  margin: 12px 0 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-}
-
-.step-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 12px;
-  border-bottom: 1px solid #F0E6F6;
-}
-
-.step-item:last-child {
-  border-bottom: none;
-}
-
-.step-number {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 20px;
-  color: white;
-  flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(123,31,162,0.2);
-}
-
-.step-content {
-  flex: 1;
-}
-
-.step-title {
-  font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 4px;
-  color: #1A1A2E;
-}
-
-.step-desc {
-  font-size: 12px;
-  color: #5A5A70;
-  line-height: 1.35;
-}
-
-.small-note {
-  font-size: 10px;
-  color: #8A2BE2;
-  background: #F5EDFF;
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 30px;
-  margin-top: 6px;
-}
-
-.urgent-timer {
-  background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-  border-radius: 12px;
-  padding: 10px 14px;
-  text-align: center;
-  margin: 16px 0 16px;
-  border-left: 4px solid #FF9800;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 13px;
-}
-
-.timer-block {
-  background: #2C2C3A;
-  padding: 6px 16px;
-  border-radius: 50px;
-  color: white;
-  font-family: monospace;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.btn-claim {
-  display: block;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  color: white;
-  text-align: center;
-  padding: 15px 20px;
-  border-radius: 60px;
-  font-weight: 800;
-  font-size: 17px;
-  text-decoration: none;
-  margin: 12px 0 10px;
-  transition: all 0.2s;
-  box-shadow: 0 8px 18px rgba(123, 31, 162, 0.3);
-  animation: pulse 1.5s infinite;
-}
-
-.btn-claim:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(123, 31, 162, 0.4);
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.01); }
-}
-
-.chat-widget {
-  margin: 12px 16px 20px;
-  background: #FAFAFE;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid #EEE5F7;
-}
-
-.chat-header {
-  background: linear-gradient(135deg, #7B1FA2, #9C27B0);
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.chat-online {
-  background: rgba(255,255,255,0.2);
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-}
-
-.chat-messages {
-  height: 350px;
-  overflow-y: auto;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: white;
-}
-
-.message {
-  display: flex;
-  gap: 8px;
-  animation: messageIn 0.3s ease;
-}
-
-@keyframes messageIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.message.user {
-  flex-direction: row-reverse;
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-.message.user .avatar {
-  background: linear-gradient(135deg, #9C27B0, #EC407A);
-}
-
-.bubble {
-  max-width: 78%;
-  background: #F3F0FC;
-  padding: 8px 12px;
-  border-radius: 16px;
-  border-bottom-left-radius: 4px;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.message.user .bubble {
-  background: #EDE4F8;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 16px;
-}
-
-.message-name {
-  font-weight: 700;
-  font-size: 11px;
-  color: #7B1FA2;
-  margin-bottom: 3px;
-}
-
-.message-time {
-  font-size: 9px;
-  color: #999;
-  margin-top: 3px;
-  text-align: right;
-}
-
-.screenshot {
-  margin-top: 6px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #E0D4F0;
-  max-width: 140px;
-}
-
-.screenshot img {
-  width: 100%;
-  display: block;
-  cursor: pointer;
-}
-
-.screenshot-label {
-  font-size: 9px;
-  color: #7B1FA2;
-  background: #F0E6F6;
-  padding: 3px 6px;
-  text-align: center;
-}
-
-.chat-input-area {
-  display: flex;
-  padding: 10px;
-  background: #F8F5FF;
-  gap: 8px;
-  border-top: 1px solid #EEE5F7;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #E0D4F0;
-  border-radius: 30px;
-  font-size: 13px;
-  outline: none;
-  font-family: inherit;
-}
-
-.chat-input:focus {
-  border-color: #7B1FA2;
-}
-
-.chat-send {
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  border: none;
-  border-radius: 30px;
-  padding: 0 18px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.floating-notification {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 300px;
-  width: 90%;
-  background: white;
-  border-radius: 14px;
-  padding: 10px 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  border-left: 4px solid #7B1FA2;
-  z-index: 1000;
-  animation: slideDown 0.35s ease;
-}
-
-@keyframes slideDown {
-  from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-  to { transform: translateX(-50%) translateY(0); opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateX(-50%) translateY(0); opacity: 1; }
-  to { transform: translateX(-50%) translateY(-80px); opacity: 0; }
-}
-
-.notification-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.wb-icon {
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 800;
-  font-size: 12px;
-}
-
-.notification-content div:last-child {
-  font-size: 12px;
-  line-height: 1.35;
-}
-/* Кнопка "Наверх" */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #7B1FA2, #E91E63);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(123, 31, 162, 0.4);
-  transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 999;
-  border: none;
-  outline: none;
-}
-
-.back-to-top.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 20px rgba(123, 31, 162, 0.5);
-}
-
-.back-to-top svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-@media (max-width: 480px) {
-  .back-to-top {
-    width: 44px;
-    height: 44px;
-    bottom: 15px;
-    right: 15px;
-  }
-  .back-to-top svg {
-    width: 20px;
-    height: 20px;
-  }
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0F0714 0%, #1A0F2E 50%, #0B0612 100%);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Декоративный фон */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(139, 59, 230, 0.15), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Главная карточка — стекломорфизм */
+    .main-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 59, 230, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    /* Шапка — градиент премиум */
+    .hero {
+      background: linear-gradient(135deg, #6B21A5 0%, #9B3AE6 50%, #C084FC 100%);
+      padding: 32px 24px 28px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 span {
+      color: #FFE484;
+      background: linear-gradient(135deg, #FFE484, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+    }
+
+    .hero p {
+      font-size: 15px;
+      opacity: 0.92;
+      margin-bottom: 20px;
+    }
+
+    .legal-note {
+      font-size: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-top: 8px;
+    }
+
+    /* Основной контент */
+    .content {
+      padding: 28px 24px 24px;
+    }
+
+    /* Блок купона — акцентный */
+    .coupon-block {
+      background: linear-gradient(135deg, #F8F3FF 0%, #F1E8FF 100%);
+      border-radius: 28px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 28px;
+      border: 1px solid rgba(139, 59, 230, 0.2);
+      box-shadow: 0 8px 20px rgba(107, 33, 165, 0.08);
+    }
+
+    .coupon-label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #6B21A5;
+    }
+
+    .coupon-value {
+      font-size: 68px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #6B21A5, #9B3AE6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+      margin: 12px 0 6px;
+    }
+
+    .coupon-value small {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .coupon-desc {
+      font-size: 14px;
+      color: #4A4A6A;
+      font-weight: 500;
+    }
+
+    /* Trust блок — современные иконки */
+    .trust-row {
+      display: flex;
+      gap: 12px;
+      margin: 24px 0 28px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      flex: 1;
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 14px 10px;
+      text-align: center;
+      border: 1px solid #E9E5F5;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .trust-item:hover {
+      transform: translateY(-3px);
+      border-color: #9B3AE6;
+      box-shadow: 0 8px 20px rgba(139, 59, 230, 0.12);
+    }
+
+    .trust-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .trust-title {
+      font-weight: 800;
+      font-size: 13px;
+      color: #1A1A2E;
+    }
+
+    .trust-sub {
+      font-size: 10px;
+      color: #6B21A5;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* Шаги инструкции */
+    .steps {
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 8px 0;
+      margin: 20px 0;
+      border: 1px solid #EDE8F5;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #F0EBF8;
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #6B21A5, #9B3AE6);
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(107, 33, 165, 0.3);
+    }
+
+    .step-text h4 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: #1A1A2E;
+    }
+
+    .step-text p {
+      font-size: 13px;
+      color: #5A5A72;
+      line-height: 1.4;
+    }
+
+    .refund-badge {
+      background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+      color: #2E7D32;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 800;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* Таймер с эффектом */
+    .timer-box {
+      background: linear-gradient(135deg, #FFF8E7, #FFF3E0);
+      border-radius: 24px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0 24px;
+      border: 1px solid #FFE0A3;
+    }
+
+    .timer-label {
+      font-weight: 800;
+      font-size: 13px;
+      color: #E65100;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-digits {
+      background: #1E1B2E;
+      padding: 8px 20px;
+      border-radius: 50px;
+      color: #FFE484;
+      font-family: 'SF Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Кнопка — главный CTA */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(95deg, #6B21A5, #9B3AE6);
+      color: white;
+      text-align: center;
+      padding: 20px 24px;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 12px 28px -8px rgba(107, 33, 165, 0.5);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(95deg, #7B2FBF, #AB4CE6);
+      box-shadow: 0 20px 35px -10px rgba(107, 33, 165, 0.6);
+    }
+
+    .secure-text {
+      text-align: center;
+      font-size: 11px;
+      color: #7A7A99;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Чат — современный стиль как в Telegram */
+    .chat-card {
+      margin: 0 24px 28px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 1px solid #EDE8F5;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .chat-header {
+      background: #F8F6FF;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 14px;
+      border-bottom: 1px solid #EDE8F5;
+    }
+
+    .online-badge {
+      background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+      color: #2E7D32;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .chat-messages {
+      height: 420px;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #FFFFFF;
+    }
+
+    /* Стилизация скролла */
+    .chat-messages::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: #F0EBF8;
+      border-radius: 10px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #9B3AE6;
+      border-radius: 10px;
+    }
+
+    .msg {
+      display: flex;
+      gap: 10px;
+      animation: fadeInUp 0.25s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg.user {
+      flex-direction: row-reverse;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #E9E5F5, #DCD4F0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: #6B21A5;
+      flex-shrink: 0;
+    }
+
+    .msg.user .avatar {
+      background: linear-gradient(135deg, #6B21A5, #9B3AE6);
+      color: white;
+    }
+
+    .bubble {
+      max-width: 78%;
+      background: #F8F6FF;
+      padding: 10px 14px;
+      border-radius: 20px;
+      border-bottom-left-radius: 6px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .msg.user .bubble {
+      background: linear-gradient(135deg, #F3E8FF, #EDE0FF);
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .msg-name {
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #6B21A5;
+    }
+
+    .msg-time {
+      font-size: 9px;
+      color: #A09BB5;
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    .screenshot {
+      margin-top: 8px;
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 140px;
+      border: 1px solid #EDE8F5;
+      transition: transform 0.2s;
+    }
+
+    .screenshot:hover {
+      transform: scale(1.02);
+    }
+
+    .screenshot img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 14px;
+      background: #FFFFFF;
+      border-top: 1px solid #EDE8F5;
+      gap: 10px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 18px;
+      border: 1.5px solid #E9E5F5;
+      border-radius: 40px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .chat-input:focus {
+      border-color: #9B3AE6;
+      box-shadow: 0 0 0 3px rgba(139, 59, 230, 0.1);
+    }
+
+    .chat-send {
+      background: linear-gradient(135deg, #6B21A5, #9B3AE6);
+      border: none;
+      border-radius: 40px;
+      padding: 0 24px;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chat-send:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(107, 33, 165, 0.3);
+    }
+
+    /* Toast уведомления */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      max-width: 360px;
+      background: rgba(30, 27, 46, 0.95);
+      backdrop-filter: blur(12px);
+      color: white;
+      border-radius: 24px;
+      padding: 14px 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      animation: slideUpToast 0.35s ease-out;
+      font-size: 13px;
+      border-left: 4px solid #9B3AE6;
+    }
+
+    @keyframes slideUpToast {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #6B21A5, #9B3AE6);
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(107, 33, 165, 0.4);
+      z-index: 999;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.08);
+    }
+
+    .footer-terms {
+      font-size: 10px;
+      color: #8A89A4;
+      text-align: center;
+      padding: 20px 24px 28px;
+      border-top: 1px solid #EDE8F5;
+      background: white;
+    }
+
+    .footer-terms a {
+      color: #6B21A5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Адаптив */
+    @media (max-width: 500px) {
+      body {
+        padding: 12px;
+      }
+      .hero h1 {
+        font-size: 26px;
+      }
+      .coupon-value {
+        font-size: 52px;
+      }
+      .timer-digits {
+        font-size: 18px;
+        padding: 6px 14px;
+      }
+      .btn-primary {
+        padding: 16px 20px;
+        font-size: 16px;
+      }
+      .chat-messages {
+        height: 380px;
+      }
+    }
   </style>
 </head>
 <body>
+<div class="container">
+  <div class="main-card">
+    <div class="hero">
+      <div class="badge">🔥 ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ</div>
+      <h1>Активируйте купон <span>5 000 ₽</span> на Wildberries</h1>
+      <p>Персональная скидка для новых участников акции</p>
+      <div class="legal-note">✅ Официальный партнер WB • Лицензия ФНС</div>
+    </div>
 
-<div class="instruction-container">
-  <div class="card">
-    <div class="hero-header">
-      <div class="official-badge">⭐ ОФИЦИАЛЬНАЯ ИНСТРУКЦИЯ ВБ</div>
-      <h1>🎁 КАК ПОЛУЧИТЬ КУПОН НА 5000₽</h1>
-      <p>Пошаговое руководство для активных покупателей Wildberries</p>
-      <div class="stats-row">
-        <div class="timer-badge">⏱️ АКТИВНО: <span id="globalTimer">23:59:59</span></div>
-        <div class="participants-badge">👥 УЖЕ ПОЛУЧИЛИ: <span id="participantsCount">2847</span></div>
+    <div class="content">
+      <div class="coupon-block">
+        <div class="coupon-label">ВАШ ПЕРСОНАЛЬНЫЙ КУПОН</div>
+        <div class="coupon-value">5 000 <small>₽</small></div>
+        <div class="coupon-desc">на любые товары Wildberries без ограничений</div>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">🛡️</span><div class="trust-title">Защита данных</div><div class="trust-sub">SSL 256 бит</div></div>
+        <div class="trust-item"><span class="trust-icon">💳</span><div class="trust-title">1₽ возврат</div><div class="trust-sub">Антифрод-проверка</div></div>
+        <div class="trust-item"><span class="trust-icon">⚡</span><div class="trust-title">Мгновенно</div><div class="trust-sub">Автовыдача купона</div></div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text"><h4>Активация купона</h4><p>Нажмите кнопку и заполните быструю форму (30 секунд)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text"><h4>Платёж 1₽ для верификации</h4><p>Средства возвращаются автоматически через 1-2 минуты</p><span class="refund-badge">✅ Возврат гарантирован</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text"><h4>Получите промокод</h4><p>Сразу после верификации купон появится в личном кабинете</p></div>
+        </div>
+      </div>
+
+      <div class="timer-box">
+        <span class="timer-label">⏳ Бронирование купона истекает через:</span>
+        <span class="timer-digits" id="actionTimer">23:59:59</span>
+      </div>
+
+      <a href="https://onelinkgo.ru/stream/a_mail" class="btn-primary" id="claimBtn">🎁 Активировать купон 5 000 ₽ →</a>
+      <div class="secure-text">
+        <span>🔒</span> Данные защищены <span>•</span> Без скрытых платежей <span>•</span> 1₽ возвращается
       </div>
     </div>
 
-    <div class="limited-offer">
-      🔥 <strong>Ограниченное предложение!</strong> Купоны выдаются ограниченной серией. Успейте забрать свой!
-    </div>
-
-    <div class="instruction-main">
-      <div class="gift-card">
-        <div class="gift-label">ВАШ ПЕРСОНАЛЬНЫЙ ПОДАРОК</div>
-        <div class="gift-amount">5 000 ₽</div>
-        <div style="font-size: 13px; margin-top: 6px; color: #666;">на любые товары Wildberries</div>
-      </div>
-
-      <!-- Счётчик оставшихся купонов (динамический) -->
-      <div class="coupon-counter">
-        🎫 Осталось купонов: <span id="couponsLeft">147</span> из 500
-      </div>
-
-      <!-- 3 иконки с галочками -->
-      <div class="trust-icons">
-        <div class="trust-item">
-          <span class="trust-icon">✅</span>
-          <div class="trust-text">Безопасно</div>
-          <div class="trust-sub">1₽ возвращается</div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">⚡</span>
-          <div class="trust-text">Мгновенно</div>
-          <div class="trust-sub">1 минута</div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">🏆</span>
-          <div class="trust-text">Официально</div>
-          <div class="trust-sub">Акция WB</div>
-        </div>
-      </div>
-
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <div class="step-title">Активация купона</div>
-            <div class="step-desc">Нажмите на кнопку «Активировать 5000₽» и пройдите быструю регистрацию (займёт 1 минуту).</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <div class="step-title">Тестовый платёж 1₽</div>
-            <div class="step-desc">Оплатите символический 1 рубль для привязки карты и подтверждения личности. <span class="small-note">✅ Средства возвращаются через 2 минуты</span></div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <div class="step-title">Получите промокод</div>
-            <div class="step-desc">Сразу после верификации вам откроется секретная страница с купоном на 5000₽. Активируйте его в приложении WB.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="urgent-timer">
-        <span>⏳ <strong>Купон забронирован для вас на:</strong></span>
-        <span class="timer-block" id="countdownTimer">09:59</span>
-      </div>
-
-      <a href="https://onelinkgo.ru/stream/a_mail" class="btn-claim" id="claimButton">
-        💰 Активировать 5000 ₽
-      </a>
-      <p style="font-size: 11px; text-align: center; color: #888; margin-bottom: 12px;">*После активации купон автоматически применится к вашему следующему заказу</p>
-    </div>
-
-    <!-- Чат с живыми сообщениями -->
-    <div class="chat-widget">
+    <!-- Современный чат с большой базой сообщений -->
+    <div class="chat-card">
       <div class="chat-header">
-        <span>💬 Чат участников розыгрыша</span>
-        <span class="chat-online">🟢 <span id="onlineCount">148</span> онлайн</span>
+        <span>💬 Общий чат участников</span>
+        <span class="online-badge" id="onlineCount">🟢 187 онлайн</span>
       </div>
       <div class="chat-messages" id="chatMessages"></div>
       <div class="chat-input-area">
-        <input type="text" class="chat-input" id="chatInput" placeholder="Написать в чат..." maxlength="80">
-        <button class="chat-send" id="chatSendBtn">➤</button>
+        <input type="text" class="chat-input" id="chatInput" placeholder="Написать в общий чат..." maxlength="80">
+        <button class="chat-send" id="chatSendBtn">→</button>
       </div>
+    </div>
+
+    <div class="footer-terms">
+      Реклама. ООО «ВБ Партнер», ИНН 9701234567. Купон действует 30 дней, минимальная сумма заказа — 1₽. 
+      Возврат тестового платежа — до 120 секунд. <a href="#">Пользовательское соглашение</a> • <a href="#">Политика конфиденциальности</a>
     </div>
   </div>
 </div>
 
+<div class="back-to-top" id="backToTop">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+</div>
+
 <script>
-  let globalSeconds = 23 * 3600 + 59 * 60 + 59;
-  let reservationSeconds = 9 * 60 + 59;
-  let participants = 2847;
-  let couponsLeft = 147;
-
-  const globalTimerEl = document.getElementById('globalTimer');
-  const countdownTimerEl = document.getElementById('countdownTimer');
-  const participantsSpan = document.getElementById('participantsCount');
-  const couponsLeftSpan = document.getElementById('couponsLeft');
-  
-  function updateGlobalTimer() {
-    if (globalSeconds <= 0) {
-      globalTimerEl.innerText = "00:00:00";
-      return;
-    }
-    const h = Math.floor(globalSeconds / 3600);
-    const m = Math.floor((globalSeconds % 3600) / 60);
-    const s = globalSeconds % 60;
-    globalTimerEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    globalSeconds--;
-    setTimeout(updateGlobalTimer, 1000);
+  // ========== ТАЙМЕР 24 ЧАСА ==========
+  let totalSeconds = 24 * 3600;
+  const timerEl = document.getElementById('actionTimer');
+  function updateMainTimer() {
+    if (totalSeconds <= 0) { timerEl.innerText = "00:00:00"; return; }
+    const hrs = Math.floor(totalSeconds / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    timerEl.innerText = `${String(hrs).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+    totalSeconds--;
+    setTimeout(updateMainTimer, 1000);
   }
-  updateGlobalTimer();
+  updateMainTimer();
 
-  function updateReserveTimer() {
-    if (reservationSeconds <= 0) {
-      countdownTimerEl.innerText = "00:00";
-      return;
-    }
-    const mins = Math.floor(reservationSeconds / 60);
-    const secs = reservationSeconds % 60;
-    countdownTimerEl.innerText = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
-    reservationSeconds--;
-    setTimeout(updateReserveTimer, 1000);
-  }
-  updateReserveTimer();
-
-  setInterval(() => {
-    participants += Math.floor(Math.random() * 3) + 1;
-    participantsSpan.innerText = participants.toLocaleString();
-    
-    if (couponsLeft > 5) {
-      couponsLeft -= Math.floor(Math.random() * 2);
-      couponsLeftSpan.innerText = couponsLeft;
-    }
-  }, 8000);
-
-  const femaleNames = ["Анна", "Марина", "Ольга", "Елена", "Ирина", "Светлана", "Наталья", "Юлия", "Татьяна", "Виктория", "Екатерина", "Мария"];
-  const maleNames = ["Сергей", "Дмитрий", "Александр", "Андрей", "Максим", "Алексей", "Иван", "Михаил", "Роман", "Павел"];
-  const cities = ["Москвы", "СПб", "Казани", "Новосибирска", "Екатеринбурга", "Краснодара", "Сочи", "Воронежа", "Самары", "Уфы"];
-
-  function createWinnerNotif() {
-    const name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    const amount = [3000, 4000, 5000, 5000, 5000][Math.floor(Math.random() * 5)];
-    const action = ['получила', 'активировала', 'выиграла'][Math.floor(Math.random() * 3)];
-    return { name, city, amount, action };
-  }
-
-  function showFloatingNotification(data) {
-    const notif = document.createElement('div');
-    notif.className = 'floating-notification';
-    notif.innerHTML = `
-      <div class="notification-content">
-        <div class="wb-icon">ВБ</div>
-        <div><strong>${data.name} из ${data.city}</strong> ${data.action} ${data.amount}₽! 🎉</div>
-      </div>
-    `;
-    document.body.appendChild(notif);
-    setTimeout(() => {
-      notif.style.animation = 'slideUp 0.4s ease forwards';
-      setTimeout(() => notif.remove(), 400);
-    }, 4000);
-  }
-
-  let notificationQueue = [];
-  let isShowingNotif = false;
-
-  function scheduleNotifications() {
-    const notif = createWinnerNotif();
-    notificationQueue.push(notif);
-    if (!isShowingNotif) {
-      processQueue();
-    }
-    setTimeout(scheduleNotifications, 12000 + Math.random() * 6000);
-  }
-
-  function processQueue() {
-    if (notificationQueue.length === 0) {
-      isShowingNotif = false;
-      return;
-    }
-    isShowingNotif = true;
-    const notif = notificationQueue.shift();
-    showFloatingNotification(notif);
-    setTimeout(() => {
-      processQueue();
-    }, 5000);
-  }
-
-  scheduleNotifications();
-
-  const chatMessagesContainer = document.getElementById('chatMessages');
+  // ========== БОЛЬШАЯ БАЗА ЧАТА ==========
+  const chatContainer = document.getElementById('chatMessages');
   const chatInput = document.getElementById('chatInput');
   const chatSendBtn = document.getElementById('chatSendBtn');
 
-  function getFormattedTime() {
-    return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  // Расширенный список имён
+  const firstNames = ["Анна", "Сергей", "Ольга", "Дмитрий", "Марина", "Алексей", "Елена", "Игорь", "Татьяна", "Роман", "Кристина", "Виталий", "Наталья", "Андрей", "Юлия", "Максим", "Екатерина", "Владимир", "Ирина", "Павел"];
+  const cities = ["Москва", "СПб", "Казань", "Новосибирск", "Екатеринбург", "Краснодар", "Сочи", "Воронеж", "Самара", "Уфа", "Тольятти", "ННовгород", "Челябинск", "Ростов-на-Дону", "Красноярск", "Пермь"];
+
+  function getRandomName() {
+    let name = firstNames[Math.floor(Math.random() * firstNames.length)];
+    let city = cities[Math.floor(Math.random() * cities.length)];
+    const emojis = ["🔥", "⭐", "💎", "🎯", "✅", "💪"];
+    return `${name} ${city} ${emojis[Math.floor(Math.random() * emojis.length)]}`;
   }
 
-  function addChatMessage(name, text, gender, isUser = false, screenshotUrl = null) {
-    const container = document.getElementById('chatMessages');
-    const avatarLetter = name.split('_')[0].charAt(0);
+  function addMessage(userName, text, isUser = false, screenshotUrl = null) {
     const msgDiv = document.createElement('div');
-    msgDiv.className = `message ${isUser ? 'user' : ''}`;
-    
+    msgDiv.className = `msg ${isUser ? 'user' : ''}`;
+    const avatarLetter = isUser ? 'Я' : (userName.charAt(0));
     let screenshotHtml = '';
     if (screenshotUrl) {
-      screenshotHtml = `
-        <div class="screenshot">
-          <img src="${screenshotUrl}" alt="Скриншот из ЛК" onclick="window.open(this.src)">
-          <div class="screenshot-label">📸 Скриншот из личного кабинета</div>
-        </div>
-      `;
+      screenshotHtml = `<div class="screenshot"><img src="${screenshotUrl}" alt="скрин" onclick="window.open(this.src)"></div>`;
     }
-    
     msgDiv.innerHTML = `
       <div class="avatar">${avatarLetter}</div>
       <div class="bubble">
-        <div class="message-name">${name}</div>
+        <div class="msg-name">${isUser ? 'Вы' : userName}</div>
         <div>${text}</div>
         ${screenshotHtml}
-        <div class="message-time">${getFormattedTime()}</div>
+        <div class="msg-time">${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
       </div>
     `;
-    container.appendChild(msgDiv);
-    container.scrollTop = container.scrollHeight;
-    while (container.children.length > 35) container.removeChild(container.firstChild);
+    chatContainer.appendChild(msgDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    // Ограничиваем историю 60 сообщениями
+    while (chatContainer.children.length > 60) chatContainer.removeChild(chatContainer.firstChild);
   }
 
-  const SCREENSHOT_URLS = {
-    screenshot1: "https://i.imgur.com/oELB5f9.jpeg",  
-    screenshot2: "https://i.imgur.com/swY0I6k.jpeg", 
-    screenshot3: "https://i.imgur.com/mFH3wW4.jpeg",
-	screenshot4: "https://i.imgur.com/7LBroBS.jpeg"
-  };
-
-  const chatMessagesList = [
-    {name: "Анна_Москва", text: "Девочки, только что получила 5000₽ на карту! Всё работает!", gender: "female"},
-    {name: "Сергей_Т", text: "Кто уже прошел верификацию? Долго ждать?", gender: "male"},
-    {name: "Ольга_Премиум", text: "Я за 5 минут получила! Главное — не бояться рубля, его сразу возвращают", gender: "female"},
-    {name: "Дмитрий_К", text: "Жена не верила, пока сама не попробовала. Теперь оба довольны!", gender: "male"},
-    {name: "Елена_Счастливая", text: "Верификацию прошла легко, просто заполнила данные. Деньги пришли через 3 минуты", gender: "female"},
-    {name: "Наталья_К", text: "Только что привязала карту, списали 1 рубль и сразу вернули. Теперь жду 5000₽", gender: "female"},
-    {name: "Александр_В", text: "Подтверждаю, с картой Тинькофф всё прошло без проблем", gender: "male"},
-    {name: "Виктория_Модница", text: "У меня через 2 минуты пришло. Главное — всё правильно заполнить", gender: "female"},
-    {name: "Татьяна_Про", text: "Подарков реально мало осталось, торопитесь!", gender: "female"},
-    {name: "Юлия_Красота", text: "Уже получила и потратила на косметику! Всё работает 💄", gender: "female"},
-    {name: "Людмила_Шоппинг", text: "Девочки, не бойтесь рубля! Это просто проверка карты", gender: "female"},
-    {name: "Алиса_Стильная", text: "У меня 7 минут было. Подождите немного", gender: "female"},
-    {name: "Ирина_Казань", text: "А если карта не сбербанка? У меня ВТБ, тоже подойдет?", gender: "female"},
-    {name: "Андрей_Новосиб", text: "Любая карта подходит, проверено!", gender: "male"},
-    {name: "Анна_Москва", text: "Только что всё сделала, ребят! Реально работает, 5000 уже на счёте 🥳", gender: "female", screenshot: SCREENSHOT_URLS.screenshot1 || null},
-    {name: "Сергей_СПб", text: "Я сначала сомневался, ну думаю 1 рубль не жалко. И правда вернули, купон пришёл через пару минут", gender: "male", screenshot: null},
-    {name: "Ольга_Казань", text: "У меня получилось с первого раза! Главное — внимательно заполнять данные", gender: "female", screenshot: null},
-    {name: "Дмитрий_Нск", text: "Жена попросила проверить, сам не верил. В итоге уже заказали подарок ребёнку, 5000 сэкономили", gender: "male", screenshot: null},
-    {name: "Елена_ЕКБ", text: "Девочки, не бойтесь! Всё официально, я скину скрин из приложения, где видно бонусы", gender: "female", screenshot: SCREENSHOT_URLS.screenshot2 || null},
-    {name: "Марина_Краснодар", text: "Оформила за 3 минуты. Деньги списались и сразу вернулись, всё честно 👍", gender: "female", screenshot: null},
-    {name: "Алексей_Воронеж", text: "Удивительно, но факт — купон действительно пришёл. Спасибо за информацию!", gender: "male", screenshot: SCREENSHOT_URLS.screenshot4},
-    {name: "Татьяна_Самара", text: "Вот вам доказательство, что всё работает (скрин прикрепила)", gender: "female", screenshot: SCREENSHOT_URLS.screenshot3 || null},
-    {name: "Ирина_Уфа", text: "Уже потратила на новую косметику, очень довольна! Спасибо ВБ", gender: "female", screenshot: null},
-    {name: "Андрей_РнД", text: "Ребята, не тяните, купоны быстро разбирают. Я успел, и вы успеете", gender: "male", screenshot: null}
+  // Скриншоты из личного кабинета
+  const screenshots = [
+    "https://i.imgur.com/oELB5f9.jpeg",
+    "https://i.imgur.com/swY0I6k.jpeg",
+    "https://i.imgur.com/mFH3wW4.jpeg"
   ];
 
-  const randomPhrases = [
-    "Только что получила 5000₽! Всем советую!", "Это реально работает, уже проверила!",
-    "За 1 рубль не страшно, его сразу возвращают", "Успевайте, пока акция не закончилась!",
-    "Спасибо ВБ за такой подарок! 🎁", "Подруга тоже получила вчера. Всё честно!",
-    "На новый телефон уже коплю, 5000 очень помогли", "Верификация заняла 2 минуты, быстро!",
-    "Деньги пришли на карту Мир, всё отлично", "Не верила до последнего, но деньги реально пришли",
-    "Всем удачи в розыгрыше! 🍀", "На работе уже 5 человек получили, все в шоке",
-    "Купила дочке школьную форму, спасибо!", "Муж теперь сам хочет зарегистрироваться",
-    "Только что получила 5000₽! Всем советую не медлить!",
-    "Кто сомневается — зря! Это реальные деньги от ВБ",
-    "За 1 рубль не страшно, его сразу возвращают",
-    "Уже купила сыну новый рюкзак в школу на эти деньги 🎒",
-    "Как приятно получить такие деньги просто так!",
-    "Верификация занимает 2 минуты, не больше",
-    "Девушки, не упускайте шанс! Осталось мало подарков",
-    "Муж сначала ругался, а теперь сам радуется 😄",
-    "Проверила на двух картах — всё работает идеально",
-    "Спасибо за такую акцию! Очень вовремя перед шопингом",
-    "Кто уже получил, что планируете купить?",
-    "У меня Сбер, всё прошло без проблем",
-    "Это лучший розыгрыш в этом году!",
-    "Не верила до последнего, но деньги реально пришли",
-    "Всем удачи в розыгрыше! Надеюсь, все получат 🍀",
-    "Дочка помогла разобраться, теперь и я с деньгами!",
-    "На работе все ахнули, когда рассказала про 5000₽",
-    "Уже третий день смотрю, что купить. Выбор огромный!",
-    "Подруга тоже получила вчера. Это массовая акция",
-    "Рубль вернули через 10 секунд. Быстрее СМС приходит",
-    "Заказала кроссовки, которые давно хотела 👟",
-    "Сын не верил, пока не увидел историю операций",
-    "Всё легально, всё официально. Проверено лично",
-    "На дачу заказала садовый инвентарь. Пригодится",
-    "Можно и на продукты потратить, если нужно",
-    "Я потратила на книги. Люблю читать перед сном 📚",
-    "На работе уже пять человек получили. Все в шоке",
-    "Деньги пришли в 23:45, думала уже не будет",
-    "На новый чехол для телефона хватило и ещё осталось",
-    "Верификацию прошла с первого раза, всё просто",
-    "Муж теперь сам хочет зарегистрироваться",
-    "На косметику для мамы купила. Она была в восторге",
-    "Не понимаю скептиков. Просто попробуйте и всё",
-    "Карта ПриватБанка тоже подошла",
-    "Деньги реальные, уже проверила в банкомате",
-    "Заказала домашний текстиль, скоро привезут",
-    "На массажер для спины потратила. Здоровье важнее",
-    "Всё сделала с телефона, даже комп не понадобился",
-    "Сначала боялась данные вводить, но зря переживала",
-    "На новый набор посуды хватило. Качество супер!",
-    "Деньги пришли, пока чай пила. Быстро и просто",
-    "Уже всем подругам ссылку разослала",
-    "На куртку на осень потратила. Стильно и тепло",
-    "Верификацию проходила утром, к вечеру уже потратила",
-    "Не верьте негативным отзывам. Это реально работает",
-    "На развивающие игрушки ребенку купила. Доволен",
-    "Карта Райффайзен - всё ок, деньги пришли",
-    "На новый зонт и перчатки хватило. К осени готовы",
-    "Спасибо ВБ за такой щедрый подарок!",
-    "Уже вторую неделю получаю от них подарки",
-    "На украшения для дома потратила. Красиво получилось",
-    "Деньги пришли, пока фильм смотрела",
-    "На новый плед и подушки. Уютно теперь дома",
-    "На спортивный костюм для зала. Теперь мотивация",
-    "Карта Почта Банка - всё приняли, деньги есть",
-    "На набор инструментов для мужа. Он доволен",
-    "Деньги получила, покупки сделала - всё за 15 минут",
-    "На новую сумочку потратила. Мечта сбылась 👜",
-    "Верификацию прошла за 30 секунд. Быстрее, чем думала",
-    "На краску для волос и уход. Преобразилась",
-    "На подарки на ближайшие праздники хватит",
-    "Карта Открытие - без проблем, всё приняли",
-    "На новый чехол для ноутбука. Стильно и практично",
-    "Деньги пришли, пока готовила ужин",
-    "На набор косметики для дочки. Она в восторге",
-    "Верификацию проходила вечером, утром уже тратила",
-    "На новые шторы в спальню. Преобразилась комната",
-    "Деньги получила, покупки сделала - всё просто!",
-    "На коллекцию чая и кофе. Теперь выбор большой",
-    "Карта Уралсиб - тоже работает, деньги пришли",
-    "На новый чехол для планшета. Удобно теперь",
-    "Деньги пришли, пока спала. Приятный сюрприз",
-    "На товары для творчества. Развиваю хобби",
-    "Верификацию прошла с iPad, тоже удобно",
-    "На постельное белье нового дизайна. Красота",
-    "Деньги реальные, уже полгода покупаю на ВБ",
-    "На аксессуары для телефона. Всё необходимое",
-    "Карта Совкомбанка - приняли, деньги зачислили",
-    "На новый ремень для часов. Стильный подарок себе",
-    "Деньги пришли, пока в соцсетях сидела",
-    "На кухонные принадлежности. Готовить приятнее",
-    "Верификацию проходила на работе в обед",
-    "На новый пазл на 1000 деталей. Будет чем заняться",
-    "Деньги получила, уже третий заказ оформляю",
-    "На ароматические свечи для дома. Уютно",
-    "Карта МТС Банка - всё приняли, перевод быстрый",
-    "На новый ежедневник и ручки. Для работы пригодится",
-    "Деньги пришли, пока сериал досматривала",
-    "На товары для пикника. К выходным готовы",
-    "Верификацию прошла за минуту. Очень быстро",
-    "На новый набор полотенец. Мягкие и качественные",
-    "Деньги реальные, уже всем родственникам рассказала",
-    "На украшения для ёлки купила. К Новому году готовы",
-    "Карта Хоум Кредит - тоже работает, деньги есть",
-    "На новый органайзер для косметики. Порядок теперь",
-    "Деньги пришли, пока завтракала. Отлично начался день",
-    "Только что активировал, всё прошло гладко. Жду доставку теперь",
-    "Реально работает, я уже заказал наушники со скидкой!",
-    "Подруга тоже получила, говорит спасибо за ссылку",
-    "Не ожидал, что 1 рубль может принести 5000. Приятный сюрприз",
-    "Уже второй раз участвую в их акциях, всегда всё честно",
-    "Долго сомневалась, но зря. Всё заняло меньше 5 минут",
-    "Соседка по подъезду тоже активировала, теперь вместе заказы собираем",
-    "Муж сначала ругался, а теперь сам доволен, что я настояла 😄",
-    "Карта Сбера подошла, проблем никаких. Деньги вернули моментально",
-    "Успевайте, пока акция не закончилась! Другу вчера уже не хватило",
-    "Я в шоке, если честно. Думала развод, но нет — купон на месте",
-    "Коллега на работе показала, я сразу повторил. Всё чётко",
-    "Спасибо за инструкцию! Без неё бы побоялась",
-    "Теперь буду следить за такими акциями, очень выгодно",
-    "Заказала кроссовки, которые год хотела. 5000 очень помогли"
+  // БОЛЬШАЯ БАЗА РЕАЛИСТИЧНЫХ СООБЩЕНИЙ (40+ фраз)
+  const realisticPhrases = [
+    "у кого уже получился купон? подскажите по шагам",
+    "жду уже 3 минуты, где купон? начинаю переживать",
+    "у меня списался рубль, но промокода нет в кабинете",
+    "подождите немного, у меня через 5 минут пришёл, всё ок",
+    "с карты мир прошло? кто пробовал?",
+    "да, мир работает, у меня ВТБ мир, всё ок",
+    "не понимаю смысла платить рубль, это безопасно?",
+    "да всё честно, просто проверка карты, не бойтесь",
+    "ребят, только что получила 5000, спасибо создателям 🔥",
+    "а если карта не привязана к номеру телефона?",
+    "надо вводить данные паспорта? боюсь мошенников",
+    "только имя и номер карты, всё как при обычной оплате, безопасно",
+    "всё работает, уже потратила на джинсы, довольна",
+    "жду уже 10 минут, начинаю нервничать, поддержка молчит",
+    "у меня тоже долго, но через 8 минут прислали смс, купон пришёл",
+    "спасибо за акцию, активировал, жду доставку товара",
+    "сбербанк норм? у кого сбер, подтвердите",
+    "да, сбер ок, у меня прошло за 2 минуты",
+    "в приложении WB куда вводить промокод? не могу найти",
+    "в раздел 'Мои купоны', копируешь и вставляешь, всё просто",
+    "я с телефона делал, всё заняло 3 минуты",
+    "у меня сразу не пришёл, через час зашёл — лежит в личном кабинете",
+    "вот скрин, что купон активен (прикрепила фото)",
+    "супер, спасибо за ссылку! уже заказала подарок мужу",
+    "кто уже купил что-то? посоветуйте, на что потратить",
+    "взял наушники JBL, вышло вообще дёшево со скидкой",
+    "подруга сделала, сказала работает, и я попробовала — не зря",
+    "какие ограничения по сумме? можно потратить на любой товар?",
+    "до 5000, но не более 30% от стоимости заказа, как обычный купон",
+    "да, стандартный купон WB, ничего сложного",
+    "я сначала сомневался, но рубль не жалко, решил попробовать",
+    "только что активировал, всё прошло гладко, купон пришёл через 4 минуты",
+    "ребят, не тяните, купоны быстро заканчиваются",
+    "на работе уже 5 человек получили, все довольны",
+    "у меня карта Тинькофф, всё прошло идеально",
+    "можно потратить на технику? да, на любые товары",
+    "супер акция, спасибо Wildberries и партнёрам",
+    "жду возврат рубля, пока не вернули, но говорят до 2 минут",
+    "вернули через 30 секунд, быстрее чем смс пришла"
   ];
 
-  function initChat() {
-    chatMessagesContainer.innerHTML = '';
-    
-    const recentMessages = chatMessagesList.slice(-8);
-    const now = new Date();
-    const baseTime = new Date(now.getTime() - 25 * 60 * 1000);
-    
-    recentMessages.forEach((msg, index) => {
-      const minutesOffset = (index / recentMessages.length) * 25;
-      const msgTime = new Date(baseTime.getTime() + minutesOffset * 60 * 1000);
-      let displayDelay = Math.max(0, msgTime.getTime() - now.getTime());
-      setTimeout(() => {
-        addChatMessage(msg.name, msg.text, msg.gender, false, msg.screenshot);
-      }, displayDelay);
+  function generateRandomMessage() {
+    const name = getRandomName();
+    let text = realisticPhrases[Math.floor(Math.random() * realisticPhrases.length)];
+    let hasScreenshot = null;
+    if (Math.random() < 0.12 && screenshots.length) {
+      hasScreenshot = screenshots[Math.floor(Math.random() * screenshots.length)];
+    }
+    addMessage(name, text, false, hasScreenshot);
+    scheduleNextChatMessage();
+  }
+
+  function scheduleNextChatMessage() {
+    const delay = 12000 + Math.random() * 28000; // 12-40 секунд
+    setTimeout(generateRandomMessage, delay);
+  }
+
+  // СТАРТОВЫЕ СООБЩЕНИЯ (25 штук — как будто чат живёт давно)
+  function initChatWithHistory() {
+    chatContainer.innerHTML = '';
+    const starterMessages = [
+      {name:"Анна Москва ⭐", text:"ребят, кто получил купон? я прошла шаг 2, но пока тишина, прошло 5 минут"},
+      {name:"Сергей СПб 🔥", text:"у меня через 5 минут пришёл, не паникуйте, просто подождите"},
+      {name:"Ольга Казань 💎", text:"только что оформила, жду, спасибо за инструкцию"},
+      {name:"Дмитрий Новосибирск", text:"рубль списали, вернётся? переживаю немного"},
+      {name:"Марина Екатеринбург ✅", text:"да, через пару минут вернули, всё ок, не бойтесь"},
+      {name:"Алексей Краснодар", text:"вот скрин из приложения, купон уже активен 👇", screenshot:screenshots[0]},
+      {name:"Елена Воронеж", text:"у меня карта тинькофф, прошло отлично, купон пришёл"},
+      {name:"Игорь Уфа 💪", text:"а на какой сумме работает купон? есть ограничения?"},
+      {name:"Татьяна Самара", text:"до 5000, но не более 30% от суммы заказа, как обычный купон WB"},
+      {name:"Роман Тольятти", text:"я сначала боялся рубль платить, а оказалось всё честно, спасибо"},
+      {name:"Кристина ННовгород 🔥", text:"уже потратила на косметику, всем довольна 💄"},
+      {name:"Виталий Челябинск", text:"тоже получил, спасибо за пост! реально работает"},
+      {name:"Наталья Ростов-на-Дону", text:"а если карта не привязана к госуслугам? это критично?"},
+      {name:"Андрей Москва", text:"нет, главное чтобы карта была активна, 1 рубль спишется и вернётся"},
+      {name:"Юлия Красноярск", text:"девчонки, не бойтесь, всё официально, я уже заказала"},
+      {name:"Максим Пермь", text:"жду уже 8 минут, куда писать если не пришёл?"},
+      {name:"Екатерина СПб", text:"подожди, у меня на 7 минуте пришёл, всё нормально"},
+      {name:"Владимир Казань", text:"подтверждаю, с картой сбера всё прошло за 2 минуты"},
+      {name:"Ирина Москва ⭐", text:"вот ещё скрин из личного кабинета, видно купон", screenshot:screenshots[1]},
+      {name:"Павел Новосибирск", text:"ребят, а если я уже активировал, но купон не применился?"},
+      {name:"Анна Екатеринбург", text:"проверь раздел 'Мои купоны' в приложении, он там должен быть"},
+      {name:"Сергей Краснодар", text:"только что активировал, всё прошло гладко, купон пришёл через 4 минуты"},
+      {name:"Ольга Воронеж", text:"у меня рубль вернулся через минуту, купон тоже пришёл, всё супер"},
+      {name:"Дмитрий Уфа", text:"на работе уже 3 человека получили, все довольны акцией"},
+      {name:"Марина Сочи", text:"спасибо большое, уже заказала дочке рюкзак в школу 🎒"}
+    ];
+    starterMessages.forEach(msg => {
+      addMessage(msg.name, msg.text, false, msg.screenshot || null);
     });
-    
-    setTimeout(() => {
-      startNewMessagesGenerator();
-    }, 3000);
+    scheduleNextChatMessage();
   }
 
-  function startNewMessagesGenerator() {
-    function generateMessage() {
-      const isFemale = Math.random() > 0.45;
-      const nameList = isFemale ? femaleNames : maleNames;
-      const name = nameList[Math.floor(Math.random() * nameList.length)];
-      const city = cities[Math.floor(Math.random() * cities.length)];
-      const fullName = `${name}_${city}`;
-      const text = randomPhrases[Math.floor(Math.random() * randomPhrases.length)];
-      const gender = isFemale ? 'female' : 'male';
-      
-      let hasScreenshot = null;
-      if (SCREENSHOT_URLS.screenshot1 && Math.random() < 0.2) {
-        hasScreenshot = SCREENSHOT_URLS.screenshot1;
-      }
-      
-      addChatMessage(fullName, text, gender, false, hasScreenshot);
-      scheduleNextMessage();
-    }
-    
-    function scheduleNextMessage() {
-      const delay = 18000 + Math.random() * 35000; // 18-53 секунды
-      setTimeout(generateMessage, delay);
-    }
-    scheduleNextMessage();
-  }
+  initChatWithHistory();
 
+  // Отправка сообщения от пользователя
   function sendUserMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
-    addChatMessage('Вы', text, 'user', true, null);
+    addMessage('', text, true, null);
     chatInput.value = '';
-    
+    // Иногда отвечаем реалистично
     setTimeout(() => {
-      const responses = [
-        "Поздравляю! Удачи с покупками 🍀",
-        "Класс! Тоже так сделал, всё работает",
-        "Отлично! Главное — не бояться, всё официально",
-        "Я уже потратила свои 5000, очень довольна",
-        "Добро пожаловать в клуб счастливчиков 😄",
-        "Спасибо, что поделились! Другим тоже полезно"
-      ];
-      const reply = responses[Math.floor(Math.random() * responses.length)];
-      const randName = femaleNames[Math.floor(Math.random() * femaleNames.length)] + "_" + cities[Math.floor(Math.random() * cities.length)];
-      addChatMessage(randName, reply, 'female', false, null);
-    }, 4000 + Math.random() * 5000);
-  }
-
-  function updateOnlineCount() {
-    let online = 140 + Math.floor(Math.random() * 80);
-    document.getElementById('onlineCount').innerText = online;
+      if (Math.random() < 0.55) {
+        const answers = [
+          "да, я тоже так сделал, всё пришло через 3 минуты",
+          "подожди немного, у многих задержка 3-7 минут, это нормально",
+          "какая у тебя карта? у меня сбер прошёл без проблем",
+          "главное проверь раздел 'Мои купоны' в приложении WB",
+          "у меня тоже были сомнения, но реально работает, не бойтесь",
+          "я активировал вчера, уже заказ оформил, всё отлично",
+          "у меня рубль вернулся через минуту, купон пришёл в кабинет",
+          "не переживайте, всё официально, WB подтвердили акцию",
+          "я сначала не верил, но решил попробовать и не пожалел",
+          "другу скинул ссылку, он тоже активировал, всё работает"
+        ];
+        const ans = answers[Math.floor(Math.random() * answers.length)];
+        addMessage(getRandomName(), ans, false, null);
+      }
+    }, 4000 + Math.random() * 8000);
   }
 
   chatSendBtn.addEventListener('click', sendUserMessage);
   chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessage(); });
-  
-  initChat();
-  setInterval(updateOnlineCount, 15000);
-  updateOnlineCount();
 
-  document.getElementById('claimButton').addEventListener('click', function(e) {
-    setTimeout(() => {
-      const notif = createWinnerNotif();
-      notif.name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
-      notif.action = "только что активировал(а) купон";
-      showFloatingNotification(notif);
-    }, 1000);
+  // Онлайн-счётчик (динамический)
+  function updateOnline() {
+    let online = 140 + Math.floor(Math.random() * 110);
+    document.getElementById('onlineCount').innerHTML = `🟢 ${online} онлайн`;
+  }
+  setInterval(updateOnline, 17000);
+  updateOnline();
+
+  // Всплывающие уведомления
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 4500);
+  }
+
+  setInterval(() => {
+    if (Math.random() < 0.3) {
+      const events = [
+        "🎉 Пользователь из Москвы активировал купон 5000₽ только что",
+        "📢 Осталось 32 купона по акции, торопитесь!",
+        "⭐ Елена из Казани: 'Спасибо, сэкономила на технику 5000₽'",
+        "⚠️ Внимание: последние купоны разбирают за 3-5 минут",
+        "🔥 1₽ возвращён 98.7% пользователей, система стабильна",
+        "💬 В чате сейчас 170+ участников, многие делятся опытом"
+      ];
+      showToast(events[Math.floor(Math.random() * events.length)]);
+    }
+  }, 25000);
+
+  // Кнопка наверх
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) backBtn.classList.add('show');
+    else backBtn.classList.remove('show');
   });
-</script>
+  backBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-<!-- Аналитика -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5FDTDTNN"></script>
-<script>
+  // Аналитика (GA)
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-WR5FDTDTNN');
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR5FDTDTNN"></script>
 </body>
 </html>
